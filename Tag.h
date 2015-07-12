@@ -7,9 +7,11 @@
 #include <functional>
 #include <iostream>
 
-union Tag{
-	char name[8];
-	u64 val;
+struct Tag{
+	union {
+		char name[8];
+		u64 val;
+	};
 
 	Tag();
 	Tag(const Tag& other);
