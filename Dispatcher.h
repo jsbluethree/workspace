@@ -1,4 +1,5 @@
 // Dispatcher.h
+// Chris Bowers
 
 /**
  *	This defines an event dispatcher. The dispatcher maintains a hashmap of listeners keyed by event type.
