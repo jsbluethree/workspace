@@ -1,4 +1,11 @@
 // Pool.h
+// Chris Bowers
+
+/**
+ *	This defines and implements the Pool container class.
+ *	The pool emulates the functionality of an std::vector, but uses the pool allocation strategy - see PoolAllocator.h
+ *	Functionality should be the same as std::vector<T, PoolAllocator<T>>, except this does not implement iterator range based insertion or construction.
+ */
 
 #ifndef __POOL_H__
 #define __POOL_H__

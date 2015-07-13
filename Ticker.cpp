@@ -1,4 +1,9 @@
 // Ticker.cpp
+// Chris Bowers
+
+/**
+ *	This implements a ticker - see Ticker.h
+ */
 
 #include "Ticker.h"
 

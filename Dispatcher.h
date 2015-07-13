@@ -1,5 +1,12 @@
 // Dispatcher.h
 
+/**
+ *	This defines an event dispatcher. The dispatcher maintains a hashmap of listeners keyed by event type.
+ *	On tick, it sends out its events to the appropriate listeners.
+ *
+ *	TODO: Implement using std::unordered_multimap rather than a map of vectors
+ */
+
 #ifndef __DISPATCHER_H__
 #define __DISPATCHER_H__
 
@@ -31,4 +38,4 @@ private:
 	Dispatcher& operator=(Dispatcher&&);
 };
 
-#endif
+#endif // __DISPATCHER_H__

@@ -1,6 +1,13 @@
 // QTSceneGraph.h
 // Chris Bowers
 
+/**
+ *	This defines a quadtree based scenegraph - see Quadtree.h and ISceneGraph.h
+ *
+ *	TODO: Rewrite check_collision to short circuit on finding a collision rather than checking the whole set
+ *	TODO: Rewrite check_ and get_collision to have a single base case on a rect, and all other overloads refer to that algorithm
+ */
+
 #ifndef __QTSCENEGRAPH_H__
 #define __QTSCENEGRAPH_H__
 

@@ -1,4 +1,11 @@
 // PoolAllocator.h
+// Chris Bowers
+
+/**
+ *	This defines and implements a pool allocator. The pool allocator allocates space for multiple objects all at once.
+ *	If a large number of small objects are needed, pool allocation is more efficient than standard heap allocation.
+ *	Use should be restricted to objects with trivial destructors for maximum efficiency.
+ */
 
 #ifndef __POOLALLOCATOR_H__
 #define __POOLALLOCATOR_H__

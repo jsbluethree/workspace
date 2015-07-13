@@ -1,4 +1,9 @@
 // Tag.h
+// Chris Bowers
+
+/**
+ *	This defines a 7-character tag. The tag uses a union of u64 and char[8] for more efficient comparison than std::string or c-strings.
+ */
 
 #ifndef __TAG_H__
 #define __TAG_H__
@@ -38,4 +43,4 @@ struct std::hash<Tag>{
 	size_t operator()(const Tag& arg);
 };
 
-#endif
+#endif // __TAG_H__

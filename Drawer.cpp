@@ -1,4 +1,9 @@
 // Drawer.cpp
+// Chris Bowers
+
+/**
+ *	This implements a simple drawer - see Drawer.h
+ */
 
 #include "Drawer.h"
 

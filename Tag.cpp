@@ -1,4 +1,9 @@
 // Tag.cpp
+// Chris Bowers
+
+/**
+ *	This implements a 7-character tag - see Tag.h
+ */
 
 #include "Tag.h"
 

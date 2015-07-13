@@ -1,4 +1,9 @@
 // Dispatcher.cpp
+// Chris Bowers
+
+/**
+ * This is an implementation of an event dispatcher - see Dispatcher.h
+ */
 
 #include "Dispatcher.h"
 

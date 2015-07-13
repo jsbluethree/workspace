@@ -1,4 +1,9 @@
 // StateMachine.cpp
+// Chris Bowers
+
+/**
+ *	This implements a state machine - see StateMachine.h
+ */
 
 #include "StateMachine.h"
 

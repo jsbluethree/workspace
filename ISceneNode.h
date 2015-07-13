@@ -1,6 +1,11 @@
 // ISceneNode.h
 // Chris Bowers
 
+/**
+ *	This defines the interface for a scene node. A scene node is generally defined by a rectangle.
+ *	May be expanded in the future if necessary.
+ */
+
 #ifndef __ISCENENODE_H__
 #define __ISCENENODE_H__
 

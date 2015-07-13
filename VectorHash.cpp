@@ -1,6 +1,10 @@
 // VectorHash.cpp
 // Chris Bowers
 
+/**
+ *	This implements std::hash for sfml vector types - see VectorHash.h
+ */
+
 #include "VectorHash.h"
 
 template<> template<typename T>

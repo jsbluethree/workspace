@@ -1,4 +1,10 @@
 // Json.h
+// Chris Bowers
+
+/**
+ *	This defines a parser for JSON files.
+ *	TODO: make a not shitty JSON parser
+ */
 
 #ifndef __JSON_H__
 #define __JSON_H__
@@ -116,4 +122,4 @@ namespace Json{
 	Value* parse(std::string filepath);
 }
 
-#endif
+#endif // __JSON_H__

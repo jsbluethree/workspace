@@ -1,4 +1,10 @@
 // DrawGroup.h
+// Chris Bowers
+
+/**
+ *	This defines a group of drawables. It is simply an extension of std::vector<Drawable*> that is itself drawable.
+ *	See also TickGroup.h
+ */
 
 #ifndef __DRAWGROUP_H__
 #define __DRAWGROUP_H__
@@ -11,4 +17,4 @@ protected:
 	void draw(RenderTarget& target, RenderStates states) const;
 };
 
-#endif
+#endif // __DRAWGROUP_H__

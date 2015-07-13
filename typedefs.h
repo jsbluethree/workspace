@@ -1,11 +1,14 @@
 // typedefs.h
+// Chris Bowers
+
+/**
+ *	This defines concise names for integer types of different sizes.
+ */
 
 #ifndef __TYPEDEFS_H__
 #define __TYPEDEFS_H__
 
 #include <cstdint>
-
-// define concise names for integers of various sizes
 
 typedef  int8_t  i8;
 typedef  int16_t i16;

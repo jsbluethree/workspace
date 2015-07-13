@@ -1,6 +1,12 @@
 // Quadtree.h
 // Chris Bowers
 
+/**
+ *	This defines a quadtree of scene nodes.
+ *	The quadtree recursively segments a rectangular area into quadrants and stores nodes in those quadrants.
+ *	This allows for efficient retrieval of nodes by position.
+ */
+
 #ifndef __QUADTREE_H__
 #define __QUADTREE_H__
 

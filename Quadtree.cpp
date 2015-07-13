@@ -1,6 +1,10 @@
 // Quadtree.cpp
 // Chris Bowers
 
+/**
+ *	This implements a quadtree of scene nodes - see Quadtree.h
+ */
+
 #include "Quadtree.h"
 
 u32 Quadtree::MAX_NODES = 10;

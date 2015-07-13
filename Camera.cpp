@@ -1,6 +1,10 @@
 // Camera.cpp
 // Chris Bowers
 
+/**
+ *	This is an implementation of a simple camera - see Camera.h
+ */
+
 #include "Camera.h"
 
 Camera::Camera(FloatRect init_rect) : cam_rect{ init_rect } {}

@@ -1,4 +1,10 @@
 // Drawer.h
+// Chris Bowers
+
+/**
+ *	This defines a simple drawer. It keeps a list of drawables and draws them on tick.
+ *	Camera + ISceneGraph can probably replace this entirely.
+ */
 
 #ifndef __DRAWER_H__
 #define __DRAWER_H__
@@ -28,4 +34,4 @@ private:
 	Drawer& operator=(Drawer&&);
 };
 
-#endif
+#endif // __DRAWER_H__

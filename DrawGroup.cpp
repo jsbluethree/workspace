@@ -1,4 +1,9 @@
 // DrawGroup.cpp
+// Chris Bowers
+
+/**
+ *	This implements a group of drawables - see DrawGroup.h
+ */
 
 #include "DrawGroup.h"
 

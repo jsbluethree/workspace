@@ -1,4 +1,9 @@
 // Ticker.h
+// Chris Bowers
+
+/**
+ *	This defines a ticker. It has a list of tickables that are ticked on each tick.... yeah
+ */
 
 #ifndef __TICKER_H__
 #define __TICKER_H__
@@ -25,4 +30,4 @@ private:
 	Ticker& operator=(Ticker&&);
 };
 
-#endif
+#endif // __TICKER_H__

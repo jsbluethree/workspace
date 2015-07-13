@@ -1,6 +1,15 @@
 // ISceneGraph.h
 // Chris Bowers
 
+/**
+ *	This defines the interface for a scene graph.
+ *	A scene graph manages the position of all objects in a given scene for the purposes of collision detection.
+ *	It can also be used for rendering - see Camera.h
+ *	std::unordered_set is used for efficient iteration, insertion and removal of nodes in the average case.
+ *
+ *	CONSIDER: defining check_ and get_collision for non-rect cases here
+ */
+
 #ifndef __ISCENEGRAPH_H__
 #define __ISCENEGRAPH_H__
 

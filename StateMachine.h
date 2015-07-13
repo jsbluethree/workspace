@@ -1,4 +1,11 @@
 // StateMachine.h
+// Chris Bowers
+
+/**
+ *	This defines a state machine and state change events.
+ *	The state machine keeps track of the current logic state of some object and handles state changes.
+ *	The new and delete operators of StateEvent are overloaded to use pool allocation.
+ */
 
 #ifndef __STATEMACHINE_H__
 #define __STATEMACHINE_H__
@@ -36,4 +43,4 @@ struct StateMachine{
 	StateMachine();
 };
 
-#endif
+#endif // __STATEMACHINE_H__

@@ -1,4 +1,9 @@
 // IState.h
+// Chris Bowers
+
+/**
+ *	This defines the interface for a state - see StateMachine.h
+ */
 
 #ifndef __ISTATE_H__
 #define __ISTATE_H__
@@ -13,4 +18,4 @@ struct IState{
 	virtual void exit() {}
 };
 
-#endif
+#endif // __ISTATE_H__

@@ -1,6 +1,10 @@
 // Camera.h
 // Chris Bowers
 
+/**
+ *	This defines a simple camera. It renders all drawables from the given scene that are located within it's own rect.
+ */
+
 #ifndef __CAMERA_H__
 #define __CAMERA_H__
 

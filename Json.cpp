@@ -1,4 +1,9 @@
 // Json.cpp
+// Chris Bowers
+
+/**
+ *	This implements a JSON parser - see Json.h
+ */
 
 #include "Json.h"
 

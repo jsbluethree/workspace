@@ -1,6 +1,10 @@
 // QTSceneGraph.cpp
 // Chris Bowers
 
+/**
+ *	This implements a quadtree-based scene graph - see QTSceneGraph.h
+ */
+
 #include "QTSceneGraph.h"
 
 QTSceneGraph::QTSceneGraph(FloatRect bounds) : qtree{ 0, bounds } {}
