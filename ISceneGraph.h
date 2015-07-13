@@ -7,7 +7,7 @@
 #include "typedefs.h"
 #include "SFML.h"
 #include "ISceneNode.h"
-#include <vector>
+#include <list>
 
 struct ISceneGraph{
 	void add_node(ISceneNode* node) = 0;
@@ -20,10 +20,10 @@ struct ISceneGraph{
 	bool check_collision(const FloatRect& r) = 0;
 	bool check_collision(ISceneNode* node) = 0;
 	
-	std::vector<ISceneNode*> get_collision(float x, float y) = 0;
-	std::vector<ISceneNode*> get_collision(const Vector2f& v) = 0;
-	std::vector<ISceneNode*> get_collision(const FloatRect& r) = 0;
-	std::vector<ISceneNode*> get_collision(ISceneNode* node) = 0;
+	std::list<ISceneNode*> get_collision(float x, float y) = 0;
+	std::list<ISceneNode*> get_collision(const Vector2f& v) = 0;
+	std::list<ISceneNode*> get_collision(const FloatRect& r) = 0;
+	std::list<ISceneNode*> get_collision(ISceneNode* node) = 0;
 };
 
 #endif // __ISCENEGRAPH_H__
