@@ -1,6 +1,7 @@
 # workspace
 c++/sfml game development workspace
 
+TODO: Test EVERYTHING  
 TODO: Dipatcher: Implement using std::unordered_multimap  
 TODO: Make sure all pure virtual interface classes have virtual destructors defined  
 TODO: QTSceneGraph: Rewrite check_collision to short circuit on finding a collision rather than checking the whole set  
