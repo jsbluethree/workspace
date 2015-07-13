@@ -20,10 +20,10 @@ struct QTSceneGraph : ISceneGraph{
 	bool check_collision(const FloatRect& r);
 	bool check_collision(ISceneNode* node);
 	
-	std::list<ISceneNode*> get_collision(float x, float y);
-	std::list<ISceneNode*> get_collision(const Vector2f& v);
-	std::list<ISceneNode*> get_collision(const FloatRect& r);
-	std::list<ISceneNode*> get_collision(ISceneNode* node);
+	std::unordered_set<ISceneNode*> get_collision(float x, float y);
+	std::unordered_set<ISceneNode*> get_collision(const Vector2f& v);
+	std::unordered_set<ISceneNode*> get_collision(const FloatRect& r);
+	std::unordered_set<ISceneNode*> get_collision(ISceneNode* node);
 	
 private:
 	Quadtree qtree;
