@@ -28,17 +28,14 @@ private:
 	i8 get_index(const FloatRect& rect);
 	i8 get_index(ISceneNode* node);
 	
-	std::list<ISceneNode*> _retrieve(std::list<ISceneNode*> return_list, float x, float y);
-	std::list<ISceneNode*> _retrieve(std::list<ISceneNode*> return_list, const Vector2f& vec);
-	std::list<ISceneNode*> _retrieve(std::list<ISceneNode*> return_list, const FloatRect& rect);
-	std::list<ISceneNode*> _retrieve(std::list<ISceneNode*> return_list, ISceneNode* node);
+	void _retrieve(std::list<ISceneNode*>& return_list, const FloatRect& rect);
 	
 	u32 level;
 	std::list<ISceneNode*> nodes;
 	FloatRect bounds;
 	Quadtree* subtrees[4];
 	
-	static u8 MAX_NODES;
+	static u32 MAX_NODES;
 	static u32 MAX_LEVELS;
 };
 
