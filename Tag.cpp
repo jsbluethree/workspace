@@ -52,6 +52,7 @@ std::ostream& operator<<(std::ostream& os, const Tag& tag){
 	return os;
 }
 
+template<>
 size_t std::hash<Tag>::operator()(const Tag& arg){
 	return std::hash<u64>()(arg.val);
 }
