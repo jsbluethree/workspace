@@ -58,7 +58,7 @@ std::list<ISceneNode*> Quadtree::retrieve(ISceneNode* node) { return retrieve(no
 void Quadtree::_retrieve(std::list<ISceneNode*>& return_list, const FloatRect& rect){
 	i8 index = get_index(rect);
 	if (index != -1 && subtrees[0] != nullptr){
-		subtrees[index]._retrieve(return_list, rect);
+		subtrees[index]->_retrieve(return_list, rect);
 	}
 	
 	return_list.insert(return_list.begin(), nodes.begin(), nodes.end());
