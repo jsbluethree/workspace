@@ -7,7 +7,7 @@
 #include "SceneNode.h"
 #include "SFML.h"
 #include "typedefs.h"
-#include <list>
+#include <unordered_set>
 
 struct Quadtree{
 	Quadtree(u32 node_level, FloatRect node_bounds);
@@ -16,10 +16,10 @@ struct Quadtree{
 	void clear();
 	void insert(ISceneNode* node);
 	void remove(ISceneNode* node);
-	std::list<ISceneNode*> retrieve(float x, float y);
-	std::list<ISceneNode*> retrieve(const Vector2f& vec);
-	std::list<ISceneNode*> retrieve(const FloatRect& rect);
-	std::list<ISceneNode*> retrieve(ISceneNode* node);
+	std::unordered_set<ISceneNode*> retrieve(float x, float y);
+	std::unordered_set<ISceneNode*> retrieve(const Vector2f& vec);
+	std::unordered_set<ISceneNode*> retrieve(const FloatRect& rect);
+	std::unordered_set<ISceneNode*> retrieve(ISceneNode* node);
 	
 private:
 	void split();
@@ -29,10 +29,10 @@ private:
 	i8 get_index(const FloatRect& rect);
 	i8 get_index(ISceneNode* node);
 	
-	void _retrieve(std::list<ISceneNode*>& return_list, const FloatRect& rect);
+	void _retrieve(std::unordered_set<ISceneNode*>& return_list, const FloatRect& rect);
 	
 	u32 level;
-	std::list<ISceneNode*> nodes;
+	std::unordered_set<ISceneNode*> nodes;
 	FloatRect bounds;
 	Quadtree* subtrees[4];
 	

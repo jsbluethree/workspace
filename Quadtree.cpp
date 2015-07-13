@@ -34,11 +34,12 @@ void Quadtree::insert(ISceneNode* node){
 	
 	if (nodes.size() > MAX_NODES && level < MAX_LEVELS){
 		if (subtrees[0] == nullptr) split();
-		std::list<ISceneNode*> temp;
+		std::unordered_set<ISceneNode*> temp;
 		temp.swap(nodes);
 		while (!temp.empty()){
-			insert(temp.back());
-			temp.pop_back();
+			auto it = temp.begin();
+			insert(*it);
+			temp.erase(it);
 		}
 	}
 }
@@ -52,22 +53,22 @@ void Quadtree::remove(ISceneNode* node){
 		}
 	}
 	
-	nodes.remove(node);
+	nodes.erase(node);
 }
 
-std::list<ISceneNode*> Quadtree::retrieve(float x, float y) { return retrieve(FloatRect(x, y, 0, 0)); }
+std::unordered_set<ISceneNode*> Quadtree::retrieve(float x, float y) { return retrieve(FloatRect(x, y, 0, 0)); }
 
-std::list<ISceneNode*> Quadtree::retrieve(const Vector2f& vec) { return retrieve(vec.x, vec.y); }
+std::unordered_set<ISceneNode*> Quadtree::retrieve(const Vector2f& vec) { return retrieve(vec.x, vec.y); }
 
-std::list<ISceneNode*> Quadtree::retrieve(const FloatRect& rect){
-	std::list<ISceneNode*> return_list;
+std::unordered_set<ISceneNode*> Quadtree::retrieve(const FloatRect& rect){
+	std::unordered_set<ISceneNode*> return_list;
 	_retrieve(return_list, rect);
 	return return_list;
 }
 
-std::list<ISceneNode*> Quadtree::retrieve(ISceneNode* node) { return retrieve(node->get_rect()); }
+std::unordered_set<ISceneNode*> Quadtree::retrieve(ISceneNode* node) { return retrieve(node->get_rect()); }
 
-void Quadtree::_retrieve(std::list<ISceneNode*>& return_list, const FloatRect& rect){
+void Quadtree::_retrieve(std::unordered_set<ISceneNode*>& return_list, const FloatRect& rect){
 	i8 index = get_index(rect);
 	if (index != -1 && subtrees[0] != nullptr){
 		subtrees[index]->_retrieve(return_list, rect);
