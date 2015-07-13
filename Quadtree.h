@@ -15,6 +15,7 @@ struct Quadtree{
 	
 	void clear();
 	void insert(ISceneNode* node);
+	void remove(ISceneNode* node);
 	std::list<ISceneNode*> retrieve(float x, float y);
 	std::list<ISceneNode*> retrieve(const Vector2f& vec);
 	std::list<ISceneNode*> retrieve(const FloatRect& rect);

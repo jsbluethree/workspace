@@ -43,6 +43,18 @@ void Quadtree::insert(ISceneNode* node){
 	}
 }
 
+void Quadtree::remove(ISceneNode* node){
+	if (subtrees[0] != nullptr) {
+		i8 index = get_index(node);
+		if (index != -1){
+			subtrees[index]->remove(node);
+			return;
+		}
+	}
+	
+	nodes.remove(node);
+}
+
 std::list<ISceneNode*> Quadtree::retrieve(float x, float y) { return retrieve(FloatRect(x, y, 0, 0)); }
 
 std::list<ISceneNode*> Quadtree::retrieve(const Vector2f& vec) { return retrieve(vec.x, vec.y); }
