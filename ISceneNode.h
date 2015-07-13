@@ -8,8 +8,8 @@
 #include "SFML.h"
 
 struct ISceneNode{
-	FloatRect& get_rect() = 0;
-	const FloatRect& get_rect() const = 0;
+	virtual FloatRect& get_rect() = 0;
+	virtual const FloatRect& get_rect() const = 0;
 };
 
 #endif // __ISCENENODE_H__

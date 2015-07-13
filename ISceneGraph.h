@@ -10,20 +10,20 @@
 #include <unordered_set>
 
 struct ISceneGraph{
-	void add_node(ISceneNode* node) = 0;
-	void remove_node(ISceneNode* node) = 0;
-	void update_node(ISceneNode* node, float dx, float dy) = 0;
-	void update_node(ISceneNode* node, const Vector2f& d) = 0;
+	virtual void add_node(ISceneNode* node) = 0;
+	virtual void remove_node(ISceneNode* node) = 0;
+	virtual void update_node(ISceneNode* node, float dx, float dy) = 0;
+	virtual void update_node(ISceneNode* node, const Vector2f& d) = 0;
 	
-	bool check_collision(float x, float y) = 0;
-	bool check_collision(const Vector2f& v) = 0;
-	bool check_collision(const FloatRect& r) = 0;
-	bool check_collision(ISceneNode* node) = 0;
+	virtual bool check_collision(float x, float y) = 0;
+	virtual bool check_collision(const Vector2f& v) = 0;
+	virtual bool check_collision(const FloatRect& r) = 0;
+	virtual bool check_collision(ISceneNode* node) = 0;
 	
-	std::unordered_set<ISceneNode*> get_collision(float x, float y) = 0;
-	std::unordered_set<ISceneNode*> get_collision(const Vector2f& v) = 0;
-	std::unordered_set<ISceneNode*> get_collision(const FloatRect& r) = 0;
-	std::unordered_set<ISceneNode*> get_collision(ISceneNode* node) = 0;
+	virtual std::unordered_set<ISceneNode*> get_collision(float x, float y) = 0;
+	virtual std::unordered_set<ISceneNode*> get_collision(const Vector2f& v) = 0;
+	virtual std::unordered_set<ISceneNode*> get_collision(const FloatRect& r) = 0;
+	virtual std::unordered_set<ISceneNode*> get_collision(ISceneNode* node) = 0;
 };
 
 #endif // __ISCENEGRAPH_H__
