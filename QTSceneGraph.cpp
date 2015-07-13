@@ -11,8 +11,7 @@ void QTSceneGraph::remove_node(ISceneNode* node) { qtree.remove(node); }
 
 void QTSceneGraph::update_node(ISceneNode* node, float dx, float dy){
 	qtree.remove(node);
-	node->get_rect().left += dx;
-	node->get_rect().top += dy;
+	node->move(dx, dy);
 	qtree.insert(node);
 }
 

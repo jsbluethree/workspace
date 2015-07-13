@@ -8,7 +8,8 @@
 #include "SFML.h"
 
 struct ISceneNode{
-	virtual FloatRect& get_rect() = 0;
+	virtual void move(float offsetX, float offsetY) = 0;
+	virtual void move(const Vector2f offset) = 0;
 	virtual const FloatRect& get_rect() const = 0;
 };
 
