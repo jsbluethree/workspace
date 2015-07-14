@@ -10,7 +10,10 @@
 #define __SFML_H__
 
 // load needed SFML modules
+#include "SFML\Audio.hpp"
 #include "SFML\Graphics.hpp"
+#include "SFML\System.hpp"
+#include "SFML\Window.hpp"
 
 // globally use the SFML namespace
 using namespace sf;
