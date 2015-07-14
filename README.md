@@ -2,4 +2,6 @@
 c++/sfml game development workspace
 
 TODO: Test EVERYTHING  
-TODO: Make a not shitty JSON parser  
+TODO: Make a debug logger
+
+note: just use [jsoncpp](https://github.com/open-source-parsers/jsoncpp) for JSON parsing.  
