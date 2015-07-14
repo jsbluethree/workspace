@@ -12,8 +12,8 @@
 #include <vector>
 
 struct Ticker : ITickable{
-	Ticker();
-	~Ticker();
+	Ticker() = default;
+	~Ticker() = default;
 
 	Ticker(const Ticker&) = delete;
 	Ticker(Ticker&&) = delete;
