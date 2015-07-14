@@ -11,32 +11,38 @@ Dispatcher::Dispatcher() {}
 
 Dispatcher::~Dispatcher() { for (auto event : events) delete event; }
 
-void Dispatcher::add_listener(EventType type, ICallback* callback) { defer_add.push_back(std::make_pair(type, callback)); }
+void Dispatcher::add_listener(EventType type, ICallback* callback) { defer_add.insert(std::make_pair(type, callback)); }
 
-void Dispatcher::remove_listener(EventType type, ICallback* callback) { defer_add.push_back(std::make_pair(type, callback)); }
+void Dispatcher::remove_listener(EventType type, ICallback* callback) { defer_remove.insert(std::make_pair(type, callback)); }
 
 void Dispatcher::add_event(IEvent* event) { events.push_back(event); }
 
 void Dispatcher::dispatch(IEvent* event){
-	for (auto callback : listeners[event->type()]) callback->execute(event);
+	// see reference for unordered_multimap::equal_range
+	for (auto its = listeners.equal_range(event); its.first != its.second; its.first++){
+		// its.first->second is the ICallback*
+		its.first->second->execute(event);
+	}
 	delete event;
 }
 
 void Dispatcher::tick(float dt){
-	for (auto event : events) dispatch(event);
+	for (const auto& event : events) dispatch(event);
 	events.clear();
 
-	for (auto pair : defer_add) listeners[pair.first].push_back(pair.second);
+	listeners.insert(defer_add.begin(), defer_add.end())
 	defer_add.clear();
-
-	for (auto pair : defer_remove){
-		for (auto it = listeners[pair.first].begin(); it != listeners[pair.first].end(); ++it){
-			if (*it == pair.second){
-				listeners[pair.first].erase(it);
+	
+	for (const auto& pair : defer_remove){
+		auto b_index = bucket(pair.first);
+		for (auto it = listeners.begin(b_index); it != listeners.end(b_index); it++){
+			if (it->second == pair.second){
+				listeners.erase(it);
 				break;
 			}
 		}
 	}
+	
 	defer_remove.clear();
 }
 

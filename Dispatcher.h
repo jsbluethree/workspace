@@ -4,8 +4,6 @@
 /**
  *	This defines an event dispatcher. The dispatcher maintains a hashmap of listeners keyed by event type.
  *	On tick, it sends out its events to the appropriate listeners.
- *
- *	TODO: Implement using std::unordered_multimap rather than a map of vectors
  */
 
 #ifndef __DISPATCHER_H__
@@ -18,10 +16,10 @@
 #include <vector>
 
 struct Dispatcher : ITickable{
-	std::unordered_map<EventType, std::vector<ICallback*>> listeners;
+	std::unordered_multimap<EventType, ICallback*> listeners;
 	std::vector<IEvent*> events;
-	std::vector<std::pair<EventType, ICallback*>> defer_add;
-	std::vector<std::pair<EventType, ICallback*>> defer_remove;
+	std::unordered_multimap<EventType, ICallback*>  defer_add;
+	std::unordered_multimap<EventType, ICallback*>  defer_remove;
 
 	Dispatcher();
 	~Dispatcher();
