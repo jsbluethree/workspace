@@ -11,6 +11,22 @@ Dispatcher::Dispatcher() {}
 
 Dispatcher::~Dispatcher() { for (auto event : events) delete event; }
 
+Dispatcher::Dispatcher(Dispatcher&& other){
+	listeners.swap(other.listeners);
+	events.swap(other.events);
+	defer_add.swap(other.defer_add);
+	defer_remove.swap(other.defer_remove);
+}
+
+Dispatcher& Dispatcher::operator=(Dispatcher&& other){
+	events.clear();
+	listeners.swap(other.listeners);
+	events.swap(other.events);
+	defer_add.swap(other.defer_add);
+	defer_remove.swap(other.defer_remove);
+	return *this;
+}
+
 void Dispatcher::add_listener(EventType type, ICallback* callback) { defer_add.insert(std::make_pair(type, callback)); }
 
 void Dispatcher::remove_listener(EventType type, ICallback* callback) { defer_remove.insert(std::make_pair(type, callback)); }
