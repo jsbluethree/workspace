@@ -10,7 +10,7 @@
 #ifndef __QUADTREE_H__
 #define __QUADTREE_H__
 
-#include "SceneNode.h"
+#include "ISceneNode.h"
 #include "SFML.h"
 #include "typedefs.h"
 #include <unordered_set>

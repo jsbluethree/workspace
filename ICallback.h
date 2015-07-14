@@ -8,7 +8,7 @@
 #ifndef __ICALLBACK_H__
 #define __ICALLBACK_H__
 
-#include "IEvent.h"
+struct IEvent;
 
 struct ICallback{
 	virtual void execute(IEvent* event) = 0;

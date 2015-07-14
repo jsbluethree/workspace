@@ -8,7 +8,9 @@
 #ifndef __QTSCENEGRAPH_H__
 #define __QTSCENEGRAPH_H__
 
+#include "SFML.h"
 #include "ISceneGraph.h"
+#include "ISceneNode.h"
 #include "Quadtree.h"
 
 struct QTSceneGraph : ISceneGraph{

@@ -19,7 +19,7 @@ void Dispatcher::add_event(IEvent* event) { events.push_back(event); }
 
 void Dispatcher::dispatch(IEvent* event){
 	// see reference for unordered_multimap::equal_range
-	for (auto its = listeners.equal_range(event); its.first != its.second; its.first++){
+	for (auto its = listeners.equal_range(event->type()); its.first != its.second; its.first++){
 		// its.first->second is the ICallback*
 		its.first->second->execute(event);
 	}
