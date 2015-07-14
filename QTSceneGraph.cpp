@@ -22,7 +22,7 @@ void QTSceneGraph::update_node(ISceneNode* node, float dx, float dy){
 bool QTSceneGraph::check_collision(const FloatRect&r) {
 	auto possible = qtree.retrieve(r);
 	for (const auto& node : possible){
-		if (node->get_rect.intersects(r)){
+		if (node->get_rect().intersects(r)){
 			return true;
 		}
 	}
