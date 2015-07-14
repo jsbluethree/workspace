@@ -45,11 +45,3 @@ void Dispatcher::tick(float dt){
 	
 	defer_remove.clear();
 }
-
-Dispatcher::Dispatcher(const Dispatcher&) {}
-
-Dispatcher::Dispatcher(Dispatcher&&) {}
-
-Dispatcher& Dispatcher::operator=(const Dispatcher&) { return *this; }
-
-Dispatcher& Dispatcher::operator=(Dispatcher&&) { return *this; }

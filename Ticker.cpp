@@ -32,10 +32,3 @@ void Ticker::tick(float dt){
 	defer_remove.clear();
 }
 
-Ticker::Ticker(const Ticker&) {}
-
-Ticker::Ticker(Ticker&&) {}
-
-Ticker& Ticker::operator=(const Ticker&) { return *this; }
-
-Ticker& Ticker::operator=(Ticker&&) { return *this; }

@@ -18,16 +18,14 @@ struct Ticker : ITickable{
 
 	Ticker();
 	~Ticker();
+	Ticker(const Ticker&) = delete;
+	Ticker(Ticker&&) = delete;
+	Ticker& operator=(const Ticker&) = delete;
+	Ticker& operator=(Ticker&&) = delete;
 
 	void add_tickable(ITickable* tickable);
 	void remove_tickable(ITickable* tickable);
 	void tick(float dt);
-
-private:
-	Ticker(const Ticker&);
-	Ticker(Ticker&&);
-	Ticker& operator=(const Ticker&);
-	Ticker& operator=(Ticker&&);
 };
 
 #endif // __TICKER_H__

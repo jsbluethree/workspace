@@ -23,6 +23,10 @@ struct Dispatcher : ITickable{
 
 	Dispatcher();
 	~Dispatcher();
+	Dispatcher(const Dispatcher&) = delete;
+	Dispatcher(Dispatcher&&) = delete;
+	Dispatcher& operator=(const Dispatcher&) = delete;
+	Dispatcher& operator=(Dispatcher&&) = delete;
 
 	void add_listener(EventType type, ICallback* callback);
 	void remove_listener(EventType type, ICallback* callback);
@@ -30,11 +34,7 @@ struct Dispatcher : ITickable{
 	void dispatch(IEvent* event);
 	void tick(float dt);
 
-private:
-	Dispatcher(const Dispatcher&);
-	Dispatcher(Dispatcher&&);
-	Dispatcher& operator=(const Dispatcher&);
-	Dispatcher& operator=(Dispatcher&&);
+
 };
 
 #endif // __DISPATCHER_H__
