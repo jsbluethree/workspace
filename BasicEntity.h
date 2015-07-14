@@ -18,4 +18,4 @@ struct BasicEntity : Sprite, ISceneNode{
 	const FloatRect& get_rect() const;
 };
 
-#endif
+#endif // __BASICENTITY_H__

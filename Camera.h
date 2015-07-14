@@ -19,4 +19,4 @@ struct Camera{
 	void render_scene(ISceneGraph* scene, RenderTarget& target, const RenderStates& states = RenderStates::Default);
 };
 
-#endif // _CAMERA_H__
+#endif // __CAMERA_H__
