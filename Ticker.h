@@ -12,12 +12,9 @@
 #include <vector>
 
 struct Ticker : ITickable{
-	std::vector<ITickable*> tickables;
-	std::vector<ITickable*> defer_add;
-	std::vector<ITickable*> defer_remove;
-
 	Ticker();
 	~Ticker();
+
 	Ticker(const Ticker&) = delete;
 	Ticker(Ticker&&) = delete;
 	Ticker& operator=(const Ticker&) = delete;
@@ -26,6 +23,11 @@ struct Ticker : ITickable{
 	void add_tickable(ITickable* tickable);
 	void remove_tickable(ITickable* tickable);
 	void tick(float dt);
+
+private:
+	std::vector<ITickable*> tickables;
+	std::vector<ITickable*> defer_add;
+	std::vector<ITickable*> defer_remove;
 };
 
 #endif // __TICKER_H__

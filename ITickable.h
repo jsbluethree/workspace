@@ -9,9 +9,9 @@
 #define __ITICKABLE_H__
 
 struct ITickable{
-	virtual void tick(float dt) = 0;
-	
 	virtual ~ITickable() {}
+
+	virtual void tick(float dt) = 0;	
 };
 
 #endif // __ITICKABLE_H__

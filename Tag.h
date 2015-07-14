@@ -13,17 +13,17 @@
 #include <iostream>
 
 struct Tag{
-	union {
-		char name[8];
-		uint64_t val;
-	};
-
 	Tag();
 	Tag(const Tag& other);
 	Tag(const char* chars);
 	Tag& operator=(const Tag& other);
 	Tag& operator=(const char* chars);
 	~Tag();
+
+	union {
+		char name[8];
+		uint64_t val;
+	};
 };
 
 bool operator==(const Tag& lhs, const Tag& rhs);

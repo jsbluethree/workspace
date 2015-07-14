@@ -12,11 +12,11 @@
 #include "SFML.h"
 
 struct ISceneNode{
+	virtual ~ISceneNode() {}
+
 	virtual void move(float offsetX, float offsetY) = 0;
 	virtual void move(const Vector2f& offset) = 0;
-	virtual const FloatRect& get_rect() const = 0;
-	
-	virtual ~ISceneNode() {}
+	virtual const FloatRect& get_rect() const = 0;	
 };
 
 #endif // __ISCENENODE_H__

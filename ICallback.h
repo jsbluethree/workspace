@@ -11,9 +11,9 @@
 struct IEvent;
 
 struct ICallback{
-	virtual void execute(IEvent* event) = 0;
-	
 	virtual ~ICallback() {}
+
+	virtual void execute(IEvent* event) = 0;	
 };
 
 #endif // __ICALLBACK_H__

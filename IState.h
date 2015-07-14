@@ -11,13 +11,13 @@
 #include "Dispatcher.h"
 
 struct IState{
-	Dispatcher events;
+	virtual ~IState() {}
 
 	virtual void enter() {}
 	virtual void run() = 0;
 	virtual void exit() {}
 	
-	virtual ~IState() {}
+	Dispatcher events;
 };
 
 #endif // __ISTATE_H__

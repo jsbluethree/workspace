@@ -17,11 +17,12 @@
 
 struct Dispatcher : ITickable{
 	Dispatcher();
-	~Dispatcher();
-	Dispatcher(const Dispatcher&) = delete;
-	Dispatcher& operator=(const Dispatcher&) = delete;
 	Dispatcher(Dispatcher&& other);
 	Dispatcher& operator=(Dispatcher&& other);
+	~Dispatcher();
+
+	Dispatcher(const Dispatcher&) = delete;
+	Dispatcher& operator=(const Dispatcher&) = delete;
 
 	void add_listener(EventType type, ICallback* callback);
 	void remove_listener(EventType type, ICallback* callback);
@@ -29,6 +30,7 @@ struct Dispatcher : ITickable{
 	void dispatch(IEvent* event);
 	void tick(float dt);
 
+private:
 	std::unordered_multimap<EventType, ICallback*> listeners;
 	std::vector<IEvent*> events;
 	std::unordered_multimap<EventType, ICallback*>  defer_add;

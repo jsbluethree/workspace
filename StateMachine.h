@@ -20,26 +20,27 @@
 #include <string>
 
 struct StateEvent : IEvent{
-	Tag next_state;
-
 	StateEvent(Tag next);
+
 	EventType type();
 	void* operator new(size_t n);
 	void operator delete(void* p);
 	void operator delete(void* p, size_t n);
+
+	Tag next_state;
 };
 
 struct StateMachine{
+	StateMachine();
+
 	IState* current_state;
 	std::unordered_map<Tag, IState*> state_lookup;
 
 	struct OnStateTransition : ICallback{
-		StateMachine* machine;
 		OnStateTransition(StateMachine* owner);
 		void execute(IEvent* event);
+		StateMachine* machine;
 	} state_transition_listener;
-
-	StateMachine();
 };
 
 #endif // __STATEMACHINE_H__

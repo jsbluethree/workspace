@@ -16,6 +16,8 @@
 #include <unordered_set>
 
 struct ISceneGraph{
+	virtual ~ISceneGraph() {}
+
 	virtual void add_node(ISceneNode* node) = 0;
 	virtual void remove_node(ISceneNode* node) = 0;
 	virtual void update_node(ISceneNode* node, float dx, float dy) = 0;
@@ -29,9 +31,7 @@ struct ISceneGraph{
 	virtual std::unordered_set<ISceneNode*> get_collision(const FloatRect& r) = 0;
 	virtual std::unordered_set<ISceneNode*> get_collision(float x, float y) { return get_collision(FloatRect(x, y, 0, 0)); }
 	virtual std::unordered_set<ISceneNode*> get_collision(const Vector2f& v) { return get_collision(v.x, v.y); }
-	virtual std::unordered_set<ISceneNode*> get_collision(ISceneNode* node) { return get_collision(node->get_rect()); }
-	
-	virtual ~ISceneGraph() {}
+	virtual std::unordered_set<ISceneNode*> get_collision(ISceneNode* node) { return get_collision(node->get_rect()); }	
 };
 
 #endif // __ISCENEGRAPH_H__

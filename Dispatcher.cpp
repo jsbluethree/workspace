@@ -9,7 +9,7 @@
 
 Dispatcher::Dispatcher() {}
 
-Dispatcher::~Dispatcher() { for (auto event : events) delete event; }
+Dispatcher::~Dispatcher() { for (auto event : events) delete event; events.clear(); }
 
 Dispatcher::Dispatcher(Dispatcher&& other){
 	listeners.swap(other.listeners);

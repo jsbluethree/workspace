@@ -14,24 +14,25 @@
 #include <vector>
 
 struct Drawer : ITickable{
-	std::vector<Drawable*> drawables;
-	std::vector<Drawable*> defer_add;
-	std::vector<Drawable*> defer_remove;
-	RenderTarget* target;
-
 	Drawer();
 	Drawer(RenderTarget* render_target);
 	~Drawer();
+
+	Drawer(const Drawer&) = delete;
+	Drawer(Drawer&&) = delete;
+	Drawer& operator=(const Drawer&) = delete;
+	Drawer& operator=(Drawer&&) = delete;
 
 	void add_drawable(Drawable* drawable);
 	void remove_drawable(Drawable* drawable);
 	void tick(float);
 
+	RenderTarget* target;
+
 private:
-	Drawer(const Drawer&);
-	Drawer(Drawer&&);
-	Drawer& operator=(const Drawer&);
-	Drawer& operator=(Drawer&&);
+	std::vector<Drawable*> drawables;
+	std::vector<Drawable*> defer_add;
+	std::vector<Drawable*> defer_remove;
 };
 
 #endif // __DRAWER_H__
