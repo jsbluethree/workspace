@@ -24,7 +24,7 @@ bool Log::error(const std::string& msg) { return log(LogLevel::ERROR, "ERROR: " 
 bool Log::critical(const std::string& msg) { return log(LogLevel::CRITICAL, "CRITICAL: " + msg); }
 
 bool Log::log(LogLevel lvl, const std::string& msg){
- if (lvl < level) return false;
- std::cerr << msg << std::endl << std::endl;
- return true;
+	if (lvl < level) return false;
+	std::cerr << msg << std::endl << std::endl;
+	return true;
 }
