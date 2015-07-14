@@ -6,3 +6,4 @@ json/json.h
 *.sln
 *.vcxproj
 *.vcxproj.filters
+Debug/*
