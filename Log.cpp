@@ -25,6 +25,6 @@
  
  bool Log::log(LogLevel lvl, const std::string& msg){
 	 if (lvl < level) return false;
-	 std::cerr << msg;
+	 std::cerr << msg << std::endl << std::endl;
 	 return true;
  }
