@@ -7,8 +7,6 @@
  
 #include "Log.h"
 
-LogLevel Log::level = LogLevel::NOT_SET;
-
 void Log::set_level(LogLevel lvl) { level = lvl; }
 
 LogLevel Log::get_level() { return level; }
@@ -28,3 +26,5 @@ bool Log::log(LogLevel lvl, const std::string& msg){
 	std::cerr << msg << std::endl << std::endl;
 	return true;
 }
+
+LogLevel Log::level = LogLevel::NOT_SET;

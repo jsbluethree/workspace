@@ -33,11 +33,3 @@ void Drawer::tick(float){
 	}
 	defer_remove.clear();
 }
-
-Drawer::Drawer(const Drawer&) {}
-
-Drawer::Drawer(Drawer&&) {}
-
-Drawer& Drawer::operator=(const Drawer&) { return *this; }
-
-Drawer& Drawer::operator=(Drawer&&) { return *this; }

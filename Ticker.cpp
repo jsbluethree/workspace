@@ -7,10 +7,6 @@
 
 #include "Ticker.h"
 
-Ticker::Ticker() {}
-
-Ticker::~Ticker() {}
-
 void Ticker::add_tickable(ITickable* tickable) { defer_add.push_back(tickable); }
 
 void Ticker::remove_tickable(ITickable* tickable) { defer_remove.push_back(tickable); }

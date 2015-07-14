@@ -7,10 +7,6 @@
 
 #include "Quadtree.h"
 
-unsigned int Quadtree::MAX_NODES = 10;
-
-unsigned int Quadtree::MAX_LEVELS = 10;
-
 Quadtree::Quadtree(unsigned int node_level, FloatRect node_bounds) : level{ node_level }, bounds{ node_bounds } {
 	for (auto& p : subtrees) p = nullptr;
 }
@@ -114,3 +110,7 @@ int Quadtree::get_index(const FloatRect& rect){
 }
 
 int Quadtree::get_index(ISceneNode* node) { return get_index(node->get_rect()); }
+
+unsigned int Quadtree::MAX_NODES = 10;
+
+unsigned int Quadtree::MAX_LEVELS = 10;

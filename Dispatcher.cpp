@@ -9,8 +9,6 @@
 
 Dispatcher::Dispatcher() {}
 
-Dispatcher::~Dispatcher() { for (auto event : events) delete event; events.clear(); }
-
 Dispatcher::Dispatcher(Dispatcher&& other){
 	listeners.swap(other.listeners);
 	events.swap(other.events);
@@ -26,6 +24,8 @@ Dispatcher& Dispatcher::operator=(Dispatcher&& other){
 	defer_remove.swap(other.defer_remove);
 	return *this;
 }
+
+Dispatcher::~Dispatcher() { for (auto event : events) delete event; events.clear(); }
 
 void Dispatcher::add_listener(EventType type, ICallback* callback) { defer_add.insert(std::make_pair(type, callback)); }
 
