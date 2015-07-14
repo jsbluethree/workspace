@@ -40,10 +40,8 @@ void Quadtree::insert(ISceneNode* node){
 		if (subtrees[0] == nullptr) split();
 		decltype(nodes) temp;
 		temp.swap(nodes);
-		while (!temp.empty()){
-			auto it = temp.begin();
-			insert(*it);
-			temp.erase(it);
+		for (const auto& node : temp){
+			insert(node);
 		}
 	}
 }
@@ -91,12 +89,12 @@ void Quadtree::split(){
 	subtrees[3] = new Quadtree(level + 1, FloatRect(bounds.left + sub_width, bounds.top + sub_height, sub_width, sub_height));
 }
 
-i8 Quadtree::get_index(float x, float y) { return get_index(FloatRect(x, y, 0, 0)); }
+i32 Quadtree::get_index(float x, float y) { return get_index(FloatRect(x, y, 0, 0)); }
 
-i8 Quadtree::get_index(const Vector2f& vec) { return get_index(vec.x, vec.y); }
+i32 Quadtree::get_index(const Vector2f& vec) { return get_index(vec.x, vec.y); }
 
-i8 Quadtree::get_index(const FloatRect& rect){
-	i8 index = -1;
+i32 Quadtree::get_index(const FloatRect& rect){
+	i32 index = -1;
 	float vert_mid = bounds.left + bounds.width / 2;
 	float hori_mid = bounds.top + bounds.height / 2;
 	
@@ -115,4 +113,4 @@ i8 Quadtree::get_index(const FloatRect& rect){
 	return index;	
 }
 
-i8 Quadtree::get_index(ISceneNode* node) { return get_index(node->get_rect()); }
+i32 Quadtree::get_index(ISceneNode* node) { return get_index(node->get_rect()); }

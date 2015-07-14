@@ -30,10 +30,10 @@ struct Quadtree{
 private:
 	void split();
 	
-	i8 get_index(float x, float y);
-	i8 get_index(const Vector2f& vec);
-	i8 get_index(const FloatRect& rect);
-	i8 get_index(ISceneNode* node);
+	i32 get_index(float x, float y);
+	i32 get_index(const Vector2f& vec);
+	i32 get_index(const FloatRect& rect);
+	i32 get_index(ISceneNode* node);
 	
 	void _retrieve(std::unordered_set<ISceneNode*>& return_list, const FloatRect& rect);
 	
