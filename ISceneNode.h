@@ -9,8 +9,7 @@
 #ifndef __ISCENENODE_H__
 #define __ISCENENODE_H__
 
-struct Vector2f;
-struct FloatRect;
+#include "SFML.h"
 
 struct ISceneNode{
 	virtual void move(float offsetX, float offsetY) = 0;
