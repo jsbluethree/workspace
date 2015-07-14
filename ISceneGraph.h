@@ -11,7 +11,6 @@
 #ifndef __ISCENEGRAPH_H__
 #define __ISCENEGRAPH_H__
 
-#include "typedefs.h"
 #include "SFML.h"
 #include "ISceneNode.h"
 #include <unordered_set>

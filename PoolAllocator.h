@@ -10,7 +10,6 @@
 #ifndef __POOLALLOCATOR_H__
 #define __POOLALLOCATOR_H__
 
-#include "typedefs.h"
 #include <memory>
 #include <mutex>
 #include <new>
@@ -22,7 +21,7 @@
 template<size_t ELEM_SIZE>
 union ChunkElem{
 	ChunkElem* next;
-	u8 padding[ELEM_SIZE];
+	unsigned char padding[ELEM_SIZE];
 };
 
 template<size_t ELEM_SIZE>

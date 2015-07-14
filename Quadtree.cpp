@@ -7,11 +7,11 @@
 
 #include "Quadtree.h"
 
-u32 Quadtree::MAX_NODES = 10;
+unsigned int Quadtree::MAX_NODES = 10;
 
-u32 Quadtree::MAX_LEVELS = 10;
+unsigned int Quadtree::MAX_LEVELS = 10;
 
-Quadtree::Quadtree(u32 node_level, FloatRect node_bounds) : level{ node_level }, bounds{ node_bounds } {
+Quadtree::Quadtree(unsigned int node_level, FloatRect node_bounds) : level{ node_level }, bounds{ node_bounds } {
 	for (auto& p : subtrees) p = nullptr;
 }
 
@@ -89,12 +89,12 @@ void Quadtree::split(){
 	subtrees[3] = new Quadtree(level + 1, FloatRect(bounds.left + sub_width, bounds.top + sub_height, sub_width, sub_height));
 }
 
-i32 Quadtree::get_index(float x, float y) { return get_index(FloatRect(x, y, 0, 0)); }
+int Quadtree::get_index(float x, float y) { return get_index(FloatRect(x, y, 0, 0)); }
 
-i32 Quadtree::get_index(const Vector2f& vec) { return get_index(vec.x, vec.y); }
+int Quadtree::get_index(const Vector2f& vec) { return get_index(vec.x, vec.y); }
 
-i32 Quadtree::get_index(const FloatRect& rect){
-	i32 index = -1;
+int Quadtree::get_index(const FloatRect& rect){
+	int index = -1;
 	float vert_mid = bounds.left + bounds.width / 2;
 	float hori_mid = bounds.top + bounds.height / 2;
 	
@@ -113,4 +113,4 @@ i32 Quadtree::get_index(const FloatRect& rect){
 	return index;	
 }
 
-i32 Quadtree::get_index(ISceneNode* node) { return get_index(node->get_rect()); }
+int Quadtree::get_index(ISceneNode* node) { return get_index(node->get_rect()); }

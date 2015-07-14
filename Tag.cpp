@@ -12,7 +12,7 @@ Tag::Tag() : val{ 0 } {}
 Tag::Tag(const Tag& other) : val{ other.val } {}
 
 Tag::Tag(const char* chars){
-	u8 i;
+	unsigned int i;
 	for (i = 0; chars[i] != '\0' && i < 7; i++){
 		name[i] = chars[i];
 	}
@@ -24,7 +24,7 @@ Tag::Tag(const char* chars){
 Tag& Tag::operator=(const Tag& other) { val = other.val; return *this; }
 
 Tag& Tag::operator=(const char* chars){
-	u8 i;
+	unsigned int i;
 	for (i = 0; chars[i] != 0 && i < 7; i++){
 		name[i] = chars[i];
 	}
@@ -51,12 +51,12 @@ std::istream& operator>>(std::istream& is, Tag& tag){
 }
 
 std::ostream& operator<<(std::ostream& os, const Tag& tag){
-	for (u8 i = 0; tag.name[i] != '\0' && i < 7; i++){
+	for (unsigned int i = 0; tag.name[i] != '\0' && i < 7; i++){
 		os << tag.name[i];
 	}
 	return os;
 }
 
 size_t std::hash<Tag>::operator()(const Tag& arg){
-	return std::hash<u64>()(arg.val);
+	return std::hash<uint64_t>()(arg.val);
 }

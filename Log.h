@@ -8,11 +8,11 @@
 #ifndef __LOG_H__
 #define __LOG_H__
 
-#include "typedefs.h"
+
 #include <iostream>
 #include <string>
 
-enum class LogLevel : u8{
+enum class LogLevel{
 	NOT_SET,
 	DEBUG,
 	INFO,

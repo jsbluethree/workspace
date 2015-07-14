@@ -9,9 +9,8 @@
 #ifndef __IEVENT_H__
 #define __IEVENT_H__
 
-#include "typedefs.h"
 
-enum class EventType : u8{
+enum class EventType{
 	STATE
 };
 

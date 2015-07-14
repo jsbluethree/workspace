@@ -2,20 +2,20 @@
 // Chris Bowers
 
 /**
- *	This defines a 7-character tag. The tag uses a union of u64 and char[8] for more efficient comparison than std::string or c-strings.
+ *	This defines a 7-character tag. The tag uses a union of uint64_t and char[8] for more efficient comparison than std::string or c-strings.
  */
 
 #ifndef __TAG_H__
 #define __TAG_H__
 
-#include "typedefs.h"
+#include <cstdint>
 #include <functional>
 #include <iostream>
 
 struct Tag{
 	union {
 		char name[8];
-		u64 val;
+		uint64_t val;
 	};
 
 	Tag();

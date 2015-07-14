@@ -16,7 +16,6 @@
 #include "IState.h"
 #include "PoolAllocator.h"
 #include "Tag.h"
-#include "typedefs.h"
 #include <unordered_map>
 #include <string>
 
