@@ -12,6 +12,8 @@
 
 struct ICallback{
 	virtual void execute(IEvent* event) = 0;
+	
+	virtual ~ICallback() {}
 };
 
 #endif // __ICALLBACK_H__

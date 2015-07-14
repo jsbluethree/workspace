@@ -10,6 +10,8 @@
 
 struct ITickable{
 	virtual void tick(float dt) = 0;
+	
+	virtual ~ITickable() {}
 };
 
 #endif // __ITICKABLE_H__

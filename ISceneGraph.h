@@ -33,6 +33,8 @@ struct ISceneGraph{
 	virtual std::unordered_set<ISceneNode*> get_collision(const Vector2f& v) = 0;
 	virtual std::unordered_set<ISceneNode*> get_collision(const FloatRect& r) = 0;
 	virtual std::unordered_set<ISceneNode*> get_collision(ISceneNode* node) = 0;
+	
+	virtual ~ISceneGraph() {}
 };
 
 #endif // __ISCENEGRAPH_H__

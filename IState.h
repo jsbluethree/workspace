@@ -16,6 +16,8 @@ struct IState{
 	virtual void enter() {}
 	virtual void run() = 0;
 	virtual void exit() {}
+	
+	virtual ~IState() {}
 };
 
 #endif // __ISTATE_H__

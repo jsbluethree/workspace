@@ -17,6 +17,7 @@ enum class EventType : u8{
 
 struct IEvent{
 	virtual EventType type() = 0;
+	
 	virtual ~IEvent() {}
 };
 
