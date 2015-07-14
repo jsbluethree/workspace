@@ -77,9 +77,9 @@ public:
 
 private:
 	struct PoolSet{
+		~PoolSet();
 		std::unordered_set<PoolChunk<sizeof(T)>*> set;
 		std::mutex access_mtx;
-		~PoolSet();
 	};
 	static PoolSet m_chunks;
 };

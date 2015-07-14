@@ -26,10 +26,10 @@ struct Pool{
 	Pool(const Pool& other);
 	Pool(Pool&& other);
 	Pool(std::initializer_list<T> il);
-	~Pool();
 	Pool& operator=(const Pool& other);
 	Pool& operator=(Pool&& other);
 	Pool& operator=(std::initializer_list<T> il);
+	~Pool();
 
 	iterator begin();
 	const_iterator begin() const;
