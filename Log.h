@@ -23,7 +23,7 @@ enum class LogLevel : u8{
 
 struct Log{
 	static void set_level(LogLevel lvl);
-	static LogLevel get_level() const;
+	static LogLevel get_level();
 	
 	static bool debug(const std::string& msg);
 	static bool info(const std::string& msg);

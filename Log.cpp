@@ -7,11 +7,11 @@
  
 #include "Log.h"
 
-Log::level = LogLevel::NOT_SET;
+LogLevel Log::level = LogLevel::NOT_SET;
 
 void Log::set_level(LogLevel lvl) { level = lvl; }
 
-LogLevel Log::get_level() const { return level; }
+LogLevel Log::get_level() { return level; }
 
 bool Log::debug(const std::string& msg) { return log(LogLevel::DEBUG, "DEBUG: " + msg); }
 

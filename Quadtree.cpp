@@ -34,7 +34,7 @@ void Quadtree::insert(ISceneNode* node){
 		}
 	}
 	
-	nodes.push_back(node);
+	nodes.insert(node);
 	
 	if (nodes.size() > MAX_NODES && level < MAX_LEVELS){
 		if (subtrees[0] == nullptr) split();
@@ -78,17 +78,17 @@ void Quadtree::_retrieve(std::unordered_set<ISceneNode*>& return_list, const Flo
 		subtrees[index]->_retrieve(return_list, rect);
 	}
 	
-	return_list.insert(return_list.begin(), nodes.begin(), nodes.end());
+	return_list.insert(nodes.begin(), nodes.end());
 }
 
 void Quadtree::split(){
 	float sub_width = bounds.width / 2;
 	float sub_height = bounds.height / 2;
 	
-	subtrees[0] = new Quadtree(level + 1, bounds.left + sub_width, bounds.top, sub_width, sub_height);
-	subtrees[1] = new Quadtree(level + 1, bounds.left, bounds.top, sub_width, sub_height);
-	subtrees[2] = new Quadtree(level + 1, bounds.left, bounds.top + sub_height, sub_width, sub_height);
-	subtrees[3] = new Quadtree(level + 1, bounds.left + sub_width, bounds.top + sub_height, sub_width, sub_height);
+	subtrees[0] = new Quadtree(level + 1, FloatRect(bounds.left + sub_width, bounds.top, sub_width, sub_height));
+	subtrees[1] = new Quadtree(level + 1, FloatRect(bounds.left, bounds.top, sub_width, sub_height));
+	subtrees[2] = new Quadtree(level + 1, FloatRect(bounds.left, bounds.top + sub_height, sub_width, sub_height));
+	subtrees[3] = new Quadtree(level + 1, FloatRect(bounds.left + sub_width, bounds.top + sub_height, sub_width, sub_height));
 }
 
 i8 Quadtree::get_index(float x, float y) { return get_index(FloatRect(x, y, 0, 0)); }

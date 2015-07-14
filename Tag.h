@@ -36,7 +36,6 @@ bool operator>=(const Tag& lhs, const Tag& rhs);
 std::istream& operator>>(std::istream& is, Tag& tag);
 std::ostream& operator<<(std::ostream& os, const Tag& tag);
 
-template<>
 struct std::hash<Tag>{
 	typedef size_t result_type;
 	typedef Tag argument_type;

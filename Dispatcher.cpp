@@ -30,11 +30,11 @@ void Dispatcher::tick(float dt){
 	for (const auto& event : events) dispatch(event);
 	events.clear();
 
-	listeners.insert(defer_add.begin(), defer_add.end())
+	listeners.insert(defer_add.begin(), defer_add.end());
 	defer_add.clear();
 	
 	for (const auto& pair : defer_remove){
-		auto b_index = bucket(pair.first);
+		auto b_index = listeners.bucket(pair.first);
 		for (auto it = listeners.begin(b_index); it != listeners.end(b_index); it++){
 			if (it->second == pair.second){
 				listeners.erase(it);
