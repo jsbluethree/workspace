@@ -5,40 +5,37 @@
  *	This contains various tests. This also contains, for now, the entry point.
  */
 
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
 #include "SFML.h"
 #include "Quadtree.h"
+#include "BasicEntity.h"
+
+
 
 RenderWindow main_window;
 
 void test_quad_tree(){
-	Texture tex_am;
-	if (!tex_am.loadFromFile("amethyst.png")) return;
-	Sprite spr_am;
-	spr_am.setTexture(tex_am);
-
-	while (main_window.isOpen()){
-		Event event;
-		while (main_window.pollEvent(event)){
-			if (event.type == Event::Closed){
-				main_window.close();
-			}
-			else if (event.type == Event::KeyPressed){
-				if (event.key.code == Keyboard::Return){
-					return;
-				}
-			}
-		}
-		main_window.clear();
-		main_window.draw(spr_am);
-		main_window.display();
+	srand(time(nullptr));
+	Texture a_tex;
+	if (!a_tex.loadFromFile("a.png")) return;
+	BasicEntity a[20];
+	Quadtree qtree(0, FloatRect(0, 0, 800, 600));
+	for (auto& s : a){
+		s.setTexture(a_tex);
+		s.scale(0.1f, 0.1f);
+		s.setPosition(rand() % 800, rand() % 600);
+		qtree.insert(&s);
 	}
 }
 
 int main(int argc, char** argv){
+
 	main_window.create(VideoMode(800, 600), "Tests");
 	
 	test_quad_tree();
-	/**/
+	
 
 	while (main_window.isOpen()){
 		Event event;
@@ -48,6 +45,6 @@ int main(int argc, char** argv){
 			}
 		}
 	}
-
+	/**/
 	return 0;
 }
