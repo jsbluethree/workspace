@@ -14,7 +14,7 @@
 struct Camera{
 	Camera(FloatRect init_rect);
 	
-	void render_scene(ISceneGraph* scene, RenderTarget& target, const RenderStates& states = RenderStates::Default);
+	void render_scene(ISceneGraph* scene, RenderTarget& target, const RenderStates& states = RenderStates::Default) const;
 
 	FloatRect cam_rect;
 };

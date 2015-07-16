@@ -54,19 +54,19 @@ void Quadtree::remove(ISceneNode* node){
 	nodes.erase(node);
 }
 
-std::unordered_set<ISceneNode*> Quadtree::retrieve(float x, float y) { return retrieve(FloatRect(x, y, 0, 0)); }
+std::unordered_set<ISceneNode*> Quadtree::retrieve(float x, float y) const { return retrieve(FloatRect(x, y, 0, 0)); }
 
-std::unordered_set<ISceneNode*> Quadtree::retrieve(const Vector2f& vec) { return retrieve(vec.x, vec.y); }
+std::unordered_set<ISceneNode*> Quadtree::retrieve(const Vector2f& vec) const { return retrieve(vec.x, vec.y); }
 
-std::unordered_set<ISceneNode*> Quadtree::retrieve(const FloatRect& rect){
+std::unordered_set<ISceneNode*> Quadtree::retrieve(const FloatRect& rect) const{
 	std::unordered_set<ISceneNode*> return_list;
 	_retrieve(return_list, rect);
 	return return_list;
 }
 
-std::unordered_set<ISceneNode*> Quadtree::retrieve(ISceneNode* node) { return retrieve(node->get_rect()); }
+std::unordered_set<ISceneNode*> Quadtree::retrieve(ISceneNode* node) const { return retrieve(node->get_rect()); }
 
-void Quadtree::_retrieve(std::unordered_set<ISceneNode*>& return_list, const FloatRect& rect){
+void Quadtree::_retrieve(std::unordered_set<ISceneNode*>& return_list, const FloatRect& rect) const{
 	auto index = get_index(rect);
 	if (index != -1 && subtrees[0] != nullptr){
 		subtrees[index]->_retrieve(return_list, rect);
@@ -85,11 +85,11 @@ void Quadtree::split(){
 	subtrees[3] = new Quadtree(level + 1, FloatRect(bounds.left + sub_width, bounds.top + sub_height, sub_width, sub_height));
 }
 
-int Quadtree::get_index(float x, float y) { return get_index(FloatRect(x, y, 0, 0)); }
+int Quadtree::get_index(float x, float y) const { return get_index(FloatRect(x, y, 0, 0)); }
 
-int Quadtree::get_index(const Vector2f& vec) { return get_index(vec.x, vec.y); }
+int Quadtree::get_index(const Vector2f& vec) const { return get_index(vec.x, vec.y); }
 
-int Quadtree::get_index(const FloatRect& rect){
+int Quadtree::get_index(const FloatRect& rect) const{
 	int index = -1;
 	float vert_mid = bounds.left + bounds.width / 2;
 	float hori_mid = bounds.top + bounds.height / 2;
@@ -109,7 +109,7 @@ int Quadtree::get_index(const FloatRect& rect){
 	return index;	
 }
 
-int Quadtree::get_index(ISceneNode* node) { return get_index(node->get_rect()); }
+int Quadtree::get_index(ISceneNode* node) const { return get_index(node->get_rect()); }
 
 unsigned int Quadtree::MAX_NODES = 10;
 

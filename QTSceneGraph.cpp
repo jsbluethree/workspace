@@ -19,7 +19,7 @@ void QTSceneGraph::update_node(ISceneNode* node, float dx, float dy){
 	qtree.insert(node);
 }
 
-bool QTSceneGraph::check_collision(const FloatRect&r) {
+bool QTSceneGraph::check_collision(const FloatRect&r) const{
 	auto possible = qtree.retrieve(r);
 	for (const auto& node : possible){
 		if (node->get_rect().intersects(r)){
@@ -30,7 +30,7 @@ bool QTSceneGraph::check_collision(const FloatRect&r) {
 	return false;
 }
 
-std::unordered_set<ISceneNode*> QTSceneGraph::get_collision(const FloatRect& r){
+std::unordered_set<ISceneNode*> QTSceneGraph::get_collision(const FloatRect& r) const{
 	auto possible = qtree.retrieve(r);
 	decltype(possible) confirmed;
 	
