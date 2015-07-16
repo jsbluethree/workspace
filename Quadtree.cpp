@@ -22,12 +22,10 @@ void Quadtree::clear(){
 }
 
 void Quadtree::insert(ISceneNode* node){
-	if (subtrees[0] != nullptr) {
-		auto index = get_index(node);
-		if (index != -1){
-			subtrees[index]->insert(node);
-			return;
-		}
+	auto index = get_index(node);
+	if (subtrees[0] != nullptr && index != -1) {
+		subtrees[index]->insert(node);
+		return;		
 	}
 	
 	nodes.insert(node);
@@ -37,10 +35,8 @@ void Quadtree::insert(ISceneNode* node){
 		decltype(nodes) temp;
 		temp.swap(nodes);
 		for (const auto& node : temp){
-			auto index = get_index(node);
-			if (index != -1){
-				subtrees[index]->insert(node);
-			}
+			if (index != -1) subtrees[index]->insert(node);
+			else nodes.insert(node);
 		}
 	}
 }
