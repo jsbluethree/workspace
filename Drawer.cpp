@@ -9,13 +9,13 @@
 
 Drawer::Drawer() : target{ nullptr } {}
 
-Drawer::Drawer(RenderTarget* render_target) : target{ render_target } {}
+Drawer::Drawer(RenderTarget& render_target) : target{ &render_target } {}
 
 Drawer::~Drawer() {}
 
-void Drawer::add_drawable(Drawable* drawable) { defer_add.push_back(drawable); }
+void Drawer::add_drawable(Drawable& drawable) { defer_add.push_back(&drawable); }
 
-void Drawer::remove_drawable(Drawable* drawable) { defer_remove.push_back(drawable); }
+void Drawer::remove_drawable(Drawable& drawable) { defer_remove.push_back(&drawable); }
 
 void Drawer::tick(float){
 	for (auto drawable : drawables) target->draw(*drawable);

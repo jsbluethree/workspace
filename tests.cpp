@@ -10,7 +10,7 @@
 #include <cstdlib>
 #include "SFML.h"
 #include "SFMLUtility.h"
-#include "Quadtree.h"
+#include "QTSceneGraph.h"
 #include "BasicEntity.h"
 
 
@@ -23,20 +23,15 @@ void test_quad_tree(){
 	if (!a_tex.loadFromFile("a.png")) return;
 	a_tex.setSmooth(true);
 	BasicEntity a[20];
-	Quadtree qtree(0, FloatRect(0, 0, 800, 600));
+	QTSceneGraph qtree(FloatRect(0, 0, 800, 600));
 	for (auto& s : a){
 		s.setTexture(a_tex);
 		s.scale(0.5f, 0.5f);
 		s.setPosition(rand() % 660, rand() % 460);
-		std::cout << s.get_rect() << std::endl;
-		qtree.insert(&s);
+		//std::cout << s.get_rect() << std::endl;
+		qtree.add_node(&s);
 	}
-	int size = 0;
-	for (const auto& p : qtree.retrieve(0.0f, 0.0f)){
-		std::cout << p << std::endl;
-		size++;
-	}
-	std::cout << size;
+
 	while (main_window.isOpen()){
 		Event event;
 		while (main_window.pollEvent(event)){

@@ -9,13 +9,13 @@
 
 QTSceneGraph::QTSceneGraph(FloatRect bounds) : qtree{ 0, bounds } {}
 
-void QTSceneGraph::add_node(ISceneNode* node) { qtree.insert(node); }
+void QTSceneGraph::add_node(ISceneNode& node) { qtree.insert(node); }
 
-void QTSceneGraph::remove_node(ISceneNode* node) { qtree.remove(node); }
+void QTSceneGraph::remove_node(ISceneNode& node) { qtree.remove(node); }
 
-void QTSceneGraph::update_node(ISceneNode* node, float dx, float dy){
+void QTSceneGraph::update_node(ISceneNode& node, float dx, float dy){
 	qtree.remove(node);
-	node->move(dx, dy);
+	node.move(dx, dy);
 	qtree.insert(node);
 }
 

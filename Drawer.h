@@ -15,7 +15,7 @@
 
 struct Drawer : ITickable{
 	Drawer();
-	Drawer(RenderTarget* render_target);
+	Drawer(RenderTarget& render_target);
 	~Drawer();
 
 	Drawer(const Drawer&) = delete;
@@ -23,8 +23,8 @@ struct Drawer : ITickable{
 	Drawer& operator=(const Drawer&) = delete;
 	Drawer& operator=(Drawer&&) = delete;
 
-	void add_drawable(Drawable* drawable);
-	void remove_drawable(Drawable* drawable);
+	void add_drawable(Drawable& drawable);
+	void remove_drawable(Drawable& drawable);
 	void tick(float);
 
 	RenderTarget* target;

@@ -24,8 +24,8 @@ struct Dispatcher : ITickable{
 	Dispatcher(const Dispatcher&) = delete;
 	Dispatcher& operator=(const Dispatcher&) = delete;
 
-	void add_listener(EventType type, ICallback* callback);
-	void remove_listener(EventType type, ICallback* callback);
+	void add_listener(EventType type, ICallback& callback);
+	void remove_listener(EventType type, ICallback& callback);
 	void add_event(IEvent* event);
 	void dispatch(IEvent* event);
 	void tick(float dt);

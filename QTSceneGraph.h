@@ -16,9 +16,9 @@
 struct QTSceneGraph : ISceneGraph{
 	QTSceneGraph(FloatRect bounds);
 	
-	void add_node(ISceneNode* node);
-	void remove_node(ISceneNode* node);
-	void update_node(ISceneNode* node, float dx, float dy);
+	void add_node(ISceneNode& node);
+	void remove_node(ISceneNode& node);
+	void update_node(ISceneNode& node, float dx, float dy);
 	
 	bool check_collision(const FloatRect& r) const;
 	

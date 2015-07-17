@@ -21,28 +21,28 @@ void Quadtree::clear(){
 	}
 }
 
-void Quadtree::insert(ISceneNode* node){
+void Quadtree::insert(ISceneNode& node){
 	auto index = get_index(node);
 	if (subtrees[0] != nullptr && index != -1) {
 		subtrees[index]->insert(node);
 		return;		
 	}
 	
-	nodes.insert(node);
+	nodes.insert(&node);
 	
 	if (nodes.size() > MAX_NODES && level < MAX_LEVELS){
 		if (subtrees[0] == nullptr) split();
 		decltype(nodes) temp;
 		temp.swap(nodes);
 		for (const auto& t_node : temp){
-			index = get_index(t_node);
-			if (index != -1) subtrees[index]->insert(t_node);
+			index = get_index(*t_node);
+			if (index != -1) subtrees[index]->insert(*t_node);
 			else nodes.insert(t_node);
 		}
 	}
 }
 
-void Quadtree::remove(ISceneNode* node){
+void Quadtree::remove(ISceneNode& node){
 	if (subtrees[0] != nullptr) {
 		auto index = get_index(node);
 		if (index != -1){
@@ -72,7 +72,7 @@ std::unordered_set<ISceneNode*> Quadtree::retrieve(const FloatRect& rect) const{
 	return return_list;
 }
 
-std::unordered_set<ISceneNode*> Quadtree::retrieve(ISceneNode* node) const { return retrieve(node->get_rect()); }
+std::unordered_set<ISceneNode*> Quadtree::retrieve(const ISceneNode& node) const { return retrieve(node.get_rect()); }
 /*
 void Quadtree::_retrieve(std::unordered_set<ISceneNode*>& return_list, const FloatRect& rect) const{
 	auto index = get_index(rect);
@@ -117,7 +117,7 @@ int Quadtree::get_index(const FloatRect& rect) const{
 	return index;	
 }
 
-int Quadtree::get_index(ISceneNode* node) const { return get_index(node->get_rect()); }
+int Quadtree::get_index(const ISceneNode& node) const { return get_index(node.get_rect()); }
 
 unsigned int Quadtree::MAX_NODES = 10;
 

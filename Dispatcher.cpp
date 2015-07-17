@@ -27,9 +27,9 @@ Dispatcher& Dispatcher::operator=(Dispatcher&& other){
 
 Dispatcher::~Dispatcher() { for (auto event : events) delete event; events.clear(); }
 
-void Dispatcher::add_listener(EventType type, ICallback* callback) { defer_add.insert(std::make_pair(type, callback)); }
+void Dispatcher::add_listener(EventType type, ICallback& callback) { defer_add.insert(std::make_pair(type, &callback)); }
 
-void Dispatcher::remove_listener(EventType type, ICallback* callback) { defer_remove.insert(std::make_pair(type, callback)); }
+void Dispatcher::remove_listener(EventType type, ICallback& callback) { defer_remove.insert(std::make_pair(type, &callback)); }
 
 void Dispatcher::add_event(IEvent* event) { events.push_back(event); }
 

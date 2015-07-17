@@ -20,12 +20,12 @@ struct Quadtree{
 	~Quadtree();
 	
 	void clear();
-	void insert(ISceneNode* node);
-	void remove(ISceneNode* node);
+	void insert(ISceneNode& node);
+	void remove(ISceneNode& node);
 	std::unordered_set<ISceneNode*> retrieve(float x, float y) const;
 	std::unordered_set<ISceneNode*> retrieve(const Vector2f& vec) const;
 	std::unordered_set<ISceneNode*> retrieve(const FloatRect& rect) const;
-	std::unordered_set<ISceneNode*> retrieve(ISceneNode* node) const;
+	std::unordered_set<ISceneNode*> retrieve(const ISceneNode& node) const;
 	
 private:
 	//void _retrieve(std::unordered_set<ISceneNode*>& return_list, const FloatRect& rect) const;
@@ -34,7 +34,7 @@ private:
 	int get_index(float x, float y) const;
 	int get_index(const Vector2f& vec) const;
 	int get_index(const FloatRect& rect) const;
-	int get_index(ISceneNode* node) const;
+	int get_index(const ISceneNode& node) const;
 	
 	unsigned int level;
 	std::unordered_set<ISceneNode*> nodes;

@@ -20,8 +20,8 @@ struct Ticker : ITickable{
 	Ticker& operator=(const Ticker&) = delete;
 	Ticker& operator=(Ticker&&) = delete;
 
-	void add_tickable(ITickable* tickable);
-	void remove_tickable(ITickable* tickable);
+	void add_tickable(ITickable& tickable);
+	void remove_tickable(ITickable& tickable);
 	void tick(float dt);
 
 private:
