@@ -16,6 +16,18 @@
 
 RenderWindow main_window;
 
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const Vector2<T>& vec){
+	os << '(' << vec.x << ' ' << vec.y << ')';
+	return os;
+}
+
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const Rect<T>& rect){
+	os << '(' << rect.left << ' ' << rect.top << ' ' << rect.width << ' ' << rect.height << ')';
+	return os;
+}
+
 void test_quad_tree(){
 	srand(time(nullptr));
 	Texture a_tex;
@@ -25,8 +37,26 @@ void test_quad_tree(){
 	for (auto& s : a){
 		s.setTexture(a_tex);
 		s.scale(0.1f, 0.1f);
-		s.setPosition(rand() % 800, rand() % 600);
+		s.setPosition(rand() % 770, rand() % 570);
+		std::cout << s.get_rect() << std::endl;
 		qtree.insert(&s);
+	}
+	int size = 0;
+	for (const auto& p : qtree.retrieve(0.0f, 0.0f)){
+		std::cout << p << std::endl;
+		size++;
+	}
+	std::cout << size;
+	while (main_window.isOpen()){
+		Event event;
+		while (main_window.pollEvent(event)){
+			if (event.type == Event::Closed){
+				main_window.close();
+			}
+		}
+		main_window.clear();
+		for (const auto& s : a) main_window.draw(s);
+		main_window.display();
 	}
 }
 

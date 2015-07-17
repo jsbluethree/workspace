@@ -10,6 +10,7 @@
 #ifndef __QUADTREE_H__
 #define __QUADTREE_H__
 
+#include "Log.h"
 #include "ISceneNode.h"
 #include "SFML.h"
 #include <unordered_set>

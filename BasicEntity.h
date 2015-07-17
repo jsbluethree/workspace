@@ -15,7 +15,7 @@
 struct BasicEntity : Sprite, ISceneNode{
 	void move(float offsetX, float offsetY);
 	void move(const Vector2f& offset);
-	const FloatRect& get_rect() const;
+	FloatRect get_rect() const;
 };
 
 #endif // __BASICENTITY_H__

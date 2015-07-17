@@ -32,9 +32,9 @@ struct Dispatcher : ITickable{
 
 private:
 	std::unordered_multimap<EventType, ICallback*> listeners;
+	std::unordered_multimap<EventType, ICallback*> defer_add;
+	std::unordered_multimap<EventType, ICallback*> defer_remove;
 	std::vector<IEvent*> events;
-	std::unordered_multimap<EventType, ICallback*>  defer_add;
-	std::unordered_multimap<EventType, ICallback*>  defer_remove;
 };
 
 #endif // __DISPATCHER_H__
