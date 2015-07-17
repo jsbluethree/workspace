@@ -61,10 +61,8 @@ std::unordered_set<ISceneNode*> Quadtree::retrieve(const FloatRect& rect) const{
 	decltype(nodes) return_list;
 	auto index = get_index(rect);
 	if (index != -1 && subtrees[0] != nullptr){
-		for (const auto& sub : subtrees){
-			const auto& partial = sub->retrieve(rect);
-			return_list.insert(partial.begin(), partial.end());
-		}
+		const auto& partial = subtrees[index]->retrieve(rect);
+		return_list.insert(partial.begin(), partial.end());
 	}
 
 	return_list.insert(nodes.begin(), nodes.end());
