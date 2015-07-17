@@ -1,13 +1,11 @@
-// VectorHash.h
-// Chris Bowers
+// SFMLUtility.h
 
 /**
- *	This defines std::hash specializations for sfml's vector types.
- *	This allows them to be used as keys in hash tables given that the vector elements themselves have std::hash specializations.
+ *	This defines various utility functions for SFML types Vector2, Vector3 and Rect.
  */
 
-#ifndef __VECTORHASH_H__
-#define __VECTORHASH_H__
+#ifndef __SFMLUTILITY_H__
+#define __SFMLUTILITY_H__
 
 #include <functional>
 #include "SFML.h"
@@ -26,4 +24,11 @@ struct std::hash<Vector3<T>>{
 	size_t operator()(const Vector3<T>& arg);
 };
 
-#endif // __VECTORHASH_H__
+template<typename T>
+struct std::hash<Rect<T>>{
+	typedef size_t result_type;
+	typedef Rect<T> argument_type;
+	size_t operator()(const Rect<T>& arg);
+};
+
+#endif // __SFMLUTILITY_H__

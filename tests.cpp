@@ -32,12 +32,13 @@ void test_quad_tree(){
 	srand(time(nullptr));
 	Texture a_tex;
 	if (!a_tex.loadFromFile("a.png")) return;
+	a_tex.setSmooth(true);
 	BasicEntity a[20];
 	Quadtree qtree(0, FloatRect(0, 0, 800, 600));
 	for (auto& s : a){
 		s.setTexture(a_tex);
-		s.scale(0.1f, 0.1f);
-		s.setPosition(rand() % 770, rand() % 570);
+		s.scale(0.5f, 0.5f);
+		s.setPosition(rand() % 660, rand() % 460);
 		std::cout << s.get_rect() << std::endl;
 		qtree.insert(&s);
 	}
