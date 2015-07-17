@@ -9,24 +9,13 @@
 #include <ctime>
 #include <cstdlib>
 #include "SFML.h"
+#include "SFMLUtility.h"
 #include "Quadtree.h"
 #include "BasicEntity.h"
 
 
 
 RenderWindow main_window;
-
-template<typename T>
-std::ostream& operator<<(std::ostream& os, const Vector2<T>& vec){
-	os << '(' << vec.x << ' ' << vec.y << ')';
-	return os;
-}
-
-template<typename T>
-std::ostream& operator<<(std::ostream& os, const Rect<T>& rect){
-	os << '(' << rect.left << ' ' << rect.top << ' ' << rect.width << ' ' << rect.height << ')';
-	return os;
-}
 
 void test_quad_tree(){
 	srand(time(nullptr));
