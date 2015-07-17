@@ -27,7 +27,7 @@ struct Quadtree{
 	std::unordered_set<ISceneNode*> retrieve(ISceneNode* node) const;
 	
 private:
-	void _retrieve(std::unordered_set<ISceneNode*>& return_list, const FloatRect& rect) const;
+	//void _retrieve(std::unordered_set<ISceneNode*>& return_list, const FloatRect& rect) const;
 	void split();
 	
 	int get_index(float x, float y) const;

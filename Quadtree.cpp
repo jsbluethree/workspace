@@ -58,13 +58,23 @@ std::unordered_set<ISceneNode*> Quadtree::retrieve(float x, float y) const { ret
 std::unordered_set<ISceneNode*> Quadtree::retrieve(const Vector2f& vec) const { return retrieve(vec.x, vec.y); }
 
 std::unordered_set<ISceneNode*> Quadtree::retrieve(const FloatRect& rect) const{
-	std::unordered_set<ISceneNode*> return_list;
-	_retrieve(return_list, rect);
+	decltype(nodes) return_list;
+	auto index = get_index(rect);
+	if (index != -1 && subtrees[0] != nullptr){
+		for (const auto& sub : subtrees){
+			const auto& partial = sub->retrieve(rect);
+			return_list.insert(partial.begin(), partial.end());
+		}
+	}
+
+	return_list.insert(nodes.begin(), nodes.end());
+
+	//_retrieve(return_list, rect);
 	return return_list;
 }
 
 std::unordered_set<ISceneNode*> Quadtree::retrieve(ISceneNode* node) const { return retrieve(node->get_rect()); }
-
+/*
 void Quadtree::_retrieve(std::unordered_set<ISceneNode*>& return_list, const FloatRect& rect) const{
 	auto index = get_index(rect);
 	if (index != -1 && subtrees[0] != nullptr){
@@ -73,7 +83,7 @@ void Quadtree::_retrieve(std::unordered_set<ISceneNode*>& return_list, const Flo
 	
 	return_list.insert(nodes.begin(), nodes.end());
 }
-
+/**/
 void Quadtree::split(){
 	float sub_width = bounds.width / 2;
 	float sub_height = bounds.height / 2;
