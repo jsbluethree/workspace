@@ -34,9 +34,9 @@ void Quadtree::insert(ISceneNode* node){
 		if (subtrees[0] == nullptr) split();
 		decltype(nodes) temp;
 		temp.swap(nodes);
-		for (const auto& node : temp){
-			if (index != -1) subtrees[index]->insert(node);
-			else nodes.insert(node);
+		for (const auto& t_node : temp){
+			if (index != -1) subtrees[index]->insert(t_node);
+			else nodes.insert(t_node);
 		}
 	}
 }
