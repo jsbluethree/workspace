@@ -76,7 +76,7 @@ T length(const Vector2<T>& vec){
 
 template<typename T>
 T length(const Vector3<T>& vec){
-	return sqrt(dot(vec, vec, vec));
+	return sqrt(dot(vec, vec));
 }
 
 template<typename T>
