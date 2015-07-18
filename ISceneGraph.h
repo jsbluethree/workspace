@@ -24,12 +24,12 @@ struct ISceneGraph{
 	virtual void update_node(ISceneNode& node, const Vector2f& d) { update_node(node, d.x, d.y); }
 
 	virtual bool check_collision(const FloatRect& r) const = 0;
-	virtual bool check_collision(float x, float y) const { return check_collision(FloatRect(x, y, 0, 0)); }
+	virtual bool check_collision(float x, float y) const = 0;
 	virtual bool check_collision(const Vector2f& v) const { return check_collision(v.x, v.y); }
 	virtual bool check_collision(const ISceneNode& node) const { return check_collision(node.get_rect()); }
 	
 	virtual std::unordered_set<ISceneNode*> get_collision(const FloatRect& r) const = 0;
-	virtual std::unordered_set<ISceneNode*> get_collision(float x, float y) const { return get_collision(FloatRect(x, y, 0, 0)); }
+	virtual std::unordered_set<ISceneNode*> get_collision(float x, float y) const = 0;
 	virtual std::unordered_set<ISceneNode*> get_collision(const Vector2f& v) const { return get_collision(v.x, v.y); }
 	virtual std::unordered_set<ISceneNode*> get_collision(const ISceneNode& node) const { return get_collision(node.get_rect()); }
 };

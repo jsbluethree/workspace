@@ -44,7 +44,10 @@ void test_quad_tree(){
 				std::cout << clicked.size() << std::endl;
 				for (auto& c : clicked){
 					auto sprite = dynamic_cast<Sprite*>(c);
-					if (sprite) sprite->rotate(180);
+					if (sprite){
+						sprite->rotate(180);
+						qtree.update_node(*c, 0, 0);
+					}
 				}
 			}
 		}
