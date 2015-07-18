@@ -51,7 +51,7 @@ void Quadtree::remove(ISceneNode& node){
 		}
 	}
 	
-	nodes.erase(node);
+	nodes.erase(&node);
 }
 
 std::unordered_set<ISceneNode*> Quadtree::retrieve(float x, float y) const { return retrieve(FloatRect(x, y, 0, 0)); }

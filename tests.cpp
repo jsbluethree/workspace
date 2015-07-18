@@ -29,7 +29,7 @@ void test_quad_tree(){
 		s.scale(0.5f, 0.5f);
 		s.setPosition(rand() % 660, rand() % 460);
 		//std::cout << s.get_rect() << std::endl;
-		qtree.add_node(&s);
+		qtree.add_node(s);
 	}
 
 	while (main_window.isOpen()){
@@ -37,6 +37,15 @@ void test_quad_tree(){
 		while (main_window.pollEvent(event)){
 			if (event.type == Event::Closed){
 				main_window.close();
+			}
+			else if (event.type == Event::MouseButtonPressed){
+				std::cout << "clicked " << event.mouseButton.x << ' ' << event.mouseButton.y << std::endl;
+				auto clicked = qtree.get_collision(event.mouseButton.x, event.mouseButton.y);
+				std::cout << clicked.size() << std::endl;
+				for (auto& c : clicked){
+					auto sprite = dynamic_cast<Sprite*>(c);
+					if (sprite) sprite->rotate(180);
+				}
 			}
 		}
 		main_window.clear();
