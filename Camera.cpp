@@ -7,11 +7,15 @@
 
 #include "Camera.h"
 
-Camera::Camera(FloatRect init_rect) : cam_rect{ init_rect } {}
+Camera::Camera(FloatRect source) : Camera{ source, FloatRect(0.0f, 0.0f, 1.0f, 1.0f) } {}
+
+Camera::Camera(FloatRect source, FloatRect viewport) : source_rect{ source }, viewport_rect{ viewport } {}
 
 void Camera::render_scene(const ISceneGraph& scene, RenderTarget& target, const RenderStates& states) const{
-	target.setView(View(cam_rect));
-	for (const auto& node : scene.get_collision(cam_rect)){
+	View view(source_rect);
+	view.setViewport(viewport_rect);
+	target.setView(view);
+	for (const auto& node : scene.get_collision(source_rect)){
 		auto drawable = dynamic_cast<Drawable*>(node);
 		if (drawable) target.draw(*drawable, states);
 	}

@@ -12,11 +12,13 @@
 #include "ISceneGraph.h"
 
 struct Camera{
-	Camera(FloatRect init_rect);
+	Camera(FloatRect source);
+	Camera(FloatRect source, FloatRect viewport);
 	
 	void render_scene(const ISceneGraph& scene, RenderTarget& target, const RenderStates& states = RenderStates::Default) const;
 
-	FloatRect cam_rect;
+	FloatRect source_rect;
+	FloatRect viewport_rect;
 };
 
 #endif // __CAMERA_H__
