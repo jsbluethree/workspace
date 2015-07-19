@@ -1,4 +1,5 @@
 // SFMLUtility.cpp
+// Chris Bowers
 
 /**
  *	Implements various utility functions for SFML types - see SFMLUtility.h

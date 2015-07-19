@@ -1,4 +1,5 @@
 // SFMLUtility.h
+// Chris Bowers
 
 /**
  *	This defines various utility functions for SFML types Vector2, Vector3 and Rect.
