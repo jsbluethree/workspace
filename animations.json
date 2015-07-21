@@ -1,0 +1,18 @@
+{
+	"__title" : "animations.json",
+	"__comment" : "Defines animations using texture names and frame durations, assuming 30 fps.",
+	"animations" : {
+		"anim1" : {
+			"texname1" : 2,
+			"texname2" : 2,
+			"texname3" : 4,
+			"texname4" : 2,
+			"loops" : true
+		},
+		"anim2" : {
+			"texname6" : 4,
+			"texname5" : 4,
+			"loops" : false
+		}
+	}
+}
