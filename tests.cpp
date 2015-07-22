@@ -16,6 +16,7 @@
 
 
 RenderWindow main_window;
+Clock frame_clock;
 
 void test_quad_tree(){
 	srand(time(nullptr));
@@ -33,6 +34,7 @@ void test_quad_tree(){
 	}
 
 	while (main_window.isOpen()){
+		frame_clock.restart();
 		Event event;
 		while (main_window.pollEvent(event)){
 			if (event.type == Event::Closed){
@@ -54,6 +56,7 @@ void test_quad_tree(){
 		main_window.clear();
 		for (const auto& s : a) main_window.draw(s);
 		main_window.display();
+		while (frame_clock.getElapsedTime().asMilliseconds() < 67);
 	}
 }
 
@@ -65,12 +68,14 @@ int main(int argc, char** argv){
 	
 
 	while (main_window.isOpen()){
+		frame_clock.restart();
 		Event event;
 		while (main_window.pollEvent(event)){
 			if (event.type == Event::Closed){
 				main_window.close();
 			}
 		}
+		while (frame_clock.getElapsedTime().asMilliseconds() < 67);
 	}
 	/**/
 	return 0;
