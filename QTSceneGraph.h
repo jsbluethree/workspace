@@ -14,7 +14,7 @@
 #include "Quadtree.h"
 
 struct QTSceneGraph : ISceneGraph{
-	QTSceneGraph(FloatRect bounds);
+	explicit QTSceneGraph(FloatRect bounds);
 	
 	void add_node(ISceneNode& node);
 	void remove_node(ISceneNode& node);

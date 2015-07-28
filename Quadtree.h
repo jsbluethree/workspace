@@ -17,6 +17,10 @@
 
 struct Quadtree{
 	Quadtree(unsigned int node_level, FloatRect node_bounds);
+	Quadtree(const Quadtree& other);
+	Quadtree& operator=(const Quadtree& other);
+	Quadtree(Quadtree&& other);
+	Quadtree& operator=(Quadtree&& other);
 	~Quadtree();
 	
 	void clear();
@@ -28,7 +32,6 @@ struct Quadtree{
 	std::unordered_set<ISceneNode*> retrieve(const ISceneNode& node) const;
 	
 private:
-	//void _retrieve(std::unordered_set<ISceneNode*>& return_list, const FloatRect& rect) const;
 	void split();
 	
 	int get_index(float x, float y) const;

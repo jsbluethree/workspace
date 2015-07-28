@@ -15,13 +15,7 @@
 
 struct Drawer : ITickable{
 	Drawer();
-	Drawer(RenderTarget& render_target);
-	~Drawer();
-
-	Drawer(const Drawer&) = delete;
-	Drawer(Drawer&&) = delete;
-	Drawer& operator=(const Drawer&) = delete;
-	Drawer& operator=(Drawer&&) = delete;
+	explicit Drawer(RenderTarget& render_target);
 
 	void add_drawable(Drawable& drawable);
 	void remove_drawable(Drawable& drawable);

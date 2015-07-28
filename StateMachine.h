@@ -20,7 +20,7 @@
 #include <string>
 
 struct StateEvent : IEvent{
-	StateEvent(Tag next);
+	explicit StateEvent(Tag next);
 
 	EventType type();
 

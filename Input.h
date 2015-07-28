@@ -14,7 +14,7 @@
 #include "IEvent.h"
 
 struct SFMLEvent : IEvent{
-	SFMLEvent(const Event& e);
+	explicit SFMLEvent(const Event& e);
 
 	EventType type() const;
 
@@ -22,7 +22,7 @@ struct SFMLEvent : IEvent{
 };
 
 struct Input : ITickable{
-	Input(Window& window);
+	explicit Input(Window& window);
 
 	void tick(float dt);
 
