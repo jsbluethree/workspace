@@ -43,9 +43,9 @@ Animation& AssetManager::get_animation(const std::string& key) { return anims[ke
 
 Texture& AssetManager::get_texture(const std::string& key) { return texs[key]; }
 
-bool AssetManager::has_animation(const std::string& key) const { return anims.count(key); }
+bool AssetManager::has_animation(const std::string& key) const { return anims.count(key) == 1; }
 
-bool AssetManager::has_texture(const std::string& key) const { return texs.count(key); }
+bool AssetManager::has_texture(const std::string& key) const { return texs.count(key) == 1; }
 
 size_t AssetManager::anim_count() const { return anims.size(); }
 
@@ -56,3 +56,5 @@ void AssetManager::clear_anims() { anims.clear(); }
 void AssetManager::clear_texs() { texs.clear(); }
 
 void AssetManager::clear_assets() { anims.clear(); texs.clear(); }
+
+Json::Reader AssetManager::reader;

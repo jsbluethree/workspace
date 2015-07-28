@@ -15,19 +15,24 @@
 #include "AnimatedSprite.h"
 #include "Dispatcher.h"
 #include "Input.h"
+#include "AssetManager.h"
 
 
 RenderWindow main_window;
+AssetManager assets;
+
+void load_assets(){
+	assets.load_textures("textures.json");
+	assets.load_animations("animations.json");
+}
 
 void test_quad_tree(){
 	srand(time(nullptr));
-	Texture a_tex;
-	if (!a_tex.loadFromFile("a.png")) return;
-	a_tex.setSmooth(true);
+	assets.get_texture("amethyst").setSmooth(true);
 	BasicEntity a[20];
 	QTSceneGraph qtree(FloatRect(0, 0, 800, 600));
 	for (auto& s : a){
-		s.setTexture(a_tex);
+		s.setTexture(assets.get_texture("amethyst"));
 		s.scale(0.5f, 0.5f);
 		s.setPosition(rand() % 660, rand() % 460);
 		//std::cout << s.get_rect() << std::endl;
@@ -63,17 +68,8 @@ void test_quad_tree(){
 }
 
 void test_animation(){
-	Texture cat_tex;
-	if (!cat_tex.loadFromFile("runningcat.png")) return;
-	cat_tex.setSmooth(true);
-	Animation cat_anim;
-	cat_anim.set_texture(cat_tex);
-	for (int i = 0; i < 4; i++){
-		cat_anim.add_frame(IntRect(0, 256 * i, 512, 256));
-		cat_anim.add_frame(IntRect(512, 256 * i, 512, 256));
-	}
 	AnimatedSprite cat(2.0f * AnimatedSprite::default_frame_time);
-	cat.set_animation(cat_anim);
+	cat.set_animation(assets.get_animation("cat"));
 	Clock update_clock;
 	Time last_time = Time::Zero;
 	while (main_window.isOpen()){
@@ -142,12 +138,14 @@ void test_input_handler(){
 int main(int argc, char** argv){
 
 	main_window.create(VideoMode(800, 600), "Tests");
-	
-	//test_quad_tree();
-	
-	//test_animation();
 
-	//test_dispatcher();
+	load_assets();
+	
+	test_quad_tree();
+	
+	test_animation();
+
+	test_dispatcher();
 
 	test_input_handler();
 
