@@ -8,5 +8,6 @@ TODO: Levels, game logic
 TODO: Set up loading assets, attributes from json  
 TODO: Change some void functions to return bools indicating success  
 TODO: Make constructors explicit where necessary  
+TODO: Animation: add function to populate information from json  
 
 note: just use [jsoncpp](https://github.com/open-source-parsers/jsoncpp) for JSON parsing. [API](http://jsoncpp.sourceforge.net/annotated.html)  
