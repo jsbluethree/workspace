@@ -24,10 +24,11 @@ struct StateEvent : IEvent{
 	StateEvent(Tag next);
 
 	EventType type();
+	/*
 	void* operator new(size_t n);
 	void operator delete(void* p);
 	void operator delete(void* p, size_t n);
-
+	/**/
 	Tag next_state;
 };
 

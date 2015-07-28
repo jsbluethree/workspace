@@ -18,10 +18,11 @@ struct SFMLEvent : IEvent{
 	SFMLEvent(const Event& e);
 
 	EventType type() const;
+	/*
 	void* operator new(size_t n);
 	void operator delete(void* p);
 	void operator delete(void* p, size_t n);
-
+	/**/
 	Event sf_event;
 };
 

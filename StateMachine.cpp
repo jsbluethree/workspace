@@ -10,13 +10,13 @@
 StateEvent::StateEvent(Tag next) : next_state{ next } {}
 
 EventType StateEvent::type() { return EventType::STATE; }
-
+/*
 void* StateEvent::operator new(size_t n) { return PoolAllocator<StateEvent>().allocate(n / sizeof(StateEvent)); }
 
 void StateEvent::operator delete(void* p) { operator delete(p, sizeof(StateEvent)); }
 
 void StateEvent::operator delete(void* p, size_t n) { PoolAllocator<StateEvent>().deallocate((StateEvent*)p, n / sizeof(StateEvent)); }
-
+/**/
 StateMachine::StateMachine() : state_transition_listener{ *this } {}
 
 StateMachine::OnStateTransition::OnStateTransition(StateMachine& owner) : machine{ owner } {}

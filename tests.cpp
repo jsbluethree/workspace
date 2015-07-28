@@ -14,6 +14,7 @@
 #include "BasicEntity.h"
 #include "AnimatedSprite.h"
 #include "Dispatcher.h"
+#include "Input.h"
 
 
 RenderWindow main_window;
@@ -122,15 +123,33 @@ void test_dispatcher(){
 	}
 }
 
+struct CloseCB : ICallback{
+	void execute(IEvent* event) { main_window.close(); }
+};
+
+void test_input_handler(){
+	Input main_input(main_window);
+	CloseCB closer;
+	TestCB testcb;
+	main_input.events.add_listener(EventType::SF_CLOSED, closer);
+	main_input.events.add_listener(EventType::SF_MOUSEBUTTONPRESSED, testcb);
+	main_input.events.add_listener(EventType::SF_KEYPRESSED, testcb);
+	while (main_window.isOpen()){
+		main_input.tick(0);
+	}
+}
+
 int main(int argc, char** argv){
 
 	main_window.create(VideoMode(800, 600), "Tests");
 	
-	test_quad_tree();
+	//test_quad_tree();
 	
-	test_animation();
+	//test_animation();
 
-	test_dispatcher();
+	//test_dispatcher();
+
+	test_input_handler();
 
 	return 0;
 }
