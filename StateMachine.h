@@ -15,7 +15,6 @@
 #include "IEvent.h"
 #include "ITickable.h"
 #include "IState.h"
-#include "PoolAllocator.h"
 #include "Tag.h"
 #include <unordered_map>
 #include <string>
@@ -24,11 +23,7 @@ struct StateEvent : IEvent{
 	StateEvent(Tag next);
 
 	EventType type();
-	/*
-	void* operator new(size_t n);
-	void operator delete(void* p);
-	void operator delete(void* p, size_t n);
-	/**/
+
 	Tag next_state;
 };
 

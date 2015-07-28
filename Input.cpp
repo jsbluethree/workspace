@@ -61,19 +61,7 @@ EventType SFMLEvent::type() const{
 		return EventType::INVALID;
 	}
 }
-/*
-void* SFMLEvent::operator new(size_t n){
-	return PoolAllocator<SFMLEvent>().allocate(n / sizeof(SFMLEvent));
-}
 
-void SFMLEvent::operator delete(void* p){
-	operator delete(p, sizeof(SFMLEvent));
-}
-
-void SFMLEvent::operator delete(void* p, size_t n){
-	PoolAllocator<SFMLEvent>().deallocate((SFMLEvent*)p, n / sizeof(SFMLEvent));
-}
-/**/
 Input::Input(Window& window) : win{ window } {}
 
 void Input::tick(float dt){
