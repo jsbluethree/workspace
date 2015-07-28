@@ -2,7 +2,7 @@
 	"__title" : "textures.json",
 	"__comment" : "Maps the string name of each texture to its filename.",
 	"textures" : {
-		"texname1" : "texfile1.png",
-		"texname2" : "texfile2.png"
+		"amethyst" : "a.png",
+		"cat" : "runningcat.png"
 	}
 }
