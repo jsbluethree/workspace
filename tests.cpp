@@ -48,7 +48,7 @@ void test_quad_tree(){
 					auto sprite = dynamic_cast<Sprite*>(c);
 					if (sprite){
 						sprite->rotate(180);
-						qtree.update_node(*c, 0, 0);
+						qtree.update_node(*c);
 					}
 				}
 			}
