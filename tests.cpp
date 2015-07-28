@@ -13,10 +13,10 @@
 #include "QTSceneGraph.h"
 #include "BasicEntity.h"
 #include "AnimatedSprite.h"
+#include "Dispatcher.h"
 
 
 RenderWindow main_window;
-Clock frame_clock;
 
 void test_quad_tree(){
 	srand(time(nullptr));
@@ -34,7 +34,6 @@ void test_quad_tree(){
 	}
 
 	while (main_window.isOpen()){
-		frame_clock.restart();
 		Event event;
 		while (main_window.pollEvent(event)){
 			if (event.type == Event::Closed){
@@ -59,7 +58,6 @@ void test_quad_tree(){
 		main_window.clear();
 		for (const auto& s : a) main_window.draw(s);
 		main_window.display();
-		while (frame_clock.getElapsedTime().asMilliseconds() < 67);
 	}
 }
 
@@ -95,6 +93,35 @@ void test_animation(){
 	}
 }
 
+struct TestEvent : IEvent{
+	EventType type() const { return EventType::INVALID; }
+};
+
+struct TestCB : ICallback{
+	void execute(IEvent* event) { std::cout << "event dispatched!\n"; }
+};
+
+void test_dispatcher(){
+	TestCB testcb;
+	Dispatcher events;
+	events.add_listener(EventType::INVALID, testcb);
+	events.tick(0);
+	while (main_window.isOpen()){
+		Event event;
+		while (main_window.pollEvent(event)){
+			if (event.type == Event::Closed){
+				main_window.close();
+			}
+			else if (event.type == Event::MouseButtonPressed){
+				events.dispatch(new TestEvent);
+			}
+			else if (event.type == Event::KeyPressed){
+				return;
+			}
+		}
+	}
+}
+
 int main(int argc, char** argv){
 
 	main_window.create(VideoMode(800, 600), "Tests");
@@ -103,16 +130,7 @@ int main(int argc, char** argv){
 	
 	test_animation();
 
-	while (main_window.isOpen()){
-		frame_clock.restart();
-		Event event;
-		while (main_window.pollEvent(event)){
-			if (event.type == Event::Closed){
-				main_window.close();
-			}
-		}
-		while (frame_clock.getElapsedTime().asMilliseconds() < 67);
-	}
-	/**/
+	test_dispatcher();
+
 	return 0;
 }
