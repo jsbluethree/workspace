@@ -12,7 +12,7 @@
 #include "SFMLUtility.h"
 #include "QTSceneGraph.h"
 #include "BasicEntity.h"
-
+#include "AnimatedSprite.h"
 
 
 RenderWindow main_window;
@@ -52,11 +52,46 @@ void test_quad_tree(){
 					}
 				}
 			}
+			else if (event.type == Event::KeyPressed){
+				return;
+			}
 		}
 		main_window.clear();
 		for (const auto& s : a) main_window.draw(s);
 		main_window.display();
 		while (frame_clock.getElapsedTime().asMilliseconds() < 67);
+	}
+}
+
+void test_animation(){
+	Texture cat_tex;
+	if (!cat_tex.loadFromFile("runningcat.png")) return;
+	cat_tex.setSmooth(true);
+	Animation cat_anim;
+	cat_anim.set_texture(cat_tex);
+	for (int i = 0; i < 4; i++){
+		cat_anim.add_frame(IntRect(0, 256 * i, 512, 256));
+		cat_anim.add_frame(IntRect(512, 256 * i, 512, 256));
+	}
+	AnimatedSprite cat(seconds(0.067));
+	cat.set_animation(cat_anim);
+	Clock update_clock;
+	Time last_time = Time::Zero;
+	while (main_window.isOpen()){
+		Event event;
+		while (main_window.pollEvent(event)){
+			if (event.type == Event::Closed){
+				main_window.close();
+			}
+			else if (event.type == Event::KeyPressed){
+				return;
+			}
+		}
+		cat.update(update_clock.getElapsedTime() - last_time);
+		last_time = update_clock.getElapsedTime();
+		main_window.clear();
+		main_window.draw(cat);
+		main_window.display();
 	}
 }
 
@@ -66,6 +101,7 @@ int main(int argc, char** argv){
 	
 	test_quad_tree();
 	
+	test_animation();
 
 	while (main_window.isOpen()){
 		frame_clock.restart();
