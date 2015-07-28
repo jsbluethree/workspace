@@ -10,7 +10,7 @@
 void AssetManager::load_animations(const std::string& filename){
 	std::ifstream file(filename);
 	Json::Value jroot;
-	reader.parse(file, jroot);
+	file >> jroot;
 	const auto& janims = jroot["animations"];
 	for (const auto& key : janims.getMemberNames()){
 		anims[key].set_texture(texs[janims[key]["texname"].asString()]);
@@ -28,7 +28,7 @@ void AssetManager::load_animations(const std::string& filename){
 void AssetManager::load_textures(const std::string& filename){
 	std::ifstream file(filename);
 	Json::Value jroot;
-	reader.parse(file, jroot);
+	file >> jroot;
 	const auto& jtexs = jroot["textures"];
 	for (const auto& key : jtexs.getMemberNames()){
 		texs[key].loadFromFile(jtexs[key].asString());
@@ -56,5 +56,3 @@ void AssetManager::clear_anims() { anims.clear(); }
 void AssetManager::clear_texs() { texs.clear(); }
 
 void AssetManager::clear_assets() { anims.clear(); texs.clear(); }
-
-Json::Reader AssetManager::reader;

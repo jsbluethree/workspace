@@ -33,8 +33,6 @@ struct AssetManager{
 private:
 	std::unordered_map<std::string, Animation> anims;
 	std::unordered_map<std::string, Texture> texs;
-
-	static Json::Reader reader;
 };
 
 
