@@ -28,6 +28,7 @@ struct AnimatedSprite : Sprite{
 	Time get_frame_time() const;
 	void set_frame(size_t new_frame, bool reset_time = true);
 
+	static const Time default_frame_time;
 private:
 	const Animation* current_anim;
 	Time frame_time;
@@ -35,8 +36,6 @@ private:
 	size_t current_frame;
 	bool paused;
 	bool looped;
-
-	static const Time default_frame_time;
 };
 
 #endif // __ANIMATEDSPRITE_H__

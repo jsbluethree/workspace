@@ -71,7 +71,7 @@ void test_animation(){
 		cat_anim.add_frame(IntRect(0, 256 * i, 512, 256));
 		cat_anim.add_frame(IntRect(512, 256 * i, 512, 256));
 	}
-	AnimatedSprite cat(seconds(0.067));
+	AnimatedSprite cat(2.0f * AnimatedSprite::default_frame_time);
 	cat.set_animation(cat_anim);
 	Clock update_clock;
 	Time last_time = Time::Zero;
