@@ -8,7 +8,7 @@
 #ifndef __ISTATE_H__
 #define __ISTATE_H__
 
-#include "Dispatcher.h"
+struct Dispatcher;
 
 struct IState{
 	virtual ~IState() {}
@@ -16,8 +16,7 @@ struct IState{
 	virtual void enter() {}
 	virtual void run() = 0;
 	virtual void exit() {}
-	
-	Dispatcher events;
+	virtual Dispatcher& events() = 0;
 };
 
 #endif // __ISTATE_H__

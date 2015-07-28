@@ -10,6 +10,7 @@
 #ifndef __STATEMACHINE_H__
 #define __STATEMACHINE_H__
 
+#include "Dispatcher.h"
 #include "ICallback.h"
 #include "IEvent.h"
 #include "ITickable.h"
