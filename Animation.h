@@ -3,8 +3,6 @@
 
 /**
  *	This defines a sprite animation using a spritesheet.
- *
- *	TODO: write function to populate information from json
  */
 
 #ifndef __ANIMATION_H__

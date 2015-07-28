@@ -3,6 +3,7 @@
 
 /**
  *	This defines a class that loads assets from json files and serves as a global access point for them.
+ *	TODO: Add sounds, music
  */
 
 #ifndef __ASSETMANAGER_H__
