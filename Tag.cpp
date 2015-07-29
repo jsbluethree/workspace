@@ -7,8 +7,6 @@
 
 #include "Tag.h"
 
-Tag::Tag() : val{ 0 } {}
-
 Tag::Tag(const Tag& other) : val{ other.val } {}
 
 Tag::Tag(const char* chars){

@@ -16,7 +16,7 @@
 #include <vector>
 
 struct Dispatcher : ITickable{
-	Dispatcher();
+	Dispatcher() = default;
 	Dispatcher(Dispatcher&& other);
 	Dispatcher& operator=(Dispatcher&& other);
 	~Dispatcher();

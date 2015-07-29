@@ -11,7 +11,7 @@
 struct Dispatcher;
 
 struct IState{
-	virtual ~IState() {}
+	virtual ~IState() = default;
 
 	virtual void enter() {}
 	virtual void run() = 0;

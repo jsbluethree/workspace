@@ -13,7 +13,7 @@
 #include <iostream>
 
 struct Tag{
-	Tag();
+	Tag() = default;
 	Tag(const Tag& other);
 	Tag(const char* chars);
 	Tag& operator=(const Tag& other);

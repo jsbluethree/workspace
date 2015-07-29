@@ -34,7 +34,7 @@ struct StateMachine{
 	std::unordered_map<Tag, IState*> state_lookup;
 
 	struct OnStateTransition : ICallback{
-		OnStateTransition(StateMachine& owner);
+		explicit OnStateTransition(StateMachine& owner);
 		void execute(IEvent* event);
 		StateMachine& machine;
 	} state_transition_listener;

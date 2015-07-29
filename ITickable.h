@@ -9,7 +9,7 @@
 #define __ITICKABLE_H__
 
 struct ITickable{
-	virtual ~ITickable() {}
+	virtual ~ITickable() = default;
 
 	virtual void tick(float dt) = 0;	
 };

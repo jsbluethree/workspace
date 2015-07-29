@@ -12,8 +12,8 @@
 #include "ISceneGraph.h"
 
 struct Camera{
-	Camera(FloatRect source);
-	Camera(FloatRect source, FloatRect viewport);
+	explicit Camera(FloatRect source, FloatRect viewport = { 0.0f, 0.0f, 1.0f, 1.0f });
+	virtual ~Camera() = default;
 	
 	void render_scene(const ISceneGraph& scene, RenderTarget& target, const RenderStates& states = RenderStates::Default) const;
 

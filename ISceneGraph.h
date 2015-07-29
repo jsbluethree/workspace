@@ -16,7 +16,7 @@
 #include <unordered_set>
 
 struct ISceneGraph{
-	virtual ~ISceneGraph() {}
+	virtual ~ISceneGraph() = default;
 
 	virtual void add_node(ISceneNode& node) = 0;
 	virtual void remove_node(ISceneNode& node) = 0;

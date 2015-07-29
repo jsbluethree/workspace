@@ -40,7 +40,7 @@ enum class EventType{
 };
 
 struct IEvent{
-	virtual ~IEvent() {}
+	virtual ~IEvent() = default;
 
 	virtual EventType type() const = 0;	
 };

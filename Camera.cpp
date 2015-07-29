@@ -7,8 +7,6 @@
 
 #include "Camera.h"
 
-Camera::Camera(FloatRect source) : Camera{ source, FloatRect(0.0f, 0.0f, 1.0f, 1.0f) } {}
-
 Camera::Camera(FloatRect source, FloatRect viewport) : source_rect{ source }, viewport_rect{ viewport } {}
 
 void Camera::render_scene(const ISceneGraph& scene, RenderTarget& target, const RenderStates& states) const{

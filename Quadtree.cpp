@@ -31,6 +31,7 @@ Quadtree& Quadtree::operator=(const Quadtree& other){
 			}
 		}
 	}
+	return *this;
 }
 
 Quadtree::Quadtree(Quadtree&& other) : level{ other.level }, nodes{ other.nodes }, bounds{ other.bounds }{
@@ -49,6 +50,7 @@ Quadtree& Quadtree::operator=(Quadtree&& other){
 		subtrees[i] = other.subtrees[i];
 		other.subtrees[i] = nullptr;
 	}
+	return *this;
 }
 
 Quadtree::~Quadtree() { clear(); }

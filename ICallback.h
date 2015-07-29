@@ -11,7 +11,7 @@
 struct IEvent;
 
 struct ICallback{
-	virtual ~ICallback() {}
+	virtual ~ICallback() = default;
 
 	virtual void execute(IEvent* event) = 0;	
 };

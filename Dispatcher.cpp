@@ -7,8 +7,6 @@
 
 #include "Dispatcher.h"
 
-Dispatcher::Dispatcher() {}
-
 Dispatcher::Dispatcher(Dispatcher&& other){
 	listeners.swap(other.listeners);
 	events.swap(other.events);

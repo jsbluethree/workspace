@@ -21,7 +21,7 @@ struct Quadtree{
 	Quadtree& operator=(const Quadtree& other);
 	Quadtree(Quadtree&& other);
 	Quadtree& operator=(Quadtree&& other);
-	~Quadtree();
+	virtual ~Quadtree();
 	
 	void clear();
 	void insert(ISceneNode& node);
