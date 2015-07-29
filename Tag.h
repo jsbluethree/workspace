@@ -11,13 +11,16 @@
 #include <cstdint>
 #include <functional>
 #include <iostream>
+#include <string>
 
 struct Tag{
 	Tag() = default;
 	Tag(const Tag& other);
 	Tag(const char* chars);
+	Tag(const std::string& str);
 	Tag& operator=(const Tag& other);
 	Tag& operator=(const char* chars);
+	Tag& operator=(const std::string& str);
 	~Tag();
 
 	union {

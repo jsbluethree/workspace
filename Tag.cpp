@@ -19,11 +19,13 @@ Tag::Tag(const char* chars){
 	}
 }
 
+Tag::Tag(const std::string& str) : Tag{ str.c_str() } {}
+
 Tag& Tag::operator=(const Tag& other) { val = other.val; return *this; }
 
 Tag& Tag::operator=(const char* chars){
 	unsigned int i;
-	for (i = 0; chars[i] != 0 && i < 7; i++){
+	for (i = 0; chars[i] != '\0' && i < 7; i++){
 		name[i] = chars[i];
 	}
 	for (; i < 8; i++){
@@ -31,6 +33,8 @@ Tag& Tag::operator=(const char* chars){
 	}
 	return *this;
 }
+
+Tag& Tag::operator=(const std::string& str) { return operator=(str.c_str()); }
 
 Tag::~Tag() {}
 
