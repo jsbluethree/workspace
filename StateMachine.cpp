@@ -15,7 +15,7 @@ StateMachine::StateMachine() : state_transition_listener{ *this } {}
 
 StateMachine::OnStateTransition::OnStateTransition(StateMachine& owner) : machine{ owner } {}
 
-void StateMachine::OnStateTransition::execute(IEvent* event){
+void StateMachine::OnStateTransition::operator()(IEvent* event){
 	machine.current_state->exit();
 	machine.current_state->events().remove_listener(EventType::STATE, *this);
 	machine.current_state = machine.state_lookup[static_cast<StateEvent*>(event)->next_state];

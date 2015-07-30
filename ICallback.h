@@ -13,7 +13,7 @@ struct IEvent;
 struct ICallback{
 	virtual ~ICallback() = default;
 
-	virtual void execute(IEvent* event) = 0;	
+	virtual void operator()(IEvent* event) = 0;	
 };
 
 #endif // __ICALLBACK_H__

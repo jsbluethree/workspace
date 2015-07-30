@@ -95,7 +95,7 @@ struct TestEvent : IEvent{
 };
 
 struct TestCB : ICallback{
-	void execute(IEvent* event) { std::cout << "event dispatched!\n"; }
+	void operator()(IEvent* event) { std::cout << "event dispatched!\n"; }
 };
 
 void test_dispatcher(){
@@ -120,11 +120,11 @@ void test_dispatcher(){
 }
 
 struct CloseCB : ICallback{
-	void execute(IEvent* event) { main_window.close(); }
+	void operator()(IEvent* event) { main_window.close(); }
 };
 
 struct JoyButtonCB : ICallback{
-	void execute(IEvent* event){
+	void operator()(IEvent* event){
 		auto sfe = static_cast<SFMLEvent&>(*event);
 		std::cout << "pushed button " << sfe.sf_event.joystickButton.button << std::endl;
 	}

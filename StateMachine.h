@@ -35,7 +35,7 @@ struct StateMachine{
 
 	struct OnStateTransition : ICallback{
 		explicit OnStateTransition(StateMachine& owner);
-		void execute(IEvent* event);
+		void operator()(IEvent* event);
 		StateMachine& machine;
 	} state_transition_listener;
 };

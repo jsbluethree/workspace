@@ -35,7 +35,7 @@ void Dispatcher::dispatch(IEvent* event){
 	// see reference for unordered_multimap::equal_range
 	for (auto its = listeners.equal_range(event->type()); its.first != its.second; its.first++){
 		// its.first->second is the ICallback*
-		its.first->second->execute(event);
+		(*its.first->second)(event);
 	}
 	delete event;
 }
