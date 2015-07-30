@@ -123,13 +123,22 @@ struct CloseCB : ICallback{
 	void execute(IEvent* event) { main_window.close(); }
 };
 
+struct JoyButtonCB : ICallback{
+	void execute(IEvent* event){
+		auto sfe = static_cast<SFMLEvent&>(*event);
+		std::cout << "pushed button " << sfe.sf_event.joystickButton.button << std::endl;
+	}
+};
+
 void test_input_handler(){
 	Input main_input(main_window);
 	CloseCB closer;
 	TestCB testcb;
+	JoyButtonCB buttoncb;
 	main_input.events.add_listener(EventType::SF_CLOSED, closer);
 	main_input.events.add_listener(EventType::SF_MOUSEBUTTONPRESSED, testcb);
 	main_input.events.add_listener(EventType::SF_KEYPRESSED, testcb);
+	main_input.events.add_listener(EventType::SF_JOYSTICKBUTTONPRESSED, buttoncb);
 	while (main_window.isOpen()){
 		main_input.tick(0);
 	}
