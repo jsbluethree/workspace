@@ -9,11 +9,11 @@
 
 Drawer::Drawer() : target{ nullptr } {}
 
-Drawer::Drawer(RenderTarget& render_target) : target{ &render_target } {}
+Drawer::Drawer(sf::RenderTarget& render_target) : target{ &render_target } {}
 
-void Drawer::add_drawable(Drawable& drawable) { defer_add.push_back(&drawable); }
+void Drawer::add_drawable(sf::Drawable& drawable) { defer_add.push_back(&drawable); }
 
-void Drawer::remove_drawable(Drawable& drawable) { defer_remove.push_back(&drawable); }
+void Drawer::remove_drawable(sf::Drawable& drawable) { defer_remove.push_back(&drawable); }
 
 void Drawer::tick(float){
 	for (auto drawable : drawables) target->draw(*drawable);

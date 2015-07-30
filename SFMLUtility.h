@@ -8,78 +8,80 @@
 #ifndef __SFMLUTILITY_H__
 #define __SFMLUTILITY_H__
 
+#include "SFML\Graphics\Rect.hpp"
+#include "SFML\System\Vector2.hpp"
+#include "SFML\System\Vector3.hpp"
 #include <cmath>
 #include <functional>
 #include <iostream>
-#include "SFML.h"
 
 template<typename T>
-struct std::hash<Vector2<T>>{
+struct std::hash<sf::Vector2<T>>{
 	typedef size_t result_type;
-	typedef Vector2<T> argument_type;
-	size_t operator()(const Vector2<T>& arg);
+	typedef sf::Vector2<T> argument_type;
+	size_t operator()(const sf::Vector2<T>& arg);
 };
 
 template<typename T>
-struct std::hash<Vector3<T>>{
+struct std::hash<sf::Vector3<T>>{
 	typedef size_t result_type;
-	typedef Vector3<T> argument_type;
-	size_t operator()(const Vector3<T>& arg);
+	typedef sf::Vector3<T> argument_type;
+	size_t operator()(const sf::Vector3<T>& arg);
 };
 
 template<typename T>
-struct std::hash<Rect<T>>{
+struct std::hash<sf::Rect<T>>{
 	typedef size_t result_type;
-	typedef Rect<T> argument_type;
-	size_t operator()(const Rect<T>& arg);
+	typedef sf::Rect<T> argument_type;
+	size_t operator()(const sf::Rect<T>& arg);
 };
 
 template<typename T>
-std::ostream& operator<<(std::ostream& os, const Vector2<T>& vec);
+std::ostream& operator<<(std::ostream& os, const sf::Vector2<T>& vec);
 
 template<typename T>
-std::ostream& operator<<(std::ostream& os, const Vector3<T>& vec);
+std::ostream& operator<<(std::ostream& os, const sf::Vector3<T>& vec);
 
 template<typename T>
-std::ostream& operator<<(std::ostream& os, const Rect<T>& rect);
+std::ostream& operator<<(std::ostream& os, const sf::Rect<T>& rect);
 
 template<typename T>
-Rect<T> operator+(const Rect<T>& lhs, const Vector2<T>& rhs);
+sf::Rect<T> operator+(const sf::Rect<T>& lhs, const sf::Vector2<T>& rhs);
 
 template<typename T>
-Rect<T> operator+(const Vector2<T>& lhs, const Rect<T>& rhs);
+sf::Rect<T> operator+(const sf::Vector2<T>& lhs, const sf::Rect<T>& rhs);
 
 template<typename T>
-Rect<T> operator-(const Rect<T>& lhs, const Vector2<T>& rhs);
+sf::Rect<T> operator-(const sf::Rect<T>& lhs, const sf::Vector2<T>& rhs);
 
 template<typename T>
-Rect<T>& operator+=(Rect<T>& lhs, const Vector2<T> rhs);
+sf::Rect<T>& operator+=(sf::Rect<T>& lhs, const sf::Vector2<T> rhs);
 
 template<typename T>
-Rect<T>& operator-=(Rect<T>& lhs, const Vector2<T> rhs);
+sf::Rect<T>& operator-=(sf::Rect<T>& lhs, const sf::Vector2<T> rhs);
 
 template<typename T>
-T length(const Vector2<T>& vec);
+T length(const sf::Vector2<T>& vec);
 
 template<typename T>
-T length(const Vector3<T>& vec);
+T length(const sf::Vector3<T>& vec);
 
 template<typename T>
-T area(const Rect<T>& rect);
+T area(const sf::Rect<T>& rect);
 
 template<typename T>
-Vector2<T> normalize(const Vector2<T>& vec);
+sf::Vector2<T> normalize(const sf::Vector2<T>& vec);
 
 template<typename T>
-Vector3<T> normalize(const Vector3<T>& vec);
+sf::Vector3<T> normalize(const sf::Vector3<T>& vec);
 
 template<typename T>
-T dot(const Vector2<T>& lhs, const Vector2<T>& rhs);
+T dot(const sf::Vector2<T>& lhs, const sf::Vector2<T>& rhs);
 
 template<typename T>
-T dot(const Vector3<T>& lhs, const Vector3<T>& rhs);
+T dot(const sf::Vector3<T>& lhs, const sf::Vector3<T>& rhs);
 
 template<typename T>
-Vector3<T> cross(const Vector3<T>& lhs, const Vector3<T>& rhs);
+sf::Vector3<T> cross(const sf::Vector3<T>& lhs, const sf::Vector3<T>& rhs);
 
 #endif // __SFMLUTILITY_H__

@@ -9,12 +9,13 @@
 #ifndef __DRAWGROUP_H__
 #define __DRAWGROUP_H__
 
-#include "SFML.h"
+#include "SFML\Graphics\Drawable.hpp"
+#include "SFML\Graphics\RenderTarget.hpp"
 #include <vector>
 
-struct DrawGroup : std::vector<Drawable*>, Drawable{
+struct DrawGroup : std::vector<sf::Drawable*>, sf::Drawable{
 protected:
-	void draw(RenderTarget& target, RenderStates states) const;
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 };
 
 #endif // __DRAWGROUP_H__

@@ -9,14 +9,14 @@
 
 Animation::Animation() : tex{ nullptr } {}
 
-void Animation::add_frame(IntRect rect) { frames.push_back(rect); }
+void Animation::add_frame(sf::IntRect rect) { frames.push_back(rect); }
 
-const IntRect& Animation::get_frame(size_t n) const { return frames[n]; }
+const sf::IntRect& Animation::get_frame(size_t n) const { return frames[n]; }
 
 void Animation::clear_frames() { frames.clear(); }
 
 size_t Animation::size() const { return frames.size(); }
 
-void Animation::set_texture(const Texture& texture) { tex = &texture; }
+void Animation::set_texture(const sf::Texture& texture) { tex = &texture; }
 
-const Texture* Animation::get_texture() const { return tex; }
+const sf::Texture* Animation::get_texture() const { return tex; }

@@ -7,7 +7,7 @@
 
 #include "QTSceneGraph.h"
 
-QTSceneGraph::QTSceneGraph(FloatRect bounds) : qtree{ 0, bounds } {}
+QTSceneGraph::QTSceneGraph(sf::FloatRect bounds) : qtree{ 0, bounds } {}
 
 void QTSceneGraph::add_node(ISceneNode& node) { qtree.insert(node); }
 
@@ -19,7 +19,7 @@ void QTSceneGraph::update_node(ISceneNode& node, float dx, float dy){
 	qtree.insert(node);
 }
 
-bool QTSceneGraph::check_collision(const FloatRect& r) const{
+bool QTSceneGraph::check_collision(const sf::FloatRect& r) const{
 	auto possible = qtree.retrieve(r);
 	for (const auto& node : possible){
 		if (node->get_rect().intersects(r)){
@@ -41,7 +41,7 @@ bool QTSceneGraph::check_collision(float x, float y) const{
 	return false;
 }
 
-std::unordered_set<ISceneNode*> QTSceneGraph::get_collision(const FloatRect& r) const{
+std::unordered_set<ISceneNode*> QTSceneGraph::get_collision(const sf::FloatRect& r) const{
 	auto possible = qtree.retrieve(r);
 	decltype(possible) confirmed;
 

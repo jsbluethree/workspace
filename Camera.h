@@ -8,23 +8,24 @@
 #ifndef __CAMERA_H__
 #define __CAMERA_H__
 
-#include "SFML.h"
+#include "SFML\Graphics\Drawable.hpp"
+#include "SFML\Graphics\RenderTarget.hpp"
 #include "ISceneGraph.h"
 
 struct Camera{
-	explicit Camera(FloatRect source, FloatRect viewport = { 0.0f, 0.0f, 1.0f, 1.0f });
+	explicit Camera(sf::FloatRect source, sf::FloatRect viewport = { 0.0f, 0.0f, 1.0f, 1.0f });
 	virtual ~Camera() = default;
 	
-	void set_source(const FloatRect& rect);
-	void set_viewport(const FloatRect& rect);
-	FloatRect get_source() const;
-	FloatRect get_viewport() const;
+	void set_source(const sf::FloatRect& rect);
+	void set_viewport(const sf::FloatRect& rect);
+	sf::FloatRect get_source() const;
+	sf::FloatRect get_viewport() const;
 	void move(float dx, float dy);
-	void move(const Vector2f& d);
-	void render_scene(const ISceneGraph& scene, RenderTarget& target, const RenderStates& states = RenderStates::Default) const;
+	void move(const sf::Vector2f& d);
+	void render_scene(const ISceneGraph& scene, sf::RenderTarget& target, const sf::RenderStates& states = sf::RenderStates::Default) const;
 
 private:
-	View view;
+	sf::View view;
 };
 
 #endif // __CAMERA_H__

@@ -7,7 +7,7 @@
 
 #include "Quadtree.h"
 
-Quadtree::Quadtree(unsigned int node_level, FloatRect node_bounds) : level{ node_level }, bounds{ node_bounds } {
+Quadtree::Quadtree(unsigned int node_level, sf::FloatRect node_bounds) : level{ node_level }, bounds{ node_bounds } {
 	for (auto& p : subtrees) p = nullptr;
 }
 
@@ -93,11 +93,11 @@ void Quadtree::remove(ISceneNode& node){
 	nodes.erase(&node);
 }
 
-std::unordered_set<ISceneNode*> Quadtree::retrieve(float x, float y) const { return retrieve(FloatRect(x, y, 0, 0)); }
+std::unordered_set<ISceneNode*> Quadtree::retrieve(float x, float y) const { return retrieve({ x, y, 0, 0 }); }
 
-std::unordered_set<ISceneNode*> Quadtree::retrieve(const Vector2f& vec) const { return retrieve(vec.x, vec.y); }
+std::unordered_set<ISceneNode*> Quadtree::retrieve(const sf::Vector2f& vec) const { return retrieve(vec.x, vec.y); }
 
-std::unordered_set<ISceneNode*> Quadtree::retrieve(const FloatRect& rect) const{
+std::unordered_set<ISceneNode*> Quadtree::retrieve(const sf::FloatRect& rect) const{
 	decltype(nodes) return_list;
 	auto index = get_index(rect);
 	if (index != -1 && subtrees[0] != nullptr){
@@ -113,17 +113,17 @@ std::unordered_set<ISceneNode*> Quadtree::retrieve(const ISceneNode& node) const
 void Quadtree::split(){
 	float sub_width = bounds.width / 2;
 	float sub_height = bounds.height / 2;	
-	subtrees[0] = new Quadtree(level + 1, FloatRect(bounds.left + sub_width, bounds.top, sub_width, sub_height));
-	subtrees[1] = new Quadtree(level + 1, FloatRect(bounds.left, bounds.top, sub_width, sub_height));
-	subtrees[2] = new Quadtree(level + 1, FloatRect(bounds.left, bounds.top + sub_height, sub_width, sub_height));
-	subtrees[3] = new Quadtree(level + 1, FloatRect(bounds.left + sub_width, bounds.top + sub_height, sub_width, sub_height));
+	subtrees[0] = new Quadtree(level + 1, { bounds.left + sub_width, bounds.top, sub_width, sub_height });
+	subtrees[1] = new Quadtree(level + 1, { bounds.left, bounds.top, sub_width, sub_height });
+	subtrees[2] = new Quadtree(level + 1, { bounds.left, bounds.top + sub_height, sub_width, sub_height });
+	subtrees[3] = new Quadtree(level + 1, { bounds.left + sub_width, bounds.top + sub_height, sub_width, sub_height });
 }
 
-int Quadtree::get_index(float x, float y) const { return get_index(FloatRect(x, y, 0, 0)); }
+int Quadtree::get_index(float x, float y) const { return get_index({ x, y, 0, 0 }); }
 
-int Quadtree::get_index(const Vector2f& vec) const { return get_index(vec.x, vec.y); }
+int Quadtree::get_index(const sf::Vector2f& vec) const { return get_index(vec.x, vec.y); }
 
-int Quadtree::get_index(const FloatRect& rect) const{
+int Quadtree::get_index(const sf::FloatRect& rect) const{
 	int index = -1;
 	float vert_mid = bounds.left + bounds.width / 2;
 	float hori_mid = bounds.top + bounds.height / 2;	

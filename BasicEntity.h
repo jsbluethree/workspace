@@ -9,13 +9,13 @@
 #ifndef __BASICENTITY_H__
 #define __BASICENTITY_H__
 
-#include "SFML.h"
+#include "SFML\Graphics\Sprite.hpp"
 #include "ISceneNode.h"
 
-struct BasicEntity : Sprite, ISceneNode{
+struct BasicEntity : sf::Sprite, ISceneNode{
 	void move(float offsetX, float offsetY);
-	void move(const Vector2f& offset);
-	FloatRect get_rect() const;
+	void move(const sf::Vector2f& offset);
+	sf::FloatRect get_rect() const;
 };
 
 #endif // __BASICENTITY_H__

@@ -10,13 +10,14 @@
 #ifndef __QUADTREE_H__
 #define __QUADTREE_H__
 
-#include "Log.h"
+#include "SFML\System\Vector2.hpp"
+#include "SFML\Graphics\Rect.hpp"
 #include "ISceneNode.h"
-#include "SFML.h"
+#include "Log.h"
 #include <unordered_set>
 
 struct Quadtree{
-	Quadtree(unsigned int node_level, FloatRect node_bounds);
+	Quadtree(unsigned int node_level, sf::FloatRect node_bounds);
 	Quadtree(const Quadtree& other);
 	Quadtree& operator=(const Quadtree& other);
 	Quadtree(Quadtree&& other);
@@ -27,21 +28,21 @@ struct Quadtree{
 	void insert(ISceneNode& node);
 	void remove(ISceneNode& node);
 	std::unordered_set<ISceneNode*> retrieve(float x, float y) const;
-	std::unordered_set<ISceneNode*> retrieve(const Vector2f& vec) const;
-	std::unordered_set<ISceneNode*> retrieve(const FloatRect& rect) const;
+	std::unordered_set<ISceneNode*> retrieve(const sf::Vector2f& vec) const;
+	std::unordered_set<ISceneNode*> retrieve(const sf::FloatRect& rect) const;
 	std::unordered_set<ISceneNode*> retrieve(const ISceneNode& node) const;
 	
 private:
 	void split();
 	
 	int get_index(float x, float y) const;
-	int get_index(const Vector2f& vec) const;
-	int get_index(const FloatRect& rect) const;
+	int get_index(const sf::Vector2f& vec) const;
+	int get_index(const sf::FloatRect& rect) const;
 	int get_index(const ISceneNode& node) const;
 	
 	unsigned int level;
 	std::unordered_set<ISceneNode*> nodes;
-	FloatRect bounds;
+	sf::FloatRect bounds;
 	Quadtree* subtrees[4];
 	
 	static unsigned int MAX_NODES;

@@ -7,65 +7,65 @@
 
 #include "Input.h"
 
-SFMLEvent::SFMLEvent(const Event& e) { sf_event = e; }
+SFMLEvent::SFMLEvent(const sf::Event& e) : sf_event(e) {}
 
 EventType SFMLEvent::type() const{
 	switch (sf_event.type){
-	case Event::Closed:
+	case sf::Event::Closed:
 		return EventType::SF_CLOSED;
-	case Event::Resized:
+	case sf::Event::Resized:
 		return EventType::SF_RESIZED;
-	case Event::LostFocus:
+	case sf::Event::LostFocus:
 		return EventType::SF_LOSTFOCUS;
-	case Event::GainedFocus:
+	case sf::Event::GainedFocus:
 		return EventType::SF_GAINEDFOCUS;
-	case Event::TextEntered:
+	case sf::Event::TextEntered:
 		return EventType::SF_TEXTENTERED;
-	case Event::KeyPressed:
+	case sf::Event::KeyPressed:
 		return EventType::SF_KEYPRESSED;
-	case Event::KeyReleased:
+	case sf::Event::KeyReleased:
 		return EventType::SF_KEYRELEASED;
-	case Event::MouseWheelMoved:
+	case sf::Event::MouseWheelMoved:
 		return EventType::SF_MOUSEWHEELMOVED;
-	case Event::MouseWheelScrolled:
+	case sf::Event::MouseWheelScrolled:
 		return EventType::SF_MOUSEWHEELSCROLLED;
-	case Event::MouseButtonPressed:
+	case sf::Event::MouseButtonPressed:
 		return EventType::SF_MOUSEBUTTONPRESSED;
-	case Event::MouseButtonReleased:
+	case sf::Event::MouseButtonReleased:
 		return EventType::SF_MOUSEBUTTONRELEASED;
-	case Event::MouseMoved:
+	case sf::Event::MouseMoved:
 		return EventType::SF_MOUSEMOVED;
-	case Event::MouseEntered:
+	case sf::Event::MouseEntered:
 		return EventType::SF_MOUSEENTERED;
-	case Event::MouseLeft:
+	case sf::Event::MouseLeft:
 		return EventType::SF_MOUSELEFT;
-	case Event::JoystickButtonPressed:
+	case sf::Event::JoystickButtonPressed:
 		return EventType::SF_JOYSTICKBUTTONPRESSED;
-	case Event::JoystickButtonReleased:
+	case sf::Event::JoystickButtonReleased:
 		return EventType::SF_JOYSTICKBUTTONRELEASED;
-	case Event::JoystickMoved:
+	case sf::Event::JoystickMoved:
 		return EventType::SF_JOYSTICKMOVED;
-	case Event::JoystickConnected:
+	case sf::Event::JoystickConnected:
 		return EventType::SF_JOYSTICKCONNECTED;
-	case Event::JoystickDisconnected:
+	case sf::Event::JoystickDisconnected:
 		return EventType::SF_JOYSTICKDISCONNECTED;
-	case Event::TouchBegan:
+	case sf::Event::TouchBegan:
 		return EventType::SF_TOUCHBEGAN;
-	case Event::TouchMoved:
+	case sf::Event::TouchMoved:
 		return EventType::SF_TOUCHMOVED;
-	case Event::TouchEnded:
+	case sf::Event::TouchEnded:
 		return EventType::SF_TOUCHENDED;
-	case Event::SensorChanged:
+	case sf::Event::SensorChanged:
 		return EventType::SF_SENSORCHANGED;
 	default:
 		return EventType::INVALID;
 	}
 }
 
-Input::Input(Window& window) : win{ window } {}
+Input::Input(sf::Window& window) : win{ window } {}
 
 void Input::tick(float dt){
-	Event event;
+	sf::Event event;
 	while (win.pollEvent(event)){
 		events.add_event(new SFMLEvent(event));
 	}

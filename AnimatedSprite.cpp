@@ -7,14 +7,14 @@
 
 #include "AnimatedSprite.h"
 
-AnimatedSprite::AnimatedSprite(Time frame_time, bool paused, bool looped)
+AnimatedSprite::AnimatedSprite(sf::Time frame_time, bool paused, bool looped)
 : Sprite{}, current_anim{ nullptr }, frame_time{ frame_time }, current_frame{ 0 }, paused{ paused }, looped{ looped } {}
 
-void AnimatedSprite::update(Time dt){
+void AnimatedSprite::update(sf::Time dt){
 	if (!paused && current_anim){
 		current_time += dt;
 		if (current_time >= frame_time){
-			current_time = microseconds(current_time.asMicroseconds() % frame_time.asMicroseconds());
+			current_time = sf::microseconds(current_time.asMicroseconds() % frame_time.asMicroseconds());
 			if (++current_frame >= current_anim->size()){
 				current_frame = 0;
 				if (!looped){
@@ -33,7 +33,7 @@ void AnimatedSprite::set_animation(const Animation& anim){
 	set_frame(current_frame);
 }
 
-void AnimatedSprite::set_frame_time(Time time) { frame_time = time; }
+void AnimatedSprite::set_frame_time(sf::Time time) { frame_time = time; }
 
 void AnimatedSprite::play() { paused = false; }
 
@@ -59,11 +59,11 @@ bool AnimatedSprite::is_looped() const { return looped; }
 
 bool AnimatedSprite::is_playing() const { return !paused; }
 
-Time AnimatedSprite::get_frame_time() const { return frame_time; }
+sf::Time AnimatedSprite::get_frame_time() const { return frame_time; }
 
 void AnimatedSprite::set_frame(size_t new_frame, bool reset_time){
 	if (current_anim) setTextureRect(current_anim->get_frame(new_frame));
-	if (reset_time) current_time = Time::Zero;
+	if (reset_time) current_time = sf::Time::Zero;
 }
 
-const Time AnimatedSprite::default_frame_time = seconds(1.0f / 30.0f);
+const sf::Time AnimatedSprite::default_frame_time = sf::seconds(1.0f / 30.0f);

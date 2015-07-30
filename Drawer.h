@@ -10,23 +10,24 @@
 #define __DRAWER_H__
 
 #include "ITickable.h"
-#include "SFML.h"
+#include "SFML\Graphics\Drawable.hpp"
+#include "SFML\Graphics\RenderTarget.hpp"
 #include <vector>
 
 struct Drawer : ITickable{
 	Drawer();
-	explicit Drawer(RenderTarget& render_target);
+	explicit Drawer(sf::RenderTarget& render_target);
 
-	void add_drawable(Drawable& drawable);
-	void remove_drawable(Drawable& drawable);
+	void add_drawable(sf::Drawable& drawable);
+	void remove_drawable(sf::Drawable& drawable);
 	void tick(float);
 
-	RenderTarget* target;
+	sf::RenderTarget* target;
 
 private:
-	std::vector<Drawable*> drawables;
-	std::vector<Drawable*> defer_add;
-	std::vector<Drawable*> defer_remove;
+	std::vector<sf::Drawable*> drawables;
+	std::vector<sf::Drawable*> defer_add;
+	std::vector<sf::Drawable*> defer_remove;
 };
 
 #endif // __DRAWER_H__

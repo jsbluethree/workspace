@@ -8,28 +8,29 @@
 #ifndef __INPUT_H__
 #define __INPUT_H__
 
-#include "SFML.h"
+#include "SFML\Window\Event.hpp"
+#include "SFML\Window\Window.hpp"
 #include "Dispatcher.h"
 #include "ITickable.h"
 #include "IEvent.h"
 
 struct SFMLEvent : IEvent{
-	explicit SFMLEvent(const Event& e);
+	explicit SFMLEvent(const sf::Event& e);
 
 	EventType type() const;
 
-	Event sf_event;
+	sf::Event sf_event;
 };
 
 struct Input : ITickable{
-	explicit Input(Window& window);
+	explicit Input(sf::Window& window);
 
 	void tick(float dt);
 
 	Dispatcher events;
 
 private:
-	Window& win;
+	sf::Window& win;
 };
 
 #endif // __INPUT_H__

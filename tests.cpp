@@ -4,11 +4,11 @@
 /**
  *	This contains various tests. This also contains, for now, the entry point.
  */
-
+#include "SFML\Graphics.hpp"
+#include "SFML\System.hpp"
 #include <iostream>
 #include <ctime>
 #include <cstdlib>
-#include "SFML.h"
 #include "SFMLUtility.h"
 #include "QTSceneGraph.h"
 #include "BasicEntity.h"
@@ -18,7 +18,7 @@
 #include "AssetManager.h"
 
 
-RenderWindow main_window;
+sf::RenderWindow main_window;
 AssetManager assets;
 
 void load_assets(){
@@ -30,7 +30,7 @@ void test_quad_tree(){
 	srand(time(nullptr));
 	assets.get_texture("amethyst").setSmooth(true);
 	BasicEntity a[20];
-	QTSceneGraph qtree(FloatRect(0, 0, 800, 600));
+	QTSceneGraph qtree({ 0, 0, 800, 600 });
 	for (auto& s : a){
 		s.setTexture(assets.get_texture("amethyst"));
 		s.scale(0.5f, 0.5f);
@@ -40,24 +40,24 @@ void test_quad_tree(){
 	}
 
 	while (main_window.isOpen()){
-		Event event;
+		sf::Event event;
 		while (main_window.pollEvent(event)){
-			if (event.type == Event::Closed){
+			if (event.type == sf::Event::Closed){
 				main_window.close();
 			}
-			else if (event.type == Event::MouseButtonPressed){
+			else if (event.type == sf::Event::MouseButtonPressed){
 				std::cout << "clicked " << event.mouseButton.x << ' ' << event.mouseButton.y << std::endl;
 				auto clicked = qtree.get_collision(event.mouseButton.x, event.mouseButton.y);
 				std::cout << clicked.size() << std::endl;
 				for (auto& c : clicked){
-					auto sprite = dynamic_cast<Sprite*>(c);
+					auto sprite = dynamic_cast<sf::Sprite*>(c);
 					if (sprite){
 						sprite->rotate(180);
 						qtree.update_node(*c);
 					}
 				}
 			}
-			else if (event.type == Event::KeyPressed){
+			else if (event.type == sf::Event::KeyPressed){
 				return;
 			}
 		}
@@ -70,15 +70,15 @@ void test_quad_tree(){
 void test_animation(){
 	AnimatedSprite cat(2.0f * AnimatedSprite::default_frame_time);
 	cat.set_animation(assets.get_animation("cat"));
-	Clock update_clock;
-	Time last_time = Time::Zero;
+	sf::Clock update_clock;
+	sf::Time last_time = sf::Time::Zero;
 	while (main_window.isOpen()){
-		Event event;
+		sf::Event event;
 		while (main_window.pollEvent(event)){
-			if (event.type == Event::Closed){
+			if (event.type == sf::Event::Closed){
 				main_window.close();
 			}
-			else if (event.type == Event::KeyPressed){
+			else if (event.type == sf::Event::KeyPressed){
 				return;
 			}
 		}
@@ -104,15 +104,15 @@ void test_dispatcher(){
 	events.add_listener(EventType::INVALID, testcb);
 	events.tick(0);
 	while (main_window.isOpen()){
-		Event event;
+		sf::Event event;
 		while (main_window.pollEvent(event)){
-			if (event.type == Event::Closed){
+			if (event.type == sf::Event::Closed){
 				main_window.close();
 			}
-			else if (event.type == Event::MouseButtonPressed){
+			else if (event.type == sf::Event::MouseButtonPressed){
 				events.dispatch(new TestEvent);
 			}
-			else if (event.type == Event::KeyPressed){
+			else if (event.type == sf::Event::KeyPressed){
 				return;
 			}
 		}
@@ -146,7 +146,7 @@ void test_input_handler(){
 
 int main(int argc, char** argv){
 
-	main_window.create(VideoMode(800, 600), "Tests");
+	main_window.create({ 800, 600 }, "Tests");
 
 	load_assets();
 	

@@ -5,6 +5,8 @@
  *	This defines a state machine and state change events.
  *	The state machine keeps track of the current logic state of some object and handles state changes.
  *	The new and delete operators of StateEvent are overloaded to use pool allocation.
+ *
+ *	TODO: clean up interface
  */
 
 #ifndef __STATEMACHINE_H__
