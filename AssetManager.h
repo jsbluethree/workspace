@@ -32,8 +32,11 @@ struct AssetManager{
 	void clear_assets();
 
 private:
+	static IntRect frame_rect(int index, int horiz_size, int tex_width, int tex_height);
+
 	std::unordered_map<std::string, Animation> anims;
 	std::unordered_map<std::string, Texture> texs;
+	std::unordered_map<std::string, Json::Value> texdata;
 };
 
 

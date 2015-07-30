@@ -2,7 +2,17 @@
 	"__title" : "textures.json",
 	"__comment" : "Maps the string name of each texture to its filename.",
 	"textures" : {
-		"amethyst" : "a.png",
-		"cat" : "runningcat.png"
+		"amethyst" : {
+			"filename" : "a.png",
+			"spritesheet" : false
+		},
+		"cat" : {
+			"filename" : "runningcat.png",
+			"spritesheet" : true,
+			"horiz size" : 2,
+			"vert size" : 4,
+			"tex width" : 512,
+			"tex height" : 256
+		}
 	}
 }

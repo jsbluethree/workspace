@@ -11,16 +11,15 @@ void AssetManager::load_animations(const std::string& filename){
 	std::ifstream file(filename);
 	Json::Value jroot;
 	file >> jroot;
+	file.close();
 	const auto& janims = jroot["animations"];
 	for (const auto& key : janims.getMemberNames()){
 		anims[key].set_texture(texs[janims[key]["texname"].asString()]);
 		anims[key].clear_frames();
-		for (int y = 0; y < janims[key]["theight"].asInt(); ++y){
-			for (int x = 0; x < janims[key]["twidth"].asInt(); ++x){
-				IntRect frame{ x * janims[key]["fwidth"].asInt(), y * janims[key]["fheight"].asInt(),
-					janims[key]["fwidth"].asInt(), janims[key]["fheight"].asInt() };
-				anims[key].add_frame(frame);
-			}
+		for (auto it = janims[key]["frames"].begin(); it != janims[key]["frames"].end(); ++it){
+			const auto& tex = texdata[janims[key]["texname"].asString()];
+			anims[key].add_frame(frame_rect(it->asInt(), tex["horiz size"].asInt(),
+				tex["tex width"].asInt(), tex["tex height"].asInt()));
 		}
 	}
 }
@@ -29,9 +28,11 @@ void AssetManager::load_textures(const std::string& filename){
 	std::ifstream file(filename);
 	Json::Value jroot;
 	file >> jroot;
+	file.close();
 	const auto& jtexs = jroot["textures"];
 	for (const auto& key : jtexs.getMemberNames()){
-		texs[key].loadFromFile(jtexs[key].asString());
+		texs[key].loadFromFile(jtexs[key]["filename"].asString());
+		texdata[key] = jtexs[key];
 	}
 }
 
@@ -56,3 +57,7 @@ void AssetManager::clear_anims() { anims.clear(); }
 void AssetManager::clear_texs() { texs.clear(); }
 
 void AssetManager::clear_assets() { anims.clear(); texs.clear(); }
+
+IntRect AssetManager::frame_rect(int index, int horiz_size, int tex_width, int tex_height){
+	return{ (index % horiz_size) * tex_width, (index / horiz_size) * tex_height, tex_width, tex_height };
+}
