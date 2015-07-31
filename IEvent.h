@@ -3,7 +3,6 @@
 
 /**
  *	This defines the base class for all events to be used with the event dispatcher - see Dispatcher.h
- *	TODO: Pool allocation
  */
 
 #ifndef __IEVENT_H__

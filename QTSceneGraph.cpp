@@ -27,13 +27,11 @@ void QTSceneGraph::update_node(ISceneNode& node, float dx, float dy){
 }
 
 const sf::Drawable* QTSceneGraph::get_drawable(const ISceneNode* node) const {
-	auto it = drawables.find(node);
-	if (it != drawables.end()){
-		return it->second;
-	}
-	else{
+	if (drawables.count(node))
+		return drawables.at(node);
+	else
 		return nullptr;
-	}
+
 }
 
 bool QTSceneGraph::check_collision(const sf::FloatRect& r) const{
