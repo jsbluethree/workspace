@@ -17,9 +17,10 @@
 #include "Input.h"
 #include "AssetManager.h"
 #include "PoolAllocator.h"
-
+#include "Camera.h"
 
 sf::RenderWindow main_window;
+Camera main_cam({ 0, 0, 800, 600 });
 AssetManager assets;
 
 void load_assets(){
@@ -38,6 +39,7 @@ void test_quad_tree(){
 		s.setPosition(rand() % 660, rand() % 460);
 		//std::cout << s.get_rect() << std::endl;
 		qtree.add_node(s);
+		qtree.add_drawable(s);
 	}
 
 	while (main_window.isOpen()){
@@ -63,7 +65,8 @@ void test_quad_tree(){
 			}
 		}
 		main_window.clear();
-		for (const auto& s : a) main_window.draw(s);
+		main_cam.render_scene(qtree, main_window);
+		//for (const auto& s : a) main_window.draw(s);
 		main_window.display();
 	}
 }

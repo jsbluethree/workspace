@@ -9,9 +9,17 @@
 
 QTSceneGraph::QTSceneGraph(sf::FloatRect bounds) : qtree{ 0, bounds } {}
 
-void QTSceneGraph::add_drawable(sf::Drawable& drawable) { drawables.insert(&drawable); }
+void QTSceneGraph::add_drawable(ISceneNode& drawable){
+	auto dptr = dynamic_cast<sf::Drawable*>(&drawable);
+	if (dptr) drawables[&drawable] = dptr;
+}
 
-void QTSceneGraph::remove_drawable(sf::Drawable& drawable) { drawables.erase(&drawable); }
+void QTSceneGraph::remove_drawable(ISceneNode& drawable) {
+	auto dptr = dynamic_cast<sf::Drawable*>(&drawable);
+	if (dptr){
+		if (drawables.count(&drawable) == 1) drawables.erase(&drawable);
+	}
+}
 
 void QTSceneGraph::add_node(ISceneNode& node) { qtree.insert(node); }
 
@@ -23,7 +31,15 @@ void QTSceneGraph::update_node(ISceneNode& node, float dx, float dy){
 	qtree.insert(node);
 }
 
-bool QTSceneGraph::is_drawable_node(ISceneNode* node) const { return drawables.count(reinterpret_cast<sf::Drawable*>(node)) == 1; }
+const sf::Drawable* QTSceneGraph::get_drawable(ISceneNode* node) const {
+	auto it = drawables.find(node);
+	if (it != drawables.end()){
+		return it->second;
+	}
+	else{
+		return nullptr;
+	}
+}
 
 bool QTSceneGraph::check_collision(const sf::FloatRect& r) const{
 	auto possible = qtree.retrieve(r);

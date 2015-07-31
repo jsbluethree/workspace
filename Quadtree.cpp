@@ -85,7 +85,7 @@ void Quadtree::insert(ISceneNode& node){
 void Quadtree::remove(ISceneNode& node){
 	if (subtrees[0] != nullptr) {
 		auto index = get_index(node);
-		if (index != -1){
+		if (index != -1 && subtrees[0] != nullptr){
 			subtrees[index]->remove(node);
 			return;
 		}
@@ -100,9 +100,17 @@ std::unordered_set<ISceneNode*> Quadtree::retrieve(const sf::Vector2f& vec) cons
 std::unordered_set<ISceneNode*> Quadtree::retrieve(const sf::FloatRect& rect) const{
 	decltype(nodes) return_list;
 	auto index = get_index(rect);
-	if (index != -1 && subtrees[0] != nullptr){
-		const auto& partial = subtrees[index]->retrieve(rect);
-		return_list.insert(partial.begin(), partial.end());
+	if (subtrees[0] != nullptr){
+		if (index != -1){
+			const auto& partial = subtrees[index]->retrieve(rect);
+			return_list.insert(partial.begin(), partial.end());
+		}
+		else{
+			for (int i = 0; i < 4; ++i){
+				const auto& partial = subtrees[i]->retrieve(rect);
+				return_list.insert(partial.begin(), partial.end());
+			}
+		}
 	}
 	return_list.insert(nodes.begin(), nodes.end());
 	return return_list;
