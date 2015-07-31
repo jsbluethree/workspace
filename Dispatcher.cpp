@@ -36,13 +36,9 @@ void Dispatcher::dispatch(IEvent* event){
 	delete event;
 }
 
-void Dispatcher::tick(float dt){
-	for (const auto& event : events) dispatch(event);
-	events.clear();
-
+void Dispatcher::tick(float){
 	listeners.insert(defer_add.begin(), defer_add.end());
-	defer_add.clear();
-	
+	defer_add.clear();	
 	for (const auto& pair : defer_remove){
 		auto b_index = listeners.bucket(pair.first);
 		for (auto it = listeners.begin(b_index); it != listeners.end(b_index); it++){
@@ -51,7 +47,8 @@ void Dispatcher::tick(float dt){
 				break;
 			}
 		}
-	}
-	
+	}	
 	defer_remove.clear();
+	for (const auto& event : events) dispatch(event);
+	events.clear();
 }

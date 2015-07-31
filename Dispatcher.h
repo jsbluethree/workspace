@@ -32,7 +32,7 @@ struct Dispatcher : ITickable{
 	void remove_listener(ICallback& callback);
 	void add_event(IEvent* event);
 	void dispatch(IEvent* event);
-	void tick(float dt);
+	void tick(float);
 
 private:
 	std::unordered_multimap<std::type_index, ICallback*> listeners;
@@ -41,7 +41,7 @@ private:
 	std::vector<IEvent*> events;
 };
 
-// NEED IMPLEMENTATION FOR TEMPLATE FUNCTIONS HERE:
+// IMPLEMENTATION FOR TEMPLATE FUNCTIONS HERE:
 
 template<typename event_type>
 void Dispatcher::add_listener(ICallback& callback) { defer_add.insert(std::make_pair(std::type_index(typeid(event_type)), &callback)); }
