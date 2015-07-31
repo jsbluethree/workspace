@@ -11,18 +11,22 @@
 #ifndef __ISCENEGRAPH_H__
 #define __ISCENEGRAPH_H__
 
-#include "SFML\Graphics\Rect.hpp"
-#include "SFML\System\Vector2.hpp"
+#include "SFML\Graphics\Drawable.hpp"
 #include "ISceneNode.h"
 #include <unordered_set>
 
 struct ISceneGraph{
 	virtual ~ISceneGraph() = default;
 
+	virtual void add_drawable(sf::Drawable& drawable) = 0;
+	virtual void remove_drawable(sf::Drawable& drawable) = 0;
+
 	virtual void add_node(ISceneNode& node) = 0;
 	virtual void remove_node(ISceneNode& node) = 0;
 	virtual void update_node(ISceneNode& node, float dx, float dy) = 0;
 	virtual void update_node(ISceneNode& node, const sf::Vector2f& d) { update_node(node, d.x, d.y); }
+
+	virtual bool is_drawable_node(ISceneNode* node) const = 0;
 
 	virtual bool check_collision(const sf::FloatRect& r) const = 0;
 	virtual bool check_collision(float x, float y) const = 0;

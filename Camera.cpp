@@ -26,7 +26,8 @@ void Camera::move(const sf::Vector2f& d) { move(d.x, d.y); }
 void Camera::render_scene(const ISceneGraph& scene, sf::RenderTarget& target, const sf::RenderStates& states) const{
 	target.setView(view);
 	for (const auto& node : scene.get_collision(get_source())){
-		auto drawable = dynamic_cast<sf::Drawable*>(node);
-		if (drawable) target.draw(*drawable, states);
+		if (scene.is_drawable_node(node)){
+			target.draw(reinterpret_cast<sf::Drawable&>(*node), states);
+		}
 	}
 }

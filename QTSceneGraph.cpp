@@ -9,6 +9,10 @@
 
 QTSceneGraph::QTSceneGraph(sf::FloatRect bounds) : qtree{ 0, bounds } {}
 
+void QTSceneGraph::add_drawable(sf::Drawable& drawable) { drawables.insert(&drawable); }
+
+void QTSceneGraph::remove_drawable(sf::Drawable& drawable) { drawables.erase(&drawable); }
+
 void QTSceneGraph::add_node(ISceneNode& node) { qtree.insert(node); }
 
 void QTSceneGraph::remove_node(ISceneNode& node) { qtree.remove(node); }
@@ -18,6 +22,8 @@ void QTSceneGraph::update_node(ISceneNode& node, float dx, float dy){
 	node.move(dx, dy);
 	qtree.insert(node);
 }
+
+bool QTSceneGraph::is_drawable_node(ISceneNode* node) const { return drawables.count(reinterpret_cast<sf::Drawable*>(node)) == 1; }
 
 bool QTSceneGraph::check_collision(const sf::FloatRect& r) const{
 	auto possible = qtree.retrieve(r);

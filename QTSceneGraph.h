@@ -11,13 +11,19 @@
 #include "ISceneGraph.h"
 #include "ISceneNode.h"
 #include "Quadtree.h"
+#include <unordered_set>
 
 struct QTSceneGraph : ISceneGraph{
 	explicit QTSceneGraph(sf::FloatRect bounds);
+
+	void add_drawable(sf::Drawable& drawable);
+	void remove_drawable(sf::Drawable& drawable);
 	
 	void add_node(ISceneNode& node);
 	void remove_node(ISceneNode& node);
 	void update_node(ISceneNode& node, float dx = 0.0f, float dy = 0.0f);
+
+	bool is_drawable_node(ISceneNode* node) const;
 	
 	bool check_collision(const sf::FloatRect& r) const;
 	bool check_collision(float x, float y) const;
@@ -31,6 +37,7 @@ struct QTSceneGraph : ISceneGraph{
 	
 private:
 	Quadtree qtree;
+	std::unordered_set<sf::Drawable*> drawables;
 };
 
 #endif // __QTSCENEGRAPH_H__
