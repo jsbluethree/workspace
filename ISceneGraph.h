@@ -18,9 +18,6 @@
 struct ISceneGraph{
 	virtual ~ISceneGraph() = default;
 
-	virtual void add_drawable(ISceneNode& node) = 0;
-	virtual void remove_drawable(ISceneNode& node) = 0;
-
 	virtual void add_node(ISceneNode& node) = 0;
 	virtual void remove_node(ISceneNode& node) = 0;
 	virtual void update_node(ISceneNode& node, float dx = 0.0f, float dy = 0.0f) = 0;

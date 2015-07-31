@@ -39,7 +39,6 @@ void test_quad_tree(){
 		s.setPosition(rand() % 660, rand() % 460);
 		//std::cout << s.get_rect() << std::endl;
 		qtree.add_node(s);
-		qtree.add_drawable(s);
 	}
 
 	while (main_window.isOpen()){

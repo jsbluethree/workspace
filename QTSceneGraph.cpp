@@ -9,21 +9,16 @@
 
 QTSceneGraph::QTSceneGraph(sf::FloatRect bounds) : qtree{ 0, bounds } {}
 
-void QTSceneGraph::add_drawable(ISceneNode& drawable){
-	auto dptr = dynamic_cast<sf::Drawable*>(&drawable);
-	if (dptr) drawables[&drawable] = dptr;
+void QTSceneGraph::add_node(ISceneNode& node) {
+	qtree.insert(node);
+	auto dptr = dynamic_cast<sf::Drawable*>(&node);
+	if (dptr) drawables[&node] = dptr;
 }
 
-void QTSceneGraph::remove_drawable(ISceneNode& drawable) {
-	auto dptr = dynamic_cast<sf::Drawable*>(&drawable);
-	if (dptr){
-		if (drawables.count(&drawable) == 1) drawables.erase(&drawable);
-	}
+void QTSceneGraph::remove_node(ISceneNode& node) {
+	qtree.remove(node);
+	drawables.erase(&node);
 }
-
-void QTSceneGraph::add_node(ISceneNode& node) { qtree.insert(node); }
-
-void QTSceneGraph::remove_node(ISceneNode& node) { qtree.remove(node); }
 
 void QTSceneGraph::update_node(ISceneNode& node, float dx, float dy){
 	qtree.remove(node);

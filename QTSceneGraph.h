@@ -17,9 +17,6 @@
 struct QTSceneGraph : ISceneGraph{
 	explicit QTSceneGraph(sf::FloatRect bounds);
 
-	void add_drawable(ISceneNode& node);
-	void remove_drawable(ISceneNode& node);
-	
 	void add_node(ISceneNode& node);
 	void remove_node(ISceneNode& node);
 	void update_node(ISceneNode& node, float dx = 0.0f, float dy = 0.0f);
