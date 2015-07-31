@@ -5,6 +5,7 @@
  *	This defines and implements a pool allocator. The pool allocator allocates space for multiple objects all at once.
  *	If a large number of small objects are needed, pool allocation is more efficient than standard heap allocation.
  *	Use should be restricted to objects with trivial destructors for maximum efficiency.
+ *	There is also a hacky macro to enable pool allocation for any given class.
  */
 
 #ifndef __POOLALLOCATOR_H__
@@ -214,5 +215,13 @@ PoolAllocator<T>::PoolSet::~PoolSet() {
 
 template<typename T>
 typename PoolAllocator<T>::PoolSet PoolAllocator<T>::m_chunks;
+
+// GARBAGE BEGINS HERE
+
+#define ENABLE_POOL_ALLOCATION(type)																			\
+	void* operator new(size_t) { return PoolAllocator<type>().allocate(1); }									\
+	void* operator new[](size_t n) { return PoolAllocator<type>().allocate(n / sizeof(type)); }					\
+	void operator delete(void* p) { PoolAllocator<type>().deallocate((type*)p, 1); }							\
+	void operator delete[](void* p, size_t n) { PoolAllocator<type>().deallocate((type*)p, n / sizeof(type)); }
 
 #endif // __POOLALLOCATOR_H__

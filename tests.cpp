@@ -16,6 +16,7 @@
 #include "Dispatcher.h"
 #include "Input.h"
 #include "AssetManager.h"
+#include "PoolAllocator.h"
 
 
 sf::RenderWindow main_window;
@@ -142,7 +143,18 @@ void test_input_handler(){
 	}
 }
 
+struct TestObj{
+	ENABLE_POOL_ALLOCATION(TestObj);
+};
+
+void test_pool_alloc(){
+	auto obj = new TestObj;
+	delete obj;
+}
+
 int main(int argc, char** argv){
+
+	test_pool_alloc();
 
 	main_window.create({ 800, 600 }, "Tests");
 
