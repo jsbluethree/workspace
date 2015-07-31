@@ -25,17 +25,13 @@ Dispatcher& Dispatcher::operator=(Dispatcher&& other){
 
 Dispatcher::~Dispatcher() { for (auto event : events) delete event; events.clear(); }
 
-void Dispatcher::add_listener(EventType type, ICallback& callback) { defer_add.insert(std::make_pair(type, &callback)); }
-
-void Dispatcher::remove_listener(EventType type, ICallback& callback) { defer_remove.insert(std::make_pair(type, &callback)); }
-
 void Dispatcher::add_event(IEvent* event) { events.push_back(event); }
 
 void Dispatcher::dispatch(IEvent* event){
 	// see reference for unordered_multimap::equal_range
-	for (auto its = listeners.equal_range(event->type()); its.first != its.second; its.first++){
+	for (auto its = listeners.equal_range(typeid(*event)); its.first != its.second; its.first++){
 		// its.first->second is the ICallback*
-		(*its.first->second)(event);
+		(*its.first->second)(*event);
 	}
 	delete event;
 }

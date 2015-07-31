@@ -24,8 +24,6 @@
 struct StateEvent : IEvent{
 	explicit StateEvent(Tag next);
 
-	EventType type();
-
 	Tag next_state;
 };
 
@@ -37,7 +35,7 @@ struct StateMachine{
 
 	struct OnStateTransition : ICallback{
 		explicit OnStateTransition(StateMachine& owner);
-		void operator()(IEvent* event);
+		void operator()(const IEvent& event);
 		StateMachine& machine;
 	} state_transition_listener;
 };

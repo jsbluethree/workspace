@@ -90,18 +90,16 @@ void test_animation(){
 	}
 }
 
-struct TestEvent : IEvent{
-	EventType type() const { return EventType::INVALID; }
-};
+struct TestEvent : IEvent{};
 
 struct TestCB : ICallback{
-	void operator()(IEvent* event) { std::cout << "event dispatched!\n"; }
+	void operator()(const IEvent&) { std::cout << "event dispatched!\n"; }
 };
 
 void test_dispatcher(){
 	TestCB testcb;
 	Dispatcher events;
-	events.add_listener(EventType::INVALID, testcb);
+	events.add_listener<TestEvent>(testcb);
 	events.tick(0);
 	while (main_window.isOpen()){
 		sf::Event event;
@@ -120,13 +118,13 @@ void test_dispatcher(){
 }
 
 struct CloseCB : ICallback{
-	void operator()(IEvent* event) { main_window.close(); }
+	void operator()(const IEvent&) { main_window.close(); }
 };
 
 struct JoyButtonCB : ICallback{
-	void operator()(IEvent* event){
-		auto sfe = static_cast<SFMLEvent&>(*event);
-		std::cout << "pushed button " << sfe.sf_event.joystickButton.button << std::endl;
+	void operator()(const IEvent& event){
+		const auto& jbpe = static_cast<const JoystickButtonPressedEvent&>(event);
+		std::cout << "pushed button " << jbpe.button << std::endl;
 	}
 };
 
@@ -135,10 +133,10 @@ void test_input_handler(){
 	CloseCB closer;
 	TestCB testcb;
 	JoyButtonCB buttoncb;
-	main_input.events.add_listener(EventType::SF_CLOSED, closer);
-	main_input.events.add_listener(EventType::SF_MOUSEBUTTONPRESSED, testcb);
-	main_input.events.add_listener(EventType::SF_KEYPRESSED, testcb);
-	main_input.events.add_listener(EventType::SF_JOYSTICKBUTTONPRESSED, buttoncb);
+	main_input.events.add_listener<ClosedEvent>(closer);
+	main_input.events.add_listener<MouseButtonPressedEvent>(testcb);
+	main_input.events.add_listener<KeyPressedEvent>(testcb);
+	main_input.events.add_listener<JoystickButtonPressedEvent>(buttoncb);
 	while (main_window.isOpen()){
 		main_input.tick(0);
 	}
