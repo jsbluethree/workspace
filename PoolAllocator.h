@@ -178,7 +178,7 @@ void PoolAllocator<T>::deallocate(pointer p, size_type n){
 	std::lock_guard<std::mutex> lock{ m_chunks.access_mtx };
 	for (auto chunk : m_chunks.set){
 		if (chunk->in(p)){
-			for (size_t i = n - 1; i >= 0; i--){
+			for (size_t i = n - 1; i < 0; i--){
 				chunk->deallocate(p + i);
 			}
 			return;
