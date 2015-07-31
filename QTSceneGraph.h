@@ -21,7 +21,7 @@ struct QTSceneGraph : ISceneGraph{
 	void remove_node(ISceneNode& node);
 	void update_node(ISceneNode& node, float dx = 0.0f, float dy = 0.0f);
 
-	const sf::Drawable* get_drawable(ISceneNode* node) const;
+	const sf::Drawable* get_drawable(const ISceneNode* node) const;
 	
 	bool check_collision(const sf::FloatRect& r) const;
 	bool check_collision(float x, float y) const;
@@ -35,7 +35,7 @@ struct QTSceneGraph : ISceneGraph{
 	
 private:
 	Quadtree qtree;
-	std::unordered_map<ISceneNode*, sf::Drawable*> drawables;
+	std::unordered_map<const ISceneNode*, sf::Drawable*> drawables;
 };
 
 #endif // __QTSCENEGRAPH_H__

@@ -26,7 +26,7 @@ void QTSceneGraph::update_node(ISceneNode& node, float dx, float dy){
 	qtree.insert(node);
 }
 
-const sf::Drawable* QTSceneGraph::get_drawable(ISceneNode* node) const {
+const sf::Drawable* QTSceneGraph::get_drawable(const ISceneNode* node) const {
 	auto it = drawables.find(node);
 	if (it != drawables.end()){
 		return it->second;

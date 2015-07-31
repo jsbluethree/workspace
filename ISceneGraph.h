@@ -23,7 +23,7 @@ struct ISceneGraph{
 	virtual void update_node(ISceneNode& node, float dx = 0.0f, float dy = 0.0f) = 0;
 	virtual void update_node(ISceneNode& node, const sf::Vector2f& d) { update_node(node, d.x, d.y); }
 
-	virtual const sf::Drawable* get_drawable(ISceneNode* node) const = 0;
+	virtual const sf::Drawable* get_drawable(const ISceneNode* node) const = 0;
 
 	virtual bool check_collision(const sf::FloatRect& r) const = 0;
 	virtual bool check_collision(float x, float y) const = 0;
