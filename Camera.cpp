@@ -7,9 +7,7 @@
 
 #include "Camera.h"
 
-Camera::Camera(sf::FloatRect source, sf::FloatRect viewport) : view{ source }{
-	view.setViewport(viewport);
-}
+Camera::Camera(sf::FloatRect source, sf::FloatRect viewport) : view{ source } { view.setViewport(viewport); }
 
 void Camera::set_source(const sf::FloatRect& rect) { view.reset(rect); }
 

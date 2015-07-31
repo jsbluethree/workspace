@@ -25,9 +25,6 @@ struct Camera{
 	void render_scene(const ISceneGraph& scene, sf::RenderTarget& target, const sf::RenderStates& states = sf::RenderStates::Default) const;
 
 private:
-	template<typename T>
-	void draw_node(const T& node, sf::RenderTarget& target, const sf::RenderStates& states) { target.draw(node, states); }
-
 	sf::View view;
 };
 
