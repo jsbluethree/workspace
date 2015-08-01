@@ -16,6 +16,7 @@ struct BasicEntity : sf::Sprite, ISceneNode{
 	void move(float offsetX, float offsetY);
 	void move(const sf::Vector2f& offset);
 	sf::FloatRect get_rect() const;
+	float get_depth() const;
 };
 
 #endif // __BASICENTITY_H__

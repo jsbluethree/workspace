@@ -31,7 +31,6 @@ const sf::Drawable* QTSceneGraph::get_drawable(const ISceneNode* node) const {
 		return drawables.at(node);
 	else
 		return nullptr;
-
 }
 
 bool QTSceneGraph::check_collision(const sf::FloatRect& r) const{
@@ -41,7 +40,6 @@ bool QTSceneGraph::check_collision(const sf::FloatRect& r) const{
 			return true;
 		}
 	}
-
 	return false;
 }
 
@@ -52,32 +50,43 @@ bool QTSceneGraph::check_collision(float x, float y) const{
 			return true;
 		}
 	}
-
 	return false;
 }
 
 std::unordered_set<ISceneNode*> QTSceneGraph::get_collision(const sf::FloatRect& r) const{
 	auto possible = qtree.retrieve(r);
 	decltype(possible) confirmed;
-
 	for (const auto& node : possible) {
 		if (node->get_rect().intersects(r)){
 			confirmed.insert(node);
 		}
 	}
-
 	return confirmed;
 }
 
 std::unordered_set<ISceneNode*> QTSceneGraph::get_collision(float x, float y) const{
 	auto possible = qtree.retrieve(x, y);
 	decltype(possible) confirmed;
-
 	for (const auto& node : possible) {
 		if (node->get_rect().contains(x, y)){
 			confirmed.insert(node);
 		}
 	}
+	return confirmed;
+}
 
+std::set<ISceneNode*, std::function<bool(ISceneNode*, ISceneNode*)>> QTSceneGraph::get_coll_by_depth(const sf::FloatRect& r) const{
+	std::function<bool(ISceneNode*, ISceneNode*)> depth_sort = [](ISceneNode* a, ISceneNode* b){
+		if (!a) return false;
+		else if (!b) return true;
+		else return a->get_depth() < b->get_depth(); };
+	auto possible = qtree.retrieve(r);
+	std::set<ISceneNode*, std::function<bool(ISceneNode*, ISceneNode*)>> confirmed(depth_sort);
+	for (const auto& node : possible) {
+		if (node->get_rect().intersects(r)){
+			// TODO: use hints here to get amortized constant insertion time rather than logarithmic
+			confirmed.insert(node);
+		}
+	}
 	return confirmed;
 }

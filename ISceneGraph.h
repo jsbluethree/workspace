@@ -13,7 +13,9 @@
 
 #include "SFML\Graphics\Drawable.hpp"
 #include "ISceneNode.h"
+#include <functional>
 #include <unordered_set>
+#include <set>
 
 struct ISceneGraph{
 	virtual ~ISceneGraph() = default;
@@ -34,6 +36,8 @@ struct ISceneGraph{
 	virtual std::unordered_set<ISceneNode*> get_collision(float x, float y) const = 0;
 	virtual std::unordered_set<ISceneNode*> get_collision(const sf::Vector2f& v) const { return get_collision(v.x, v.y); }
 	virtual std::unordered_set<ISceneNode*> get_collision(const ISceneNode& node) const { return get_collision(node.get_rect()); }
+
+	virtual std::set<ISceneNode*, std::function<bool(ISceneNode*, ISceneNode*)>> get_coll_by_depth(const sf::FloatRect& r) const = 0;
 };
 
 #endif // __ISCENEGRAPH_H__

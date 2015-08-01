@@ -23,6 +23,7 @@ struct Camera{
 	void move(float dx, float dy);
 	void move(const sf::Vector2f& d);
 	void render_scene(const ISceneGraph& scene, sf::RenderTarget& target, const sf::RenderStates& states = sf::RenderStates::Default) const;
+	void render_scene_depth(const ISceneGraph& scene, sf::RenderTarget& target, const sf::RenderStates& states = sf::RenderStates::Default) const;
 
 private:
 	sf::View view;

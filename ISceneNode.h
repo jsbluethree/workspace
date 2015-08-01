@@ -17,7 +17,10 @@ struct ISceneNode{
 
 	virtual void move(float offsetX, float offsetY) = 0;
 	virtual void move(const sf::Vector2f& offset) = 0;
-	virtual sf::FloatRect get_rect() const = 0;	
+	virtual sf::FloatRect get_rect() const = 0;
+	virtual float get_depth() const = 0;
 };
+
+
 
 #endif // __ISCENENODE_H__
