@@ -4,8 +4,6 @@
 /**
  *	This defines a state machine and state change events.
  *	The state machine keeps track of the current logic state of some object and handles state changes.
- *
- *	TODO: clean up interface
  */
 
 #ifndef __STATEMACHINE_H__
@@ -29,14 +27,21 @@ struct StateEvent : IEvent{
 struct StateMachine{
 	StateMachine();
 
-	IState* current_state;
-	std::unordered_map<Tag, IState*> state_lookup;
+	void add_state(Tag name, IState& state);
+	void remove_state(Tag name);
+	void set_state(Tag state);
+	IState* get_state(Tag state);
+	IState* get_current_state();
 
+private:
 	struct OnStateTransition : ICallback{
 		explicit OnStateTransition(StateMachine& owner);
 		void operator()(const IEvent& event);
 		StateMachine& machine;
 	} state_transition_listener;
+
+	std::unordered_map<Tag, IState*> state_lookup;
+	IState* current_state;
 };
 
 #endif // __STATEMACHINE_H__
