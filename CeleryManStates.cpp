@@ -87,7 +87,7 @@ void CMOysterState::run(){
 			char* dir = _getcwd(nullptr, FILENAME_MAX);
 			std::string command("mspaint /pt ");
 			command += dir;
-			command += "\\oyster_smiling.png";
+			command += "\\Assets\\oyster_smiling.png";
 			system(command.c_str());
 			free(dir);
 		}

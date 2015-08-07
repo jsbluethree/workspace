@@ -3,89 +3,89 @@
 	"__comment" : "Maps the string name of each texture to its filename.",
 	"textures" : {
 		"amethyst" : {
-			"filename" : "a.png",
+			"filename" : "Assets\\a.png",
 			"spritesheet" : false
 		},
 		"cat" : {
-			"filename" : "runningcat.png",
+			"filename" : "Assets\\runningcat.png",
 			"spritesheet" : true,
 			"horiz size" : 2,
 			"vert size" : 4
 		},
 		"celery1" : {
-			"filename" : "celery1.png",
+			"filename" : "Assets\\celery1.png",
 			"spritesheet" : true,
 			"horiz size" : 26,
 			"vert size" : 1
 		},
 		"celery2" : {
-			"filename" : "celery2.png",
+			"filename" : "Assets\\celery2.png",
 			"spritesheet" : true,
 			"horiz size" : 50,
 			"vert size" : 1
 		},
 		"celery3" : {
-			"filename" : "celery3.png",
+			"filename" : "Assets\\celery3.png",
 			"spritesheet" : true,
 			"horiz size" : 53,
 			"vert size" : 1
 		},
 		"celery4" : {
-			"filename" : "celery4.png",
+			"filename" : "Assets\\celery4.png",
 			"spritesheet" : true,
 			"horiz size" : 28,
 			"vert size" : 2
 		},
 		"oyster1" : {
-			"filename" : "oyster1.png",
+			"filename" : "Assets\\oyster1.png",
 			"spritesheet" : true,
 			"horiz size" : 16,
 			"vert size" : 1
 		},
 		"oyster2" : {
-			"filename" : "oyster2.png",
+			"filename" : "Assets\\oyster2.png",
 			"spritesheet" : true,
 			"horiz size" : 40,
 			"vert size" : 1
 		},
 		"oyster3" : {
-			"filename" : "oyster3.png",
+			"filename" : "Assets\\oyster3.png",
 			"spritesheet" : true,
 			"horiz size" : 43,
 			"vert size" : 1
 		},
 		"tayne1" : {
-			"filename" : "tayne1.png",
+			"filename" : "Assets\\tayne1.png",
 			"spritesheet" : true,
 			"horiz size" : 23,
 			"vert size" : 1
 		},
 		"tayne2" : {
-			"filename" : "tayne2.png",
+			"filename" : "Assets\\tayne2.png",
 			"spritesheet" : true,
 			"horiz size" : 23,
 			"vert size" : 1
 		},
 		"tayne3" : {
-			"filename" : "tayne3.png",
+			"filename" : "Assets\\tayne3.png",
 			"spritesheet" : true,
 			"horiz size" : 49,
 			"vert size" : 1
 		},
 		"tayne4" : {
-			"filename" : "tayne4.png",
+			"filename" : "Assets\\tayne4.png",
 			"spritesheet" : true,
 			"horiz size" : 29,
 			"vert size" : 1
 		},
 		"tayne5" : {
-			"filename" : "tayne5.png",
+			"filename" : "Assets\\tayne5.png",
 			"spritesheet" : true,
 			"horiz size" : 22,
 			"vert size" : 1
 		},
 		"tayne6" : {
-			"filename" : "tayne6.png",
+			"filename" : "Assets\\tayne6.png",
 			"spritesheet" : true,
 			"horiz size" : 1,
 			"vert size" : 1
