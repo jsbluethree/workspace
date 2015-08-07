@@ -4,6 +4,7 @@
 /**
  *	This contains various tests. This also contains, for now, the entry point.
  */
+#include "CeleryManMain.h"
 #include "SFML\Graphics.hpp"
 #include "SFML\System.hpp"
 #include <iostream>
@@ -155,7 +156,7 @@ void test_pool_alloc(){
 }
 
 int main(int argc, char** argv){
-
+	/*
 	test_pool_alloc();
 
 	main_window.create({ 800, 600 }, "Tests");
@@ -169,6 +170,10 @@ int main(int argc, char** argv){
 	test_dispatcher();
 
 	test_input_handler();
+	/**/
+
+	CeleryManMain main;
+	main.run();
 
 	return 0;
 }

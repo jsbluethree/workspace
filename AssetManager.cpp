@@ -16,10 +16,19 @@ void AssetManager::load_animations(const std::string& filename){
 	for (const auto& key : janims.getMemberNames()){
 		anims[key].set_texture(texs[janims[key]["texname"].asString()]);
 		anims[key].clear_frames();
-		for (auto it = janims[key]["frames"].begin(); it != janims[key]["frames"].end(); ++it){
-			const auto& tex = texdata[janims[key]["texname"].asString()];
-			anims[key].add_frame(frame_rect(it->asInt(), tex["horiz size"].asInt(),
-				tex["tex width"].asInt(), tex["tex height"].asInt()));
+		if (janims[key]["frames"].isIntegral()){
+			for (int i = 0; i < janims[key]["frames"].asInt(); ++i){
+				const auto& tex = texdata[janims[key]["texname"].asString()];
+				anims[key].add_frame(frame_rect(i, tex["horiz size"].asInt(),
+					tex["tex width"].asInt(), tex["tex height"].asInt()));
+			}
+		}
+		else if (janims[key]["frames"].isArray()){
+			for (auto it = janims[key]["frames"].begin(); it != janims[key]["frames"].end(); ++it){
+				const auto& tex = texdata[janims[key]["texname"].asString()];
+				anims[key].add_frame(frame_rect(it->asInt(), tex["horiz size"].asInt(),
+					tex["tex width"].asInt(), tex["tex height"].asInt()));
+			}
 		}
 	}
 }
@@ -33,6 +42,10 @@ void AssetManager::load_textures(const std::string& filename){
 	for (const auto& key : jtexs.getMemberNames()){
 		texs[key].loadFromFile(jtexs[key]["filename"].asString());
 		texdata[key] = jtexs[key];
+		if (texdata[key]["spritesheet"].asBool()){
+			texdata[key]["tex width"] = texs[key].getSize().x / texdata[key]["horiz size"].asInt();
+			texdata[key]["tex height"] = texs[key].getSize().y / texdata[key]["vert size"].asInt();
+		}
 	}
 }
 
@@ -44,9 +57,9 @@ Animation& AssetManager::get_animation(const std::string& key) { return anims[ke
 
 sf::Texture& AssetManager::get_texture(const std::string& key) { return texs[key]; }
 
-bool AssetManager::has_animation(const std::string& key) const { return anims.count(key); }
+bool AssetManager::has_animation(const std::string& key) const { return anims.count(key) != 0; }
 
-bool AssetManager::has_texture(const std::string& key) const { return texs.count(key); }
+bool AssetManager::has_texture(const std::string& key) const { return texs.count(key) != 0; }
 
 size_t AssetManager::anim_count() const { return anims.size(); }
 
