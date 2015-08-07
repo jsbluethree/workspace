@@ -63,12 +63,14 @@ void CMCeleryManState::play_windows(){
 	sf::Time last_time = sf::Time::Zero;
 	while (!close_windows){
 		for (int i = 0; i < 4; ++i){
+			sf::Event event;
+			while (celerywin[i].pollEvent(event));
 			celery[i].update(update_clock.getElapsedTime() - last_time);
+			last_time = update_clock.getElapsedTime();
 			celerywin[i].clear();
 			celerywin[i].draw(celery[i]);
 			celerywin[i].display();
 		}
-		last_time = update_clock.getElapsedTime();
 	}
 }
 
@@ -115,12 +117,14 @@ void CMOysterState::play_windows(){
 	sf::Time last_time = sf::Time::Zero;
 	while (!close_windows){
 		for (int i = 0; i < 3; ++i){
+			sf::Event event;
+			while (oysterwin[i].pollEvent(event));
 			oyster[i].update(update_clock.getElapsedTime() - last_time);
+			last_time = update_clock.getElapsedTime();
 			oysterwin[i].clear();
 			oysterwin[i].draw(oyster[i]);
 			oysterwin[i].display();
 		}
-		last_time = update_clock.getElapsedTime();
 	}
 }
 
@@ -153,12 +157,14 @@ void CMTayneState::play_windows(){
 	sf::Time last_time = sf::Time::Zero;
 	while (!close_windows){
 		for (int i = 0; i < 6; ++i){
+			sf::Event event;
+			while (taynewin[i].pollEvent(event));
 			tayne[i].update(update_clock.getElapsedTime() - last_time);
+			last_time = update_clock.getElapsedTime();
 			taynewin[i].clear();
 			taynewin[i].draw(tayne[i]);
 			taynewin[i].display();
 		}
-		last_time = update_clock.getElapsedTime();
 	}
 }
 
