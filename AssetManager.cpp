@@ -62,8 +62,10 @@ void AssetManager::load_sounds(const std::string& filename){
 	file.close();
 	const auto& jsounds = jroot["sounds"];
 	for (const auto& key : jsounds.getMemberNames()){
-		soundbuffers[jsounds[key]["filename"].asString()].loadFromFile(jsounds[key]["filename"].asString());
-		sounds[key].setBuffer(soundbuffers[jsounds[key]["filename"].asString()]);
+		std::string& soundfile = jsounds[key]["filename"].asString();
+		if (!soundbuffers.count(soundfile))
+			soundbuffers[soundfile].loadFromFile(soundfile);
+		sounds[key].setBuffer(soundbuffers[soundfile]);
 	}
 }
 
