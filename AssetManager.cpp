@@ -9,6 +9,7 @@
 
 void AssetManager::load_animations(const std::string& filename){
 	std::ifstream file(filename);
+	if (!file.is_open()) return;
 	Json::Value jroot;
 	file >> jroot;
 	file.close();
@@ -35,6 +36,7 @@ void AssetManager::load_animations(const std::string& filename){
 
 void AssetManager::load_fonts(const std::string& filename){
 	std::ifstream file(filename);
+	if (!file.is_open()) return;
 	Json::Value jroot;
 	file >> jroot;
 	file.close();
@@ -46,6 +48,7 @@ void AssetManager::load_fonts(const std::string& filename){
 
 void AssetManager::load_music(const std::string& filename){
 	std::ifstream file(filename);
+	if (!file.is_open()) return;
 	Json::Value jroot;
 	file >> jroot;
 	file.close();
@@ -57,6 +60,7 @@ void AssetManager::load_music(const std::string& filename){
 
 void AssetManager::load_sounds(const std::string& filename){
 	std::ifstream file(filename);
+	if (!file.is_open()) return;
 	Json::Value jroot;
 	file >> jroot;
 	file.close();
@@ -71,6 +75,7 @@ void AssetManager::load_sounds(const std::string& filename){
 
 void AssetManager::load_textures(const std::string& filename){
 	std::ifstream file(filename);
+	if (!file.is_open()) return;
 	Json::Value jroot;
 	file >> jroot;
 	file.close();
