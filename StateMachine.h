@@ -28,6 +28,7 @@ struct StateMachine{
 	StateMachine();
 
 	void add_state(Tag name, IState& state);
+	void add_null_state(Tag name);
 	void remove_state(Tag name);
 	void set_state(Tag state);
 	IState* get_state(Tag state);

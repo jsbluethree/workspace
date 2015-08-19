@@ -13,6 +13,8 @@ StateMachine::StateMachine() : state_transition_listener{ *this }, current_state
 
 void StateMachine::add_state(Tag name, IState& state) { state_lookup[name] = &state; }
 
+void StateMachine::add_null_state(Tag name) { state_lookup[name] = nullptr; }
+
 void StateMachine::remove_state(Tag name) { state_lookup.erase(name); }
 
 void StateMachine::set_state(Tag state){
