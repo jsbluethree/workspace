@@ -13,25 +13,29 @@
 #include <string>
 #include <sstream>
 
+static std::stringstream ss;
+
 std::string stringf(const std::string& str) { return str; }
 
 template<typename T, typename... Args>
 std::string stringf(const std::string& format, T arg, Args... args){
-	std::stringstream ss;
+	std::string outstring = "";
 	for (unsigned int i = 0; i < format.size(); ++i){
 		if (format[i] != '%'){
-			ss << format[i];
+			outstring += format[i];
 		}
 		else if (format[i + 1] != '%'){
-			ss << format[i];
+			outstring += format[i];
 		}
 		else{
 			ss << arg;
-			ss << stringf(format.substr(i + 2), args...);
+			outstring += _ss.str();
+			ss.str("");
+			outstring += stringf(format.substr(i + 2), args...);
 			break;
 		}
 	}
-	return ss.str();
+	return outstring;
 }
 
 #endif
