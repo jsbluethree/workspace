@@ -5,6 +5,8 @@
  *	Defines a function to create a string from a format string + arguments.
  *  Format string uses %% to signify an argument.
  *	Arguments can be any type with a defined operator<<.
+ *	Alternatively you can specialize the template to use something other than operator<<
+ *	such as Json::Value::toStyledString().
  */
 
 #ifndef __STRINGF_H__

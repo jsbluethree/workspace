@@ -34,6 +34,15 @@ void AssetManager::load_animations(const std::string& filename){
 	}
 }
 
+void AssetManager::load_config(const std::string& filename){
+	std::ifstream file(filename);
+	if (!file.is_open()) return;
+	Json::Value jroot;
+	file >> jroot;
+	file.close();
+	config = jroot["config"];
+}
+
 void AssetManager::load_fonts(const std::string& filename){
 	std::ifstream file(filename);
 	if (!file.is_open()) return;
@@ -66,10 +75,7 @@ void AssetManager::load_sounds(const std::string& filename){
 	file.close();
 	const auto& jsounds = jroot["sounds"];
 	for (const auto& key : jsounds.getMemberNames()){
-		std::string& soundfile = jsounds[key]["filename"].asString();
-		if (!soundbuffers.count(soundfile))
-			soundbuffers[soundfile].loadFromFile(soundfile);
-		sounds[key].setBuffer(soundbuffers[soundfile]);
+		soundbuffers[key].loadFromFile(jsounds[key]["filename"].asString());
 	}
 }
 
@@ -102,17 +108,29 @@ void AssetManager::load_textures(const std::string& filename){
 	}
 }
 
-Animation& AssetManager::get_animation(const std::string& key) { return anims[key]; }
+Animation& AssetManager::get_animation(const std::string& key) { return anims.at(key); }
 
-sf::Font& AssetManager::get_font(const std::string& key) { return fonts[key]; }
+Json::Value& AssetManager::get_config(const std::string& key) { return config[key]; }
 
-sf::Music& AssetManager::get_music(const std::string& key) { return musics[key]; }
+sf::Font& AssetManager::get_font(const std::string& key) { return fonts.at(key); }
 
-sf::Sound& AssetManager::get_sound(const std::string& key) { return sounds[key]; }
+sf::Music& AssetManager::get_music(const std::string& key) { return musics.at(key); }
 
-std::string& AssetManager::get_text(const std::string& key) { return strings[key]; }
+sf::SoundBuffer& AssetManager::get_sound(const std::string& key) { return soundbuffers.at(key); }
 
-sf::Texture& AssetManager::get_texture(const std::string& key) { return texs[key]; }
+std::string& AssetManager::get_text(const std::string& key) { return strings.at(key); }
+
+sf::Texture& AssetManager::get_texture(const std::string& key) { return texs.at(key); }
+
+int AssetManager::get_config_int(const std::string& key) const { return config[key].asInt(); }
+
+unsigned int AssetManager::get_config_uint(const std::string& key) const { return config[key].asUInt(); }
+
+float AssetManager::get_config_float(const std::string& key) const { return config[key].asFloat(); }
+
+double AssetManager::get_config_double(const std::string& key) const { return config[key].asDouble(); }
+
+std::string AssetManager::get_config_string(const std::string& key) const { return config[key].asString(); }
 
 Animation& AssetManager::get_animation(const std::string& key, Animation& default) {
 	if (has_animation(key))
@@ -135,9 +153,9 @@ sf::Music& AssetManager::get_music(const std::string& key, sf::Music& default){
 		return default;
 }
 
-sf::Sound& AssetManager::get_sound(const std::string& key, sf::Sound& default){
+sf::SoundBuffer& AssetManager::get_sound(const std::string& key, sf::SoundBuffer& default){
 	if (has_sound(key))
-		return sounds[key];
+		return soundbuffers[key];
 	else
 		return default;
 }
@@ -158,11 +176,13 @@ sf::Texture& AssetManager::get_texture(const std::string& key, sf::Texture& defa
 
 bool AssetManager::has_animation(const std::string& key) const { return anims.count(key) > 0; }
 
+bool AssetManager::has_config(const std::string& key) const { return !config[key].empty(); }
+
 bool AssetManager::has_font(const std::string& key) const { return fonts.count(key) > 0; }
 
 bool AssetManager::has_music(const std::string& key) const { return musics.count(key) > 0; }
 
-bool AssetManager::has_sound(const std::string& key) const { return sounds.count(key) > 0; }
+bool AssetManager::has_sound(const std::string& key) const { return soundbuffers.count(key) > 0; }
 
 bool AssetManager::has_text(const std::string& key) const { return strings.count(key) > 0; }
 
@@ -174,7 +194,7 @@ size_t AssetManager::font_count() const { return fonts.size(); }
 
 size_t AssetManager::music_count() const { return musics.size(); }
 
-size_t AssetManager::sound_count() const { return sounds.size(); }
+size_t AssetManager::sound_count() const { return soundbuffers.size(); }
 
 size_t AssetManager::text_count() const { return strings.size(); }
 
@@ -182,17 +202,27 @@ size_t AssetManager::texture_count() const { return texs.size(); }
 
 void AssetManager::clear_anims() { anims.clear(); }
 
+void AssetManager::clear_config() { config.clear(); }
+
 void AssetManager::clear_fonts() { fonts.clear(); }
 
 void AssetManager::clear_music() { musics.clear(); }
 
-void AssetManager::clear_sounds() { sounds.clear(); }
+void AssetManager::clear_sounds() { soundbuffers.clear(); }
 
 void AssetManager::clear_text() { strings.clear(); }
 
 void AssetManager::clear_textures() { texs.clear(); }
 
-void AssetManager::clear_assets() { anims.clear(); fonts.clear(); musics.clear(); sounds.clear(); strings.clear(); texs.clear(); }
+void AssetManager::clear_assets(){
+	anims.clear();
+	fonts.clear();
+	musics.clear();
+	soundbuffers.clear();
+	strings.clear();
+	texs.clear();
+	config.clear();
+}
 
 sf::IntRect AssetManager::frame_rect(int index, int horiz_size, int tex_width, int tex_height){
 	return{ (index % horiz_size) * tex_width, (index / horiz_size) * tex_height, tex_width, tex_height };
