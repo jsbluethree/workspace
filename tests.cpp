@@ -19,6 +19,7 @@
 #include "AssetManager.h"
 #include "PoolAllocator.h"
 #include "Camera.h"
+#include "stringf.h"
 
 sf::RenderWindow main_window;
 Camera main_cam({ 0, 0, 800, 600 });
@@ -155,6 +156,13 @@ void test_pool_alloc(){
 	delete obj;
 }
 
+void test_stringf(){
+	std::cout << stringf("no formatting\n");
+	std::cout << stringf("a number: %%\n", 5);
+	//std::cout << stringf("no operator defined for %%\n", TestObj()); does not compile
+	std::cout << stringf("too many specifiers: %% %% %%\n", 5, 6);
+}
+
 int main(int argc, char** argv){
 	/*
 	test_pool_alloc();
@@ -170,10 +178,13 @@ int main(int argc, char** argv){
 	test_dispatcher();
 
 	test_input_handler();
-	/**/
 
 	CeleryManMain main;
 	main.run();
+
+	/**/
+
+	test_stringf();
 
 	return 0;
 }
