@@ -73,6 +73,18 @@ void AssetManager::load_sounds(const std::string& filename){
 	}
 }
 
+void AssetManager::load_text(const std::string& filename){
+	std::ifstream file(filename);
+	if (!file.is_open()) return;
+	Json::Value jroot;
+	file >> jroot;
+	file.close();
+	const auto& jtext = jroot["strings"];
+	for (const auto& key : jtext.getMemberNames()){
+		strings[key] = jtext[key].asString();
+	}
+}
+
 void AssetManager::load_textures(const std::string& filename){
 	std::ifstream file(filename);
 	if (!file.is_open()) return;
@@ -98,7 +110,51 @@ sf::Music& AssetManager::get_music(const std::string& key) { return musics[key];
 
 sf::Sound& AssetManager::get_sound(const std::string& key) { return sounds[key]; }
 
+std::string& AssetManager::get_text(const std::string& key) { return strings[key]; }
+
 sf::Texture& AssetManager::get_texture(const std::string& key) { return texs[key]; }
+
+Animation& AssetManager::get_animation(const std::string& key, Animation& default) {
+	if (has_animation(key))
+		return anims[key];
+	else
+		return default;
+}
+
+sf::Font& AssetManager::get_font(const std::string& key, sf::Font& default){
+	if (has_font(key))
+		return fonts[key];
+	else
+		return default;
+}
+
+sf::Music& AssetManager::get_music(const std::string& key, sf::Music& default){
+	if (has_music(key))
+		return musics[key];
+	else
+		return default;
+}
+
+sf::Sound& AssetManager::get_sound(const std::string& key, sf::Sound& default){
+	if (has_sound(key))
+		return sounds[key];
+	else
+		return default;
+}
+
+std::string& AssetManager::get_text(const std::string& key, std::string& default){
+	if (has_text(key))
+		return strings[key];
+	else
+		return default;
+}
+
+sf::Texture& AssetManager::get_texture(const std::string& key, sf::Texture& default){
+	if (has_texture(key))
+		return texs[key];
+	else
+		return default;
+}
 
 bool AssetManager::has_animation(const std::string& key) const { return anims.count(key) > 0; }
 
@@ -107,6 +163,8 @@ bool AssetManager::has_font(const std::string& key) const { return fonts.count(k
 bool AssetManager::has_music(const std::string& key) const { return musics.count(key) > 0; }
 
 bool AssetManager::has_sound(const std::string& key) const { return sounds.count(key) > 0; }
+
+bool AssetManager::has_text(const std::string& key) const { return strings.count(key) > 0; }
 
 bool AssetManager::has_texture(const std::string& key) const { return texs.count(key) > 0; }
 
@@ -118,19 +176,23 @@ size_t AssetManager::music_count() const { return musics.size(); }
 
 size_t AssetManager::sound_count() const { return sounds.size(); }
 
-size_t AssetManager::tex_count() const { return texs.size(); }
+size_t AssetManager::text_count() const { return strings.size(); }
+
+size_t AssetManager::texture_count() const { return texs.size(); }
 
 void AssetManager::clear_anims() { anims.clear(); }
 
 void AssetManager::clear_fonts() { fonts.clear(); }
 
-void AssetManager::clear_musics() { musics.clear(); }
+void AssetManager::clear_music() { musics.clear(); }
 
 void AssetManager::clear_sounds() { sounds.clear(); }
 
-void AssetManager::clear_texs() { texs.clear(); }
+void AssetManager::clear_text() { strings.clear(); }
 
-void AssetManager::clear_assets() { anims.clear(); fonts.clear(); musics.clear(); sounds.clear(); texs.clear(); }
+void AssetManager::clear_textures() { texs.clear(); }
+
+void AssetManager::clear_assets() { anims.clear(); fonts.clear(); musics.clear(); sounds.clear(); strings.clear(); texs.clear(); }
 
 sf::IntRect AssetManager::frame_rect(int index, int horiz_size, int tex_width, int tex_height){
 	return{ (index % horiz_size) * tex_width, (index / horiz_size) * tex_height, tex_width, tex_height };
