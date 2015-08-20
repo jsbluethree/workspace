@@ -161,6 +161,7 @@ void test_stringf(){
 	std::cout << stringf("a number: %%\n", 5);
 	//std::cout << stringf("no operator defined for %%\n", TestObj()); does not compile
 	std::cout << stringf("too many specifiers: %% %% %%\n", 5, 6);
+	std::cout << stringf("not enough specifiers: && &&\n", 5, 6, 7);
 }
 
 int main(int argc, char** argv){

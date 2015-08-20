@@ -29,7 +29,7 @@ std::string stringf(const std::string& format, T arg, Args... args){
 		}
 		else{
 			ss << arg;
-			outstring += _ss.str();
+			outstring += ss.str();
 			ss.str("");
 			outstring += stringf(format.substr(i + 2), args...);
 			break;
