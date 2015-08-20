@@ -16,7 +16,7 @@
 void format_print(std::ostream& os, const std::string& str) { os << str; }
 
 template<typename T, typename... Args>
-void format_print(std::ostream& os, const std::string& format, T arg, Args... args){
+void format_print(std::ostream& os, const std::string& format, const T& arg, const Args&... args){
 	for (unsigned int i = 0; i < format.size(); ++i){
 		if (format[i] != '%'){
 			os << format[i];
@@ -33,7 +33,7 @@ void format_print(std::ostream& os, const std::string& format, T arg, Args... ar
 }
 
 template<typename... Args>
-std::string stringf(const std::string& format, Args... args){
+std::string stringf(const std::string& format, const Args&... args){
 	std::stringstream ss;
 	format_print(ss, format, args...);
 	return ss.str();
