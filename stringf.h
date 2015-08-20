@@ -13,29 +13,30 @@
 #include <string>
 #include <sstream>
 
-static std::stringstream ss;
-
-std::string stringf(const std::string& str) { return str; }
+void format_print(std::ostream& os, const std::string& str) { os << str; }
 
 template<typename T, typename... Args>
-std::string stringf(const std::string& format, T arg, Args... args){
-	std::string outstring = "";
+void format_print(std::ostream& os, const std::string& format, T arg, Args... args){
 	for (unsigned int i = 0; i < format.size(); ++i){
 		if (format[i] != '%'){
-			outstring += format[i];
+			os << format[i];
 		}
 		else if (format[i + 1] != '%'){
-			outstring += format[i];
+			os << format[i];
 		}
 		else{
-			ss << arg;
-			outstring += ss.str();
-			ss.str("");
-			outstring += stringf(format.substr(i + 2), args...);
+			os << arg;
+			format_print(os, format.substr(i + 2), args...);
 			break;
 		}
 	}
-	return outstring;
+}
+
+template<typename... Args>
+std::string stringf(const std::string& format, Args... args){
+	std::stringstream ss;
+	format_print(ss, format, args...);
+	return ss.str();
 }
 
 #endif
